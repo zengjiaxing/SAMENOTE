@@ -101,55 +101,55 @@
             // 新增ToolStripMenuItem
             // 
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
-            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.新增ToolStripMenuItem.Text = "新增";
             // 
             // 另存为ToolStripMenuItem
             // 
             this.另存为ToolStripMenuItem.Name = "另存为ToolStripMenuItem";
-            this.另存为ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.另存为ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.另存为ToolStripMenuItem.Text = "另存为";
             // 
             // 保存ToolStripMenuItem
             // 
             this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.保存ToolStripMenuItem.Text = "保存";
             // 
             // 打开ToolStripMenuItem
             // 
             this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
-            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.打开ToolStripMenuItem.Text = "打开";
             // 
             // 导入ToolStripMenuItem
             // 
             this.导入ToolStripMenuItem.Name = "导入ToolStripMenuItem";
-            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.导入ToolStripMenuItem.Text = "导入";
             // 
             // 导出ToolStripMenuItem
             // 
             this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
-            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.导出ToolStripMenuItem.Text = "导出";
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
             // 全屏ToolStripMenuItem
             // 
             this.全屏ToolStripMenuItem.Name = "全屏ToolStripMenuItem";
-            this.全屏ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.全屏ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.全屏ToolStripMenuItem.Text = "全屏";
             // 
             // 快捷键ToolStripMenuItem
             // 
             this.快捷键ToolStripMenuItem.Name = "快捷键ToolStripMenuItem";
-            this.快捷键ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.快捷键ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.快捷键ToolStripMenuItem.Text = "快捷键";
             // 
             // 开始ToolStripMenuItem
