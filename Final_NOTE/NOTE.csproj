@@ -56,7 +56,6 @@
     <Compile Include="model\MyDrawBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="model\test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
