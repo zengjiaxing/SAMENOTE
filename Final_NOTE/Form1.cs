@@ -53,5 +53,6 @@ namespace NOTE
             int size = Convert.ToInt32(this.penSize.SelectedItem.ToString());
             myDrawBox.penSizeSelect(size);
         }
+
     }
 }
