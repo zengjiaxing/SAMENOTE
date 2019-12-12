@@ -14,11 +14,11 @@ using System.IO;
 
 namespace NOTE
 {
-    public partial class Form1 : Form
+    public partial class Note : Form
     {
         MyDrawBox myDrawBox;
 
-        public Form1()
+        public Note()
         {
             InitializeComponent();
             myDrawBox = new MyDrawBox(pictureBox1);
@@ -54,5 +54,19 @@ namespace NOTE
             myDrawBox.penSizeSelect(size);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            foreach (System.Drawing.FontFamily i in objFont.Families)
+            {
+                FontBox.Items.Add(i.Name.ToString());
+            }
+            FontBox.SelectedIndex = 0;
+        }
+
+        private void cboFont_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            System.Drawing.Font objFonts = new Font(FontBox.Items[e.Index].ToString(), 14);
+            e.ItemHeight = objFonts.Height;
+        }
     }
 }
