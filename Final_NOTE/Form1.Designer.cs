@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Note));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -393,7 +394,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(133, 62);
+            this.pictureBox1.Location = new System.Drawing.Point(133, 98);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(932, 494);
@@ -405,19 +406,20 @@
             // 
             // Palette
             // 
-            this.Palette.Location = new System.Drawing.Point(918, 32);
+            this.Palette.AutoSize = true;
+            this.Palette.Image = global::NOTE.Properties.Resources.Colour_Palette;
+            this.Palette.Location = new System.Drawing.Point(1016, 33);
             this.Palette.Margin = new System.Windows.Forms.Padding(4);
             this.Palette.Name = "Palette";
-            this.Palette.Size = new System.Drawing.Size(76, 23);
+            this.Palette.Size = new System.Drawing.Size(38, 38);
             this.Palette.TabIndex = 2;
-            this.Palette.Text = "调色盘";
             this.Palette.UseVisualStyleBackColor = true;
             this.Palette.Click += new System.EventHandler(this.button1_Click);
             // 
             // penSize
             // 
             this.penSize.FormattingEnabled = true;
-            this.penSize.Location = new System.Drawing.Point(745, 33);
+            this.penSize.Location = new System.Drawing.Point(853, 35);
             this.penSize.Margin = new System.Windows.Forms.Padding(4);
             this.penSize.Name = "penSize";
             this.penSize.Size = new System.Drawing.Size(53, 23);
@@ -428,34 +430,34 @@
             // 
             this.NoteList.FormattingEnabled = true;
             this.NoteList.ItemHeight = 15;
-            this.NoteList.Location = new System.Drawing.Point(0, 66);
+            this.NoteList.Location = new System.Drawing.Point(0, 93);
             this.NoteList.Margin = new System.Windows.Forms.Padding(4);
             this.NoteList.Name = "NoteList";
-            this.NoteList.Size = new System.Drawing.Size(125, 484);
+            this.NoteList.Size = new System.Drawing.Size(125, 499);
             this.NoteList.TabIndex = 4;
             // 
             // PenBtn
             // 
-            this.PenBtn.Location = new System.Drawing.Point(693, 32);
+            this.PenBtn.Image = ((System.Drawing.Image)(resources.GetObject("PenBtn.Image")));
+            this.PenBtn.Location = new System.Drawing.Point(810, 33);
             this.PenBtn.Name = "PenBtn";
-            this.PenBtn.Size = new System.Drawing.Size(45, 23);
+            this.PenBtn.Size = new System.Drawing.Size(36, 36);
             this.PenBtn.TabIndex = 15;
-            this.PenBtn.Text = "画笔";
             this.PenBtn.UseVisualStyleBackColor = true;
             // 
             // Rubber
             // 
-            this.Rubber.Location = new System.Drawing.Point(805, 33);
+            this.Rubber.Image = global::NOTE.Properties.Resources.eraser;
+            this.Rubber.Location = new System.Drawing.Point(912, 36);
             this.Rubber.Name = "Rubber";
-            this.Rubber.Size = new System.Drawing.Size(45, 23);
+            this.Rubber.Size = new System.Drawing.Size(36, 36);
             this.Rubber.TabIndex = 16;
-            this.Rubber.Text = "橡皮";
             this.Rubber.UseVisualStyleBackColor = true;
             // 
             // RubberSize
             // 
             this.RubberSize.FormattingEnabled = true;
-            this.RubberSize.Location = new System.Drawing.Point(857, 33);
+            this.RubberSize.Location = new System.Drawing.Point(955, 35);
             this.RubberSize.Margin = new System.Windows.Forms.Padding(4);
             this.RubberSize.Name = "RubberSize";
             this.RubberSize.Size = new System.Drawing.Size(53, 23);
@@ -463,90 +465,90 @@
             // 
             // AddNoteBtn
             // 
-            this.AddNoteBtn.Location = new System.Drawing.Point(12, 33);
+            this.AddNoteBtn.Location = new System.Drawing.Point(12, 34);
             this.AddNoteBtn.Name = "AddNoteBtn";
-            this.AddNoteBtn.Size = new System.Drawing.Size(65, 23);
+            this.AddNoteBtn.Size = new System.Drawing.Size(65, 36);
             this.AddNoteBtn.TabIndex = 18;
             this.AddNoteBtn.Text = "新笔记";
             this.AddNoteBtn.UseVisualStyleBackColor = true;
             // 
             // RevokeBtn
             // 
-            this.RevokeBtn.Location = new System.Drawing.Point(641, 33);
+            this.RevokeBtn.Image = ((System.Drawing.Image)(resources.GetObject("RevokeBtn.Image")));
+            this.RevokeBtn.Location = new System.Drawing.Point(694, 33);
             this.RevokeBtn.Name = "RevokeBtn";
-            this.RevokeBtn.Size = new System.Drawing.Size(46, 23);
+            this.RevokeBtn.Size = new System.Drawing.Size(36, 36);
             this.RevokeBtn.TabIndex = 6;
-            this.RevokeBtn.Text = "撤销";
             this.RevokeBtn.UseVisualStyleBackColor = true;
             // 
             // RestoreBtn
             // 
-            this.RestoreBtn.Location = new System.Drawing.Point(589, 34);
+            this.RestoreBtn.Image = global::NOTE.Properties.Resources.redo;
+            this.RestoreBtn.Location = new System.Drawing.Point(746, 33);
             this.RestoreBtn.Name = "RestoreBtn";
-            this.RestoreBtn.Size = new System.Drawing.Size(46, 23);
+            this.RestoreBtn.Size = new System.Drawing.Size(36, 36);
             this.RestoreBtn.TabIndex = 7;
-            this.RestoreBtn.Text = "恢复";
             this.RestoreBtn.UseVisualStyleBackColor = true;
             // 
             // Format_Painter
             // 
-            this.Format_Painter.Location = new System.Drawing.Point(388, 33);
+            this.Format_Painter.Location = new System.Drawing.Point(463, 35);
             this.Format_Painter.Name = "Format_Painter";
-            this.Format_Painter.Size = new System.Drawing.Size(60, 24);
+            this.Format_Painter.Size = new System.Drawing.Size(60, 36);
             this.Format_Painter.TabIndex = 12;
             this.Format_Painter.Text = "格式刷";
             this.Format_Painter.UseVisualStyleBackColor = true;
             // 
             // ClearBtn
             // 
-            this.ClearBtn.Location = new System.Drawing.Point(454, 33);
+            this.ClearBtn.Location = new System.Drawing.Point(541, 34);
             this.ClearBtn.Name = "ClearBtn";
-            this.ClearBtn.Size = new System.Drawing.Size(78, 24);
+            this.ClearBtn.Size = new System.Drawing.Size(78, 36);
             this.ClearBtn.TabIndex = 13;
             this.ClearBtn.Text = "清除格式";
             this.ClearBtn.UseVisualStyleBackColor = true;
             // 
             // FontColor
             // 
-            this.FontColor.Location = new System.Drawing.Point(306, 33);
+            this.FontColor.Location = new System.Drawing.Point(370, 36);
             this.FontColor.Name = "FontColor";
-            this.FontColor.Size = new System.Drawing.Size(76, 24);
+            this.FontColor.Size = new System.Drawing.Size(76, 36);
             this.FontColor.TabIndex = 11;
             this.FontColor.Text = "字体颜色";
             this.FontColor.UseVisualStyleBackColor = true;
             // 
             // MouseBtn
             // 
-            this.MouseBtn.Location = new System.Drawing.Point(538, 33);
+            this.MouseBtn.Image = global::NOTE.Properties.Resources.pointer;
+            this.MouseBtn.Location = new System.Drawing.Point(641, 34);
             this.MouseBtn.Name = "MouseBtn";
-            this.MouseBtn.Size = new System.Drawing.Size(45, 24);
+            this.MouseBtn.Size = new System.Drawing.Size(36, 36);
             this.MouseBtn.TabIndex = 14;
-            this.MouseBtn.Text = "鼠标";
             this.MouseBtn.UseVisualStyleBackColor = true;
             // 
             // UnderlineBtn
             // 
-            this.UnderlineBtn.Location = new System.Drawing.Point(274, 33);
+            this.UnderlineBtn.Location = new System.Drawing.Point(313, 36);
             this.UnderlineBtn.Name = "UnderlineBtn";
-            this.UnderlineBtn.Size = new System.Drawing.Size(26, 24);
+            this.UnderlineBtn.Size = new System.Drawing.Size(36, 36);
             this.UnderlineBtn.TabIndex = 10;
             this.UnderlineBtn.Text = "U";
             this.UnderlineBtn.UseVisualStyleBackColor = true;
             // 
             // ItalicBtn
             // 
-            this.ItalicBtn.Location = new System.Drawing.Point(242, 33);
+            this.ItalicBtn.Location = new System.Drawing.Point(271, 36);
             this.ItalicBtn.Name = "ItalicBtn";
-            this.ItalicBtn.Size = new System.Drawing.Size(26, 24);
+            this.ItalicBtn.Size = new System.Drawing.Size(36, 36);
             this.ItalicBtn.TabIndex = 9;
             this.ItalicBtn.Text = "I";
             this.ItalicBtn.UseVisualStyleBackColor = true;
             // 
             // BoldBtn
             // 
-            this.BoldBtn.Location = new System.Drawing.Point(210, 33);
+            this.BoldBtn.Location = new System.Drawing.Point(229, 36);
             this.BoldBtn.Name = "BoldBtn";
-            this.BoldBtn.Size = new System.Drawing.Size(26, 24);
+            this.BoldBtn.Size = new System.Drawing.Size(36, 36);
             this.BoldBtn.TabIndex = 8;
             this.BoldBtn.Text = "B";
             this.BoldBtn.UseVisualStyleBackColor = true;
@@ -554,7 +556,7 @@
             // FontBox
             // 
             this.FontBox.FormattingEnabled = true;
-            this.FontBox.Location = new System.Drawing.Point(83, 33);
+            this.FontBox.Location = new System.Drawing.Point(102, 36);
             this.FontBox.Name = "FontBox";
             this.FontBox.Size = new System.Drawing.Size(121, 23);
             this.FontBox.TabIndex = 5;
@@ -564,7 +566,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 562);
+            this.ClientSize = new System.Drawing.Size(1067, 596);
             this.Controls.Add(this.Palette);
             this.Controls.Add(this.RubberSize);
             this.Controls.Add(this.Rubber);
