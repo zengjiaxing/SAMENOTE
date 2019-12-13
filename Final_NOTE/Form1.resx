@@ -123,4 +123,34 @@
   <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>137, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="PenBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH4wEJACk5By+yVQAAAd1JREFU
+        OE9j+P//P0UYqyAhfGSmoNSRWbKH904QacCqAB8Gab59sPTluwcr/+/sEnuPVREuDNQsC9T8+tPzvf+f
+        n036v7VF/A9WhdgwULP87YMlbz8DNX+4XQjWvK5aygOrYnQM1/xi3/8fL+r+X1xj9x+ouQgkh1UDMgZq
+        VgVqfgfTfGmdA0jzfJg8hgZkDNSscetA8YfPLyGar252AWk+tiRPjhWmBkPTprXzmTetmcNxeJa0Nkjz
+        l5f7wZpv7fYGaX4I1CyIrB5ZI+OmtXN5N62ZVbJpzYzrB2bIfX5zaxJY86NjYSDN34CaVZE1gzCY6F2y
+        gmnFqnliQM1bN62Z92PTmtn/tiyt+bezW+r/3X3+/w9ON/oP1OyMrhmEwUT3kmWSzQuXr5s4b+X/85fO
+        /v/z6fL/T08P/N88P+8e1OZUdI0wzNC7eAlb6/wl2Q1Tl/yftuvK/9YFO/+ndm35Xzlpzf+ilklbF+Sr
+        S2PTCMMM9dOXrm2Yvf5/28pj/zvXX/tfOffk/+ieq/99C5e9Ty6foIZNEzJmyGmd8y+pZvr/yJLJ/wNz
+        Jvz3Tuv5H5A7a1ts0cQgbBrQMZjYtLicZdOiIqtNC/MaNs3PlNg0L5Vv07wkXnTFmPg/AwD9k8a9vUPP
+        bgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="RevokeBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH4wEJAhcqwdA8mAAAARFJREFU
+        WEfFlo0NQTEUhd8IRjCCDRjBCDZgBCPYgA3YgA0YwQZswDm4SdPc1/ZWf77kiyfRnPOuvjJksvq9doHh
+        r+9leyS8SwE3vHkBP7xpAS28WYGxcFqdUDid/5zC4sTCNR/wCNfwr1I54Zp7aC5SKtyVE0miRrjIaUSp
+        WYBuYZTaJRYwSs0SZ5hEzRIzmESsBJlAjpVu4AE+ofZ5MWkvCKESIbjuDrV1F2hirEQMTocT8dddoRmt
+        RCpaiSz8EqlwEu6+4HU2bgkLOyjrzHvAR0pYWMJiBQhLWOCvohTg49oFKVDlD0wMmcDt864DPClZwPrV
+        FYPHL0/Gbpxgt7vnQVTk0cuFd84SXWBw4LEbhjfNRBj9e0FyzwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>61</value>
+  </metadata>
 </root>
