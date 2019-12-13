@@ -26,6 +26,7 @@ namespace NOTE
             penSize.Items.Add(7);
             penSize.Items.Add(9);
             penSize.Items.Add(11);
+
             var list = GetTestList();
             //搜索匹配
             this.textBox1.AutoCompleteCustomSource.Clear();
@@ -101,7 +102,8 @@ namespace NOTE
         private void button1_Click_1(object sender, EventArgs e)
         {
             var list = GetTestList();
-            NoteList.DataSource = list;
+            this.NoteList.DataSource = list;
+            this.NoteList.ToString();
         }
 
         private void NoteList_MouseClick(object sender, MouseEventArgs e)
@@ -144,7 +146,6 @@ namespace NOTE
         }
 
         #endregion
-
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -154,11 +155,19 @@ namespace NOTE
                 {
                     if (this.textBox1.Text == this.NoteList.Items[i].ToString())
                     {
-                        MessageBox.Show("按下了回车键,找到"+ this.NoteList.Items[i].ToString());
+                        //this.NoteList.SelectedIndex = i;
+
+                        MessageBox.Show("按下了回车键,找到" + this.NoteList.Items[i].ToString());
+                        Color vColor = Color.Gainsboro;
+
+                        Graphics devcolor = NoteList.CreateGraphics();
+                        vColor = Color.LightPink;
+                        devcolor.FillRectangle(new SolidBrush(vColor), NoteList.GetItemRectangle(i));
+                        devcolor.DrawString(NoteList.Items[i].ToString(), NoteList.Font, new SolidBrush(NoteList.ForeColor), NoteList.GetItemRectangle(i));
                     }
                 }
 
-                
+
             }
         }
     }
