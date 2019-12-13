@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.IO;
 using NOTE.ClassModel;
+using NOTE.ControlModel;
 
 namespace NOTE
 {
@@ -21,6 +22,7 @@ namespace NOTE
         int index = 0;//list的下标
         Boolean search = false;//textbox的功能
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
+        List<PictureBox> pbs = new List<PictureBox>();
         FontBrush fb = new FontBrush(); //格式刷
         bool fbstatus = false; // 格式刷状态
         int TbxNum = -1;  //选中文本框的号码
@@ -34,7 +36,7 @@ namespace NOTE
             penSize.Items.Add(7);
             penSize.Items.Add(9);
             penSize.Items.Add(11);
-            this.textBox1.Visible = false;
+            this.SearchBox.Visible = false;
             //初始生成10个笔记
             for (int i = 0; i < 10; i++)
             {
@@ -67,6 +69,20 @@ namespace NOTE
         {
             myDrawBox.mourseMove(e,this.pictureBox1);
         }
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            myDrawBox.mourseDown(e, this.pictureBox1);
+        }
+
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            myDrawBox.mourseUp(e, this.pictureBox1);
+        }
+
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            myDrawBox.mourseMove(e, this.pictureBox1);
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -98,6 +114,7 @@ namespace NOTE
             this.Controls.Add(tb);
             tbxs.Add(tb);
             tb.BringToFront();//生成新文本框
+            tb.BorderStyle = BorderStyle.Fixed3D;
             tb.Click += new System.EventHandler(TextBox_Click);
             tb.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
             tb.MouseLeave += new System.EventHandler(textBox_MouseLeave);
@@ -219,7 +236,7 @@ namespace NOTE
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             noteName = true;
-            this.textBox1.Visible = true;
+            this.SearchBox.Visible = true;
             
         }
         //测试数据
@@ -266,17 +283,17 @@ namespace NOTE
         {
             if (textboxHasText == false)
             {
-                textBox1.Text = "";
+                SearchBox.Text = "";
             }
-            textBox1.ForeColor = Color.Black;
+            SearchBox.ForeColor = Color.Black;
         }
         //textbox失去焦点
         private void textBox1_Leave(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            if (SearchBox.Text == "")
             {
-                textBox1.Text = "请输入笔记名称";
-                textBox1.ForeColor = Color.LightGray;
+                SearchBox.Text = "请输入笔记名称";
+                SearchBox.ForeColor = Color.LightGray;
                 textboxHasText = false;
             }
             else
@@ -297,7 +314,7 @@ namespace NOTE
                  
                     for (int i = 0; i < this.NoteList.Items.Count; i++)
                     {
-                        if (this.textBox1.Text == this.NoteList.Items[i].ToString())
+                        if (this.SearchBox.Text == this.NoteList.Items[i].ToString())
                         {
                             //this.NoteList.SelectedIndex = i;
 
@@ -312,15 +329,15 @@ namespace NOTE
                     }
                 }else if (noteName)
                 {
-                    this.NoteList.Items.Add(this.textBox1.Text);//listbox添加
+                    this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加
                     index++;
-                    list[index] = this.textBox1.Text;//list添加
-                    this.textBox1.Text = "";
+                    list[index] = this.SearchBox.Text;//list添加
+                    this.SearchBox.Text = "";
                     //搜索匹配
-                    this.textBox1.AutoCompleteCustomSource.Clear();
-                    this.textBox1.AutoCompleteCustomSource.AddRange(list);
-                    this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-                    this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+                    this.SearchBox.AutoCompleteCustomSource.Clear();
+                    this.SearchBox.AutoCompleteCustomSource.AddRange(list);
+                    this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+                    this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
                     
                 }
 
@@ -333,8 +350,53 @@ namespace NOTE
         {
             search = true;
             //显示搜索框
-            this.textBox1.Visible = true;
+            this.SearchBox.Visible = true;
             
         }
+
+
+
+
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+            if (TbxNum != -1)
+            {
+                this.Controls.Remove(tbxs[TbxNum]);
+                tbxs.Remove(tbxs[TbxNum]);
+            }
+            for(int i = 0; i < tbxs.Count; i++)
+            {
+                tbxs[TbxNum].Name = "tb" + i;
+            }
+        }
+
+        private void 图片ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string filepath;
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                DialogResult dr = dlg.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    string fileName = dlg.FileName;
+                    this.pictureBox1.Image = Image.FromFile(fileName);//将图片填充到pictureBox中
+
+                    filepath = dlg.FileName;//获取全部文件路径（包括拓展名）
+                    PictureBox p = new PictureBox();
+                    ((System.ComponentModel.ISupportInitialize)(p)).BeginInit();
+                    p.Image = Image.FromFile(filepath);
+                    p.Size = new Size(100, 100);
+                    p.Location = new Point(300, 330);
+                    p.SizeMode = PictureBoxSizeMode.StretchImage;
+                    p.BringToFront();
+                    pbs.Add(p);
+                    this.Controls.Add(p);
+                }
+
+            }
+        }
+
+
     }
 }
