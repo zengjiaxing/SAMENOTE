@@ -59,6 +59,7 @@
     <Compile Include="ControlModel\MyDrawBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="model\SizeChange.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

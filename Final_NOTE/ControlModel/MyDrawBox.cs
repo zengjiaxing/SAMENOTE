@@ -36,6 +36,38 @@ namespace NOTE.model
             pictureBox.Image = btmp;
             graphics.Dispose();
         }
+        public void reset(PictureBox pictureBox)
+        {
+            if (pictureBox.Width != width || pictureBox.Height != height)
+            {
+                this.pictureBox = pictureBox;
+                width = pictureBox.Width;
+                height = pictureBox.Height;
+                btmp = ResizeImage(btmp, width, height);
+                graphics = Graphics.FromImage(btmp);
+                pictureBox.Image = btmp;
+                graphics.Dispose();
+            }
+        }
+        public static Bitmap ResizeImage(Bitmap bmp, int newW, int newH)
+        {
+            try
+            {
+                Bitmap b = new Bitmap(newW, newH);
+                Graphics g = Graphics.FromImage(b);
+
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+                g.DrawImage(bmp, new Rectangle(0, 0, newW, newH), new Rectangle(0, 0, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
+                g.Dispose();
+
+                return b;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public void colorSelect(ColorDialog colorDialog)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
@@ -47,8 +79,9 @@ namespace NOTE.model
         {
             penSize = size;
         }
-        public void mourseDown(MouseEventArgs e)
+        public void mourseDown(MouseEventArgs e, PictureBox pictureBox)
         {
+            reset(pictureBox);
             if(e.Button == MouseButtons.Left)
             {
                 x = e.X;
@@ -58,9 +91,10 @@ namespace NOTE.model
                 isDrawing = true;
             }
         }
-        public void mourseMove(MouseEventArgs e)
+        public void mourseMove(MouseEventArgs e, PictureBox pictureBox)
         {
-            if(isDrawing && (e.Button == MouseButtons.Left))
+            reset(pictureBox);
+            if (isDrawing && (e.Button == MouseButtons.Left))
             {
                 graphics = Graphics.FromImage(btmp);
                 graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
@@ -71,9 +105,10 @@ namespace NOTE.model
                 graphics.Dispose();
             }
         }
-        public void mourseUp(MouseEventArgs e)
+        public void mourseUp(MouseEventArgs e, PictureBox pictureBox)
         {
-            if(isDrawing || (e.Button == MouseButtons))
+            reset(pictureBox);
+            if (isDrawing || (e.Button == MouseButtons))
             {
                 isDrawing = false;
             }
