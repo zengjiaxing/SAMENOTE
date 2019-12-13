@@ -181,6 +181,107 @@ namespace NOTE
             }
         }
 
+        // 生成新文本框
+        private void 文本框ToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            TextBox tb = new TextBox();
+            tb.Location = new Point(133,98);
+            tb.Size = new System.Drawing.Size(300, 100);
+            tb.Name = "tb"+tbxs.Count.ToString();
+            this.Controls.Add(tb);
+            tbxs.Add(tb);
+            tb.BringToFront();//生成新文本框
+            tb.Click += new System.EventHandler(TextBox_Click);
+            tb.Multiline = true;
+        }
+
+        private void TextBox_Click(object sender, EventArgs e)
+        {
+            TextBox t = (TextBox)sender;
+            TbxNum = Convert.ToInt32(t.Name.Substring(2, 1));
+            if (fbstatus)//如果格式刷被选中
+            {
+                tbxs[TbxNum].Font = fb.f;
+                tbxs[TbxNum].ForeColor = fb.c;
+                fbstatus = false;
+            }
+        }
+
+
+        private void FontBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            if (TbxNum != -1)
+            {
+                tbxs[TbxNum].Font = new Font(FontBox.Items[cb.SelectedIndex].ToString(),
+                                              tbxs[TbxNum].Font.Size, tbxs[TbxNum].Font.Style);
+                TbxNum = -1;
+            }
+        }
+
+        private void BoldBtn_Click(object sender, EventArgs e)
+        {
+            if(TbxNum != -1)
+            {
+                if (!tbxs[TbxNum].Font.Bold)
+                {
+                    tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style | FontStyle.Bold);
+                }
+                else
+                {
+                    tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style ^ FontStyle.Bold);
+                }
+            }
+        }
+
+        private void ItalicBtn_Click(object sender, EventArgs e)
+        {
+            if (!tbxs[TbxNum].Font.Italic)
+            {
+                tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style | FontStyle.Italic);
+            }
+            else
+            {
+                tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style ^ FontStyle.Italic);
+            }
+        }
+
+        private void UnderlineBtn_Click(object sender, EventArgs e)
+        {
+            if (!tbxs[TbxNum].Font.Underline)
+            {
+                tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style | FontStyle.Underline);
+            }
+            else
+            {
+                tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style ^ FontStyle.Underline);
+            }
+        }
+
+        private void FontColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cldlg = colorDialog1;
+            if (cldlg.ShowDialog() == DialogResult.OK)
+            {
+                if (TbxNum != -1)
+                {
+                    tbxs[TbxNum].ForeColor = cldlg.Color;
+                    TbxNum = -1;
+                }
+            }
+        }
+
+        private void Format_Painter_Click(object sender, EventArgs e)
+        {
+            if (TbxNum != -1)
+            {
+                this.fb.f = tbxs[TbxNum].Font;
+                this.fb.c = tbxs[TbxNum].ForeColor;
+                TbxNum = -1;
+                fbstatus = true;
+            }
+        }
+
         private void ClearBtn_Click(object sender, EventArgs e)
         {
             if (TbxNum != -1)
