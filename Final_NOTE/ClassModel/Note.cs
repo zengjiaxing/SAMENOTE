@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace NOTE.ClassModel
 {
-    class Note
+    public class Note
     {
         int ID;
         String name;//笔记名字

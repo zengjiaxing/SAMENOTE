@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NOTE.ClassModel
 {
-    class User
+    public class User
     {
         string Name;
         string Password;

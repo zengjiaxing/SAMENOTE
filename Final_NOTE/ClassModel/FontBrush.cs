@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NOTE.ClassModel
 {
-    class FontBrush
+    public class FontBrush
     {
        public  Font f = null;
         public Color c = Color.Black;
