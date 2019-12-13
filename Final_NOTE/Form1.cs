@@ -38,29 +38,7 @@ namespace NOTE
             penSize.Items.Add(9);
             penSize.Items.Add(11);
             this.SearchBox.Visible = false;
-            //初始生成10个笔记
-            for (int i = 0; i < 10; i++)
-            {
-                this.NoteList.Items.Add("笔记" + (i+1));
-                //list[i] = "笔记" + (i+1);
-                //index = i;
-                list.Add("笔记" + (i + 1));
-            }
-            string[] str = list.ToArray();
-            //搜索匹配
-            this.SearchBox.AutoCompleteCustomSource.Clear();
-            this.SearchBox.AutoCompleteCustomSource.AddRange(str);
-            this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            //for(int i = 0; NoteList.SelectedIndex != -1; i++)
-            //{
-            //    if (this.textBox1.Text == NoteList.SelectedItem.ToString())
-            //    {
-            //        MessageBox.Show(this.textBox1.Text);
-            //    }
-            //}
-            //textBox1.KeyUp += new KeyEventHandler(textBox1_KeyUp);
-        }
+
         #region  PictureBox1 背景板操作 implemented by ZJX
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -256,9 +234,32 @@ namespace NOTE
                 tbxs[TbxNum].Name = "tb" + i;
             }
         }
-        #endregion
+            #endregion
 
-        #region 笔记本相关操作  implemented by ZX
+            #region 笔记本相关操作  implemented by ZX
+            //初始生成10个笔记
+            for (int i = 0; i < 10; i++)
+            {
+                this.NoteList.Items.Add("笔记" + (i + 1));
+                //list[i] = "笔记" + (i+1);
+                //index = i;
+                list.Add("笔记" + (i + 1));
+            }
+            string[] str = list.ToArray();
+            //搜索匹配
+            this.SearchBox.AutoCompleteCustomSource.Clear();
+            this.SearchBox.AutoCompleteCustomSource.AddRange(str);
+            this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            //for(int i = 0; NoteList.SelectedIndex != -1; i++)
+            //{
+            //    if (this.textBox1.Text == NoteList.SelectedItem.ToString())
+            //    {
+            //        MessageBox.Show(this.textBox1.Text);
+            //    }
+            //}
+            //textBox1.KeyUp += new KeyEventHandler(textBox1_KeyUp);
+        }
         //新增笔记本--名字
         Boolean noteName = false;
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
