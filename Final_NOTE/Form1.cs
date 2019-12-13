@@ -357,29 +357,26 @@ namespace NOTE
                             search = false;
                         }
                     }
-                        ////说明循环后search还是真
-                        ////循环后找不到笔记名
-                        //MessageBox.Show("按下了回车键,找不到" + this.SearchBox.Text);
-
+                    //循环后找不到笔记名
+                    MessageBox.Show("按下了回车键,找不到" + this.textBox1.Text);
+         
                 }
                 else if (noteName)
                 {
-                    this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
-                    list.Add(this.SearchBox.Text);//list添加
-                    this.SearchBox.Text = "";
+                    this.NoteList.Items.Add(this.textBox1.Text);//listbox添加item
+                    list.Add(this.textBox1.Text);//list添加
+                    this.textBox1.Text = "";
                     string[] str = list.ToArray();
                     //搜索匹配
-                    this.SearchBox.AutoCompleteCustomSource.Clear();
-                    this.SearchBox.AutoCompleteCustomSource.AddRange(str);
-                    this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-                    this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-                    noteName = false;
-                }
-                //else
-                //{
-                //    MessageBox.Show("按下了回车键,找不到" + this.SearchBox.Text);
+                    this.textBox1.AutoCompleteCustomSource.Clear();
+                    this.textBox1.AutoCompleteCustomSource.AddRange(str);
+                    this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+                    this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 
-                //}
+                }
+
+
+
             }
         }
         
