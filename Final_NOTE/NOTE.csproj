@@ -131,47 +131,5 @@
   <ItemGroup>
     <Folder Include="Tools\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\调色盘.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\橡皮.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\画笔.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\恢复.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\撤销.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\指针.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\格式刷.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\清除格式.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\字体颜色.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\垃圾桶 删除.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\下划线.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\斜体.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\加粗.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\字体+.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
