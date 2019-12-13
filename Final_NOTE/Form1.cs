@@ -39,8 +39,17 @@ namespace NOTE
             penSize.Items.Add(11);
             this.SearchBox.Visible = false;
 
-        #region  PictureBox1 背景板操作 implemented by ZJX
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+            private void Form1_Load(object sender, EventArgs e)
+            {
+                foreach (System.Drawing.FontFamily i in objFont.Families)//加载所有字体
+                {
+                    FontBox.Items.Add(i.Name.ToString());
+                }
+                FontBox.SelectedIndex = 0;
+            }
+
+            #region  PictureBox1 背景板操作 implemented by ZJX
+            private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             myDrawBox.mourseDown(e,this.pictureBox1);
         }
@@ -83,16 +92,7 @@ namespace NOTE
         }
         #endregion
 
-        #region From1 加载事件
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            foreach (System.Drawing.FontFamily i in objFont.Families)//加载所有字体
-            {
-                FontBox.Items.Add(i.Name.ToString());
-            }
-            FontBox.SelectedIndex = 0;
-        }
-        #endregion
+
 
         #region  文本框及文本有关操作   implemented by SWJ
         // 生成新文本框
