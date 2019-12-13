@@ -16,8 +16,9 @@ namespace NOTE
     public partial class Note : Form
     {
         MyDrawBox myDrawBox;
-        string[] list= new string[100];//存储搜索源
-        int index = 0;//list的下标
+        List<string> list = new List<string>();
+        //string[] list= new string[100];//存储搜索源
+        //int index = 0;//list的下标
         Boolean search = false;//textbox的功能
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
         FontBrush fb = new FontBrush(); //格式刷
@@ -38,10 +39,16 @@ namespace NOTE
             for (int i = 0; i < 10; i++)
             {
                 this.NoteList.Items.Add("笔记" + (i+1));
-                list[i] = "笔记" + (i+1);
-                index = i;
+                //list[i] = "笔记" + (i+1);
+                //index = i;
+                list.Add("笔记" + (i + 1));
             }
-            
+            string[] str = list.ToArray();
+            //搜索匹配
+            this.textBox1.AutoCompleteCustomSource.Clear();
+            this.textBox1.AutoCompleteCustomSource.AddRange(str);
+            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             //for(int i = 0; NoteList.SelectedIndex != -1; i++)
             //{
             //    if (this.textBox1.Text == NoteList.SelectedItem.ToString())
@@ -217,6 +224,7 @@ namespace NOTE
         //}
         private void button1_Click_1(object sender, EventArgs e)
         {
+            /*还不知道什么用途*/
             //var list = GetTestList();
             //for(int i = 0;i<10 ; i++)
             //{
@@ -272,7 +280,7 @@ namespace NOTE
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)//按下回车
             {
                 
                 if (search)//此时textbox进行搜索功能
@@ -282,8 +290,7 @@ namespace NOTE
                     {
                         if (this.textBox1.Text == this.NoteList.Items[i].ToString())
                         {
-                            //this.NoteList.SelectedIndex = i;
-
+                            //将找到的item背景设置为粉色
                             MessageBox.Show("按下了回车键,找到" + this.NoteList.Items[i].ToString());
                             Color vColor = Color.Gainsboro;
 
@@ -291,20 +298,25 @@ namespace NOTE
                             vColor = Color.LightPink;
                             devcolor.FillRectangle(new SolidBrush(vColor), NoteList.GetItemRectangle(i));
                             devcolor.DrawString(NoteList.Items[i].ToString(), NoteList.Font, new SolidBrush(NoteList.ForeColor), NoteList.GetItemRectangle(i));
+                            search = false;
                         }
                     }
-                }else if (noteName)
+                    //循环后找不到笔记名
+                    MessageBox.Show("按下了回车键,找不到" + this.textBox1.Text);
+         
+                }
+                else if (noteName)
                 {
-                    this.NoteList.Items.Add(this.textBox1.Text);//listbox添加
-                    index++;
-                    list[index] = this.textBox1.Text;//list添加
+                    this.NoteList.Items.Add(this.textBox1.Text);//listbox添加item
+                    list.Add(this.textBox1.Text);//list添加
                     this.textBox1.Text = "";
+                    string[] str = list.ToArray();
                     //搜索匹配
                     this.textBox1.AutoCompleteCustomSource.Clear();
-                    this.textBox1.AutoCompleteCustomSource.AddRange(list);
+                    this.textBox1.AutoCompleteCustomSource.AddRange(str);
                     this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
                     this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-                    
+
                 }
 
 
