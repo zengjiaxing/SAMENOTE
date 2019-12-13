@@ -23,8 +23,10 @@ namespace NOTE
         FontBrush fb = new FontBrush(); //格式刷
         bool fbstatus = false; // 格式刷状态
         int TbxNum = -1;  //选中文本框的号码
+        SizeChange sizeChange = new SizeChange();
         public Note()
         {   
+ 
             InitializeComponent();
             myDrawBox = new MyDrawBox(pictureBox1);
             penSize.Items.Add(5);
@@ -52,17 +54,17 @@ namespace NOTE
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            myDrawBox.mourseDown(e);
+            myDrawBox.mourseDown(e,this.pictureBox1);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            myDrawBox.mourseUp(e);
+            myDrawBox.mourseUp(e,this.pictureBox1);
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            myDrawBox.mourseMove(e);
+            myDrawBox.mourseMove(e,this.pictureBox1);
         }
 
         private void button1_Click(object sender, EventArgs e)
