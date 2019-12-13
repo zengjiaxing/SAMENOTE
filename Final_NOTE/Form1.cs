@@ -61,7 +61,7 @@ namespace NOTE
             //}
             //textBox1.KeyUp += new KeyEventHandler(textBox1_KeyUp);
         }
-
+        #region  PictureBox1 背景板操作 implemented by ZJX
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             myDrawBox.mourseDown(e,this.pictureBox1);
@@ -90,7 +90,9 @@ namespace NOTE
         {
             myDrawBox.mourseMove(e, this.pictureBox1);
         }
+        #endregion
 
+        #region  绘图操作 implemented by ZJX
         private void button1_Click(object sender, EventArgs e)
         {
             myDrawBox.colorSelect(colorDialog1);
@@ -101,7 +103,9 @@ namespace NOTE
             int size = Convert.ToInt32(this.penSize.SelectedItem.ToString());
             myDrawBox.penSizeSelect(size);
         }
+        #endregion
 
+        #region From1 加载事件
         private void Form1_Load(object sender, EventArgs e)
         {
             foreach (System.Drawing.FontFamily i in objFont.Families)//加载所有字体
@@ -110,7 +114,9 @@ namespace NOTE
             }
             FontBox.SelectedIndex = 0;
         }
+        #endregion
 
+        #region  文本框及文本有关操作   implemented by SWJ
         // 生成新文本框
         private void 文本框ToolStripMenuItem_Click(object sender, EventArgs e) 
         {
@@ -238,6 +244,21 @@ namespace NOTE
                 tbxs[TbxNum].ForeColor = DefaultForeColor;
             }
         }
+        private void delete_Click(object sender, EventArgs e)
+        {
+            if (TbxNum != -1)
+            {
+                this.Controls.Remove(tbxs[TbxNum]);
+                tbxs.Remove(tbxs[TbxNum]);
+            }
+            for (int i = 0; i < tbxs.Count; i++)
+            {
+                tbxs[TbxNum].Name = "tb" + i;
+            }
+        }
+        #endregion
+
+        #region 笔记本相关操作  implemented by ZX
         //新增笔记本--名字
         Boolean noteName = false;
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -368,24 +389,9 @@ namespace NOTE
             this.SearchBox.Visible = true;
             
         }
+        #endregion
 
-
-
-
-
-        private void delete_Click(object sender, EventArgs e)
-        {
-            if (TbxNum != -1)
-            {
-                this.Controls.Remove(tbxs[TbxNum]);
-                tbxs.Remove(tbxs[TbxNum]);
-            }
-            for(int i = 0; i < tbxs.Count; i++)
-            {
-                tbxs[TbxNum].Name = "tb" + i;
-            }
-        }
-
+        #region 插入操作 implemented by SWJ
         private void 图片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string filepath;
@@ -411,7 +417,7 @@ namespace NOTE
 
             }
         }
-
+        #endregion
 
     }
 }
