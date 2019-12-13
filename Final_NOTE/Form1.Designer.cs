@@ -61,7 +61,6 @@ namespace NOTE
             this.圆形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.直线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.虚线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.页面颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.基准线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -263,8 +262,7 @@ namespace NOTE
             this.插入ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文本框ToolStripMenuItem,
             this.表格ToolStripMenuItem,
-            this.图形ToolStripMenuItem,
-            this.图片ToolStripMenuItem});
+            this.图形ToolStripMenuItem});
             this.插入ToolStripMenuItem.Name = "插入ToolStripMenuItem";
             this.插入ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.插入ToolStripMenuItem.Text = "插入";
@@ -323,12 +321,6 @@ namespace NOTE
             this.虚线ToolStripMenuItem.Name = "虚线ToolStripMenuItem";
             this.虚线ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.虚线ToolStripMenuItem.Text = "虚线";
-            // 
-            // 图片ToolStripMenuItem
-            // 
-            this.图片ToolStripMenuItem.Name = "图片ToolStripMenuItem";
-            this.图片ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.图片ToolStripMenuItem.Text = "图片";
             // 
             // 视图ToolStripMenuItem
             // 
@@ -413,10 +405,10 @@ namespace NOTE
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(133, 93);
+            this.pictureBox1.Location = new System.Drawing.Point(133, 108);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(934, 503);
+            this.pictureBox1.Size = new System.Drawing.Size(934, 488);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
