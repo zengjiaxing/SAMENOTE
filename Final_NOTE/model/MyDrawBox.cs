@@ -36,7 +36,7 @@ namespace NOTE.model
             pictureBox.Image = btmp;
             graphics.Dispose();
         }
-        public void reset(PictureBox pictureBox)
+        public void reset(PictureBox pictureBox)//重置画图板大小
         {
             if (pictureBox.Width != width || pictureBox.Height != height)
             {
@@ -49,7 +49,7 @@ namespace NOTE.model
                 graphics.Dispose();
             }
         }
-        public static Bitmap ResizeImage(Bitmap bmp, int newW, int newH)
+        public static Bitmap ResizeImage(Bitmap bmp, int newW, int newH)//改变画图板大小
         {
             try
             {
