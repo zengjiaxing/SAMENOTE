@@ -99,6 +99,9 @@ namespace NOTE
             tbxs.Add(tb);
             tb.BringToFront();//生成新文本框
             tb.Click += new System.EventHandler(TextBox_Click);
+            tb.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
+            tb.MouseLeave += new System.EventHandler(textBox_MouseLeave);
+            tb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
             tb.Multiline = true;
         }
 
@@ -113,14 +116,14 @@ namespace NOTE
                 fbstatus = false;
             }
         }
-        private void TextBox_MouseDown(object sender, MouseEventArgs e)
+        private void textBox_MouseDown(object sender, MouseEventArgs e)
         {
             sizeChange.MyMouseDown(sender, e);
         }
 
-        private void TextBox_MouseLeave(object sender, MouseEventArgs e)
+        private void textBox_MouseLeave(object sender, EventArgs e)
         {
-            sizeChange.MyMouseMove(sender, e, this.Cursor);
+            sizeChange.MyMouseLeave(sender, e, this.Cursor);
         }
 
         private void textBox_MouseMove(object sender, MouseEventArgs e)
