@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.IO;
 using NOTE.ClassModel;
+
 namespace NOTE
 {
     public partial class Note : Form
@@ -112,7 +113,20 @@ namespace NOTE
                 fbstatus = false;
             }
         }
+        private void TextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            sizeChange.MyMouseDown(sender, e);
+        }
 
+        private void TextBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            sizeChange.MyMouseMove(sender, e, this.Cursor);
+        }
+
+        private void textBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            sizeChange.MyMouseMove(sender, e, this.Cursor);
+        }
 
         private void FontBox_SelectedIndexChanged(object sender, EventArgs e)
         {
