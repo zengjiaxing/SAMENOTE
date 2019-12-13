@@ -567,7 +567,6 @@
             this.FontBox.Name = "FontBox";
             this.FontBox.Size = new System.Drawing.Size(121, 23);
             this.FontBox.TabIndex = 5;
-            this.FontBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.cboFont_MeasureItem);
             // 
             // button1
             // 
