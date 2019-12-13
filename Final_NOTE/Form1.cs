@@ -38,6 +38,8 @@ namespace NOTE
             penSize.Items.Add(9);
             penSize.Items.Add(11);
             this.SearchBox.Visible = false;
+
+            #region 初始化笔记本 by ZX
             //初始生成10个笔记
             for (int i = 0; i < 10; i++)
             {
@@ -62,6 +64,9 @@ namespace NOTE
             //textBox1.KeyUp += new KeyEventHandler(textBox1_KeyUp);
         }
 
+        #endregion
+
+        #region   背景板操作 by ZJX
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             myDrawBox.mourseDown(e,this.pictureBox1);
@@ -101,7 +106,9 @@ namespace NOTE
             int size = Convert.ToInt32(this.penSize.SelectedItem.ToString());
             myDrawBox.penSizeSelect(size);
         }
+        #endregion
 
+        #region 文本框操作 by SWJ
         private void Form1_Load(object sender, EventArgs e)
         {
             foreach (System.Drawing.FontFamily i in objFont.Families)//加载所有字体
@@ -238,6 +245,10 @@ namespace NOTE
                 tbxs[TbxNum].ForeColor = DefaultForeColor;
             }
         }
+
+        #endregion
+
+        #region 笔记本操作 by ZX
         //新增笔记本--名字
         Boolean noteName = false;
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -385,7 +396,9 @@ namespace NOTE
                 tbxs[TbxNum].Name = "tb" + i;
             }
         }
+        #endregion
 
+        #region 插入图片操作 by SWJ
         private void 图片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string filepath;
@@ -411,7 +424,7 @@ namespace NOTE
 
             }
         }
-
+        #endregion
 
     }
 }
