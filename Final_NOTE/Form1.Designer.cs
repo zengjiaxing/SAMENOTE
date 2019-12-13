@@ -1,4 +1,6 @@
-﻿namespace NOTE
+﻿using System.Collections.Generic;
+
+namespace NOTE
 {
     partial class Note
     {
@@ -59,6 +61,7 @@
             this.圆形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.直线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.虚线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.页面颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.基准线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,10 +92,6 @@
             this.ItalicBtn = new System.Windows.Forms.Button();
             this.BoldBtn = new System.Windows.Forms.Button();
             this.FontBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -134,7 +133,6 @@
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
             this.新增ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.新增ToolStripMenuItem.Text = "新增";
-            this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
             // 
             // 另存为ToolStripMenuItem
             // 
@@ -260,7 +258,8 @@
             this.插入ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文本框ToolStripMenuItem,
             this.表格ToolStripMenuItem,
-            this.图形ToolStripMenuItem});
+            this.图形ToolStripMenuItem,
+            this.图片ToolStripMenuItem});
             this.插入ToolStripMenuItem.Name = "插入ToolStripMenuItem";
             this.插入ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.插入ToolStripMenuItem.Text = "插入";
@@ -270,6 +269,7 @@
             this.文本框ToolStripMenuItem.Name = "文本框ToolStripMenuItem";
             this.文本框ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.文本框ToolStripMenuItem.Text = "文本框";
+            this.文本框ToolStripMenuItem.Click += new System.EventHandler(this.文本框ToolStripMenuItem_Click);
             // 
             // 表格ToolStripMenuItem
             // 
@@ -318,6 +318,12 @@
             this.虚线ToolStripMenuItem.Name = "虚线ToolStripMenuItem";
             this.虚线ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.虚线ToolStripMenuItem.Text = "虚线";
+            // 
+            // 图片ToolStripMenuItem
+            // 
+            this.图片ToolStripMenuItem.Name = "图片ToolStripMenuItem";
+            this.图片ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.图片ToolStripMenuItem.Text = "图片";
             // 
             // 视图ToolStripMenuItem
             // 
@@ -399,10 +405,13 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(133, 98);
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Location = new System.Drawing.Point(133, 93);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(932, 494);
+            this.pictureBox1.Size = new System.Drawing.Size(934, 503);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -433,14 +442,15 @@
             // 
             // NoteList
             // 
+            this.NoteList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteList.FormattingEnabled = true;
             this.NoteList.ItemHeight = 15;
-            this.NoteList.Location = new System.Drawing.Point(0, 108);
+            this.NoteList.Location = new System.Drawing.Point(0, 93);
             this.NoteList.Margin = new System.Windows.Forms.Padding(4);
             this.NoteList.Name = "NoteList";
-            this.NoteList.Size = new System.Drawing.Size(125, 484);
+            this.NoteList.Size = new System.Drawing.Size(125, 499);
             this.NoteList.TabIndex = 4;
-            this.NoteList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseClick);
             // 
             // PenBtn
             // 
@@ -477,7 +487,6 @@
             this.AddNoteBtn.TabIndex = 18;
             this.AddNoteBtn.Text = "新笔记";
             this.AddNoteBtn.UseVisualStyleBackColor = true;
-            this.AddNoteBtn.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
             // 
             // RevokeBtn
             // 
@@ -505,6 +514,7 @@
             this.Format_Painter.TabIndex = 12;
             this.Format_Painter.Text = "格式刷";
             this.Format_Painter.UseVisualStyleBackColor = true;
+            this.Format_Painter.Click += new System.EventHandler(this.Format_Painter_Click);
             // 
             // ClearBtn
             // 
@@ -514,6 +524,7 @@
             this.ClearBtn.TabIndex = 13;
             this.ClearBtn.Text = "清除格式";
             this.ClearBtn.UseVisualStyleBackColor = true;
+            this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
             // FontColor
             // 
@@ -523,6 +534,7 @@
             this.FontColor.TabIndex = 11;
             this.FontColor.Text = "字体颜色";
             this.FontColor.UseVisualStyleBackColor = true;
+            this.FontColor.Click += new System.EventHandler(this.FontColor_Click);
             // 
             // MouseBtn
             // 
@@ -541,6 +553,7 @@
             this.UnderlineBtn.TabIndex = 10;
             this.UnderlineBtn.Text = "U";
             this.UnderlineBtn.UseVisualStyleBackColor = true;
+            this.UnderlineBtn.Click += new System.EventHandler(this.UnderlineBtn_Click);
             // 
             // ItalicBtn
             // 
@@ -550,6 +563,7 @@
             this.ItalicBtn.TabIndex = 9;
             this.ItalicBtn.Text = "I";
             this.ItalicBtn.UseVisualStyleBackColor = true;
+            this.ItalicBtn.Click += new System.EventHandler(this.ItalicBtn_Click);
             // 
             // BoldBtn
             // 
@@ -559,6 +573,7 @@
             this.BoldBtn.TabIndex = 8;
             this.BoldBtn.Text = "B";
             this.BoldBtn.UseVisualStyleBackColor = true;
+            this.BoldBtn.Click += new System.EventHandler(this.BoldBtn_Click);
             // 
             // FontBox
             // 
@@ -567,55 +582,13 @@
             this.FontBox.Name = "FontBox";
             this.FontBox.Size = new System.Drawing.Size(121, 23);
             this.FontBox.TabIndex = 5;
-            this.FontBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.cboFont_MeasureItem);
-            // 
-            // button1
-            // 
-            this.button1.Image = global::NOTE.Properties.Resources.书__1_;
-            this.button1.Location = new System.Drawing.Point(0, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 26);
-            this.button1.TabIndex = 19;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.Image = global::NOTE.Properties.Resources.搜索__1;
-            this.button2.Location = new System.Drawing.Point(44, 75);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(33, 26);
-            this.button2.TabIndex = 20;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Image = global::NOTE.Properties.Resources.时间_历史记录_计时_钟表_线性;
-            this.button3.Location = new System.Drawing.Point(92, 76);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(33, 26);
-            this.button3.TabIndex = 21;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(158, 77);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(149, 25);
-            this.textBox1.TabIndex = 22;
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.FontBox.SelectedIndexChanged += new System.EventHandler(this.FontBox_SelectedIndexChanged);
             // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 596);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Palette);
             this.Controls.Add(this.RubberSize);
             this.Controls.Add(this.Rubber);
@@ -633,8 +606,8 @@
             this.Controls.Add(this.FontBox);
             this.Controls.Add(this.AddNoteBtn);
             this.Controls.Add(this.NoteList);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Note";
@@ -710,10 +683,7 @@
         private System.Windows.Forms.Button ItalicBtn;
         private System.Windows.Forms.Button BoldBtn;
         private System.Windows.Forms.ComboBox FontBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem 图片ToolStripMenuItem;
     }
 }
 
