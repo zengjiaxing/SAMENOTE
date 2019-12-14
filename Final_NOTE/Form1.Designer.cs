@@ -97,6 +97,7 @@ namespace NOTE
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.delete = new System.Windows.Forms.Button();
             this.Fontbtn = new System.Windows.Forms.Button();
+            this.连接数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -109,7 +110,8 @@ namespace NOTE
             this.笔记本ToolStripMenuItem1,
             this.插入ToolStripMenuItem,
             this.视图ToolStripMenuItem,
-            this.用户ToolStripMenuItem});
+            this.用户ToolStripMenuItem,
+            this.连接数据库ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -641,6 +643,13 @@ namespace NOTE
             this.Fontbtn.TabIndex = 24;
             this.Fontbtn.UseVisualStyleBackColor = true;
             // 
+            // 连接数据库ToolStripMenuItem
+            // 
+            this.连接数据库ToolStripMenuItem.Name = "连接数据库ToolStripMenuItem";
+            this.连接数据库ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.连接数据库ToolStripMenuItem.Text = "连接数据库";
+            this.连接数据库ToolStripMenuItem.Click += new System.EventHandler(this.连接数据库ToolStripMenuItem_Click);
+            // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -751,6 +760,7 @@ namespace NOTE
         private System.Windows.Forms.Button delete;
         private System.Windows.Forms.ToolStripMenuItem 图片ToolStripMenuItem;
         private System.Windows.Forms.Button Fontbtn;
+        private System.Windows.Forms.ToolStripMenuItem 连接数据库ToolStripMenuItem;
     }
 }
 

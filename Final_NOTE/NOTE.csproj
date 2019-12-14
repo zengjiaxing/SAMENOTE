@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassModel\FontBrush.cs" />
-    <Compile Include="ClassModel\Note.cs" />
-    <Compile Include="ClassModel\User.cs" />
     <Compile Include="ControlModel\TransTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -172,6 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\字体+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="NoteDAL\NoteDAL.csproj">
+      <Project>{94848c0d-335d-486c-9b86-36c356f554e4}</Project>
+      <Name>NoteDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using NOTE.ClassModel;
 using NOTE.ControlModel;
-
+using MySql.Data.MySqlClient;
+using NoteDAL;
 namespace NOTE
 {
     public partial class Note : Form
@@ -29,8 +30,8 @@ namespace NOTE
         int TbxNum = -1;  //选中文本框的号码
         SizeChange sizeChange = new SizeChange();
         public Note()
-        {   
- 
+        {
+
             InitializeComponent();
             myDrawBox = new MyDrawBox(pictureBox1);
             penSize.Items.Add(5);
@@ -41,7 +42,7 @@ namespace NOTE
             //初始生成10个笔记
             for (int i = 0; i < 10; i++)
             {
-                this.NoteList.Items.Add("笔记" + (i+1));
+                this.NoteList.Items.Add("笔记" + (i + 1));
                 //list[i] = "笔记" + (i+1);
                 //index = i;
                 list.Add("笔记" + (i + 1));
@@ -64,17 +65,17 @@ namespace NOTE
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            myDrawBox.mourseDown(e,this.pictureBox1);
+            myDrawBox.mourseDown(e, this.pictureBox1);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            myDrawBox.mourseUp(e,this.pictureBox1);
+            myDrawBox.mourseUp(e, this.pictureBox1);
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            myDrawBox.mourseMove(e,this.pictureBox1);
+            myDrawBox.mourseMove(e, this.pictureBox1);
         }
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -112,12 +113,12 @@ namespace NOTE
         }
 
         // 生成新文本框
-        private void 文本框ToolStripMenuItem_Click(object sender, EventArgs e) 
+        private void 文本框ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox tb = new TextBox();
-            tb.Location = new Point(133,98);
+            tb.Location = new Point(133, 98);
             tb.Size = new System.Drawing.Size(300, 100);
-            tb.Name = "tb"+tbxs.Count.ToString();
+            tb.Name = "tb" + tbxs.Count.ToString();
             this.Controls.Add(tb);
             tbxs.Add(tb);
             tb.BringToFront();//生成新文本框
@@ -168,7 +169,7 @@ namespace NOTE
 
         private void BoldBtn_Click(object sender, EventArgs e)
         {
-            if(TbxNum != -1)
+            if (TbxNum != -1)
             {
                 if (!tbxs[TbxNum].Font.Bold)
                 {
@@ -244,7 +245,7 @@ namespace NOTE
         {
             noteName = true;
             this.SearchBox.Visible = true;
-            
+
         }
         //测试数据
         //private List<string> GetTestList()
@@ -316,10 +317,10 @@ namespace NOTE
 
             if (e.KeyCode == Keys.Enter)//按下回车
             {
-                
+
                 if (search)//此时textbox进行搜索功能
                 {
-                 
+
                     for (int i = 0; i < this.NoteList.Items.Count; i++)
                     {
                         if (this.SearchBox.Text == this.NoteList.Items[i].ToString())
@@ -335,9 +336,9 @@ namespace NOTE
                             search = false;
                         }
                     }
-                        ////说明循环后search还是真
-                        ////循环后找不到笔记名
-                        //MessageBox.Show("按下了回车键,找不到" + this.SearchBox.Text);
+                    ////说明循环后search还是真
+                    ////循环后找不到笔记名
+                    //MessageBox.Show("按下了回车键,找不到" + this.SearchBox.Text);
 
                 }
                 else if (noteName)
@@ -360,13 +361,13 @@ namespace NOTE
                 //}
             }
         }
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
             search = true;
             //显示搜索框
             this.SearchBox.Visible = true;
-            
+
         }
 
 
@@ -380,7 +381,7 @@ namespace NOTE
                 this.Controls.Remove(tbxs[TbxNum]);
                 tbxs.Remove(tbxs[TbxNum]);
             }
-            for(int i = 0; i < tbxs.Count; i++)
+            for (int i = 0; i < tbxs.Count; i++)
             {
                 tbxs[TbxNum].Name = "tb" + i;
             }
@@ -412,6 +413,15 @@ namespace NOTE
             }
         }
 
-
-    }
+        private void 连接数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataSource data = new DataSource();
+            List<User> userlist = new List<User>();
+            userlist = data.init();
+            foreach(User x in userlist)
+            {
+                MessageBox.Show("用户姓名："+x.Name1+"，用户密码："+ x.Password1);
+            }
+        }
+    } 
 }
