@@ -51,6 +51,12 @@
     <Compile Include="ControlModel\TransTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forget.Designer.cs">
+      <DependentUpon>Forget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,10 +67,31 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ControlModel\SizeChange.cs" />
+    <Compile Include="LogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogIn.Designer.cs">
+      <DependentUpon>LogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modify.Designer.cs">
+      <DependentUpon>Modify.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forget.resx">
+      <DependentUpon>Forget.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogIn.resx">
+      <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modify.resx">
+      <DependentUpon>Modify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
