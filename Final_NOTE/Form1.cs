@@ -353,6 +353,7 @@ namespace NOTE
                     this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
                     this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
                     noteName = false;
+                    this.SearchBox.Visible = false;
                 }
                 //else
                 //{

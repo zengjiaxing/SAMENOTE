@@ -30,7 +30,6 @@ namespace NOTE
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Note));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +72,7 @@ namespace NOTE
             this.切换用户ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.忘记密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.连接数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Palette = new System.Windows.Forms.Button();
             this.penSize = new System.Windows.Forms.ComboBox();
@@ -97,7 +97,6 @@ namespace NOTE
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.delete = new System.Windows.Forms.Button();
             this.Fontbtn = new System.Windows.Forms.Button();
-            this.连接数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -412,10 +411,17 @@ namespace NOTE
             this.忘记密码ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.忘记密码ToolStripMenuItem.Text = "忘记密码";
             // 
+            // 连接数据库ToolStripMenuItem
+            // 
+            this.连接数据库ToolStripMenuItem.Name = "连接数据库ToolStripMenuItem";
+            this.连接数据库ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.连接数据库ToolStripMenuItem.Text = "连接数据库";
+            this.连接数据库ToolStripMenuItem.Click += new System.EventHandler(this.连接数据库ToolStripMenuItem_Click);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(133, 108);
@@ -431,7 +437,7 @@ namespace NOTE
             // Palette
             // 
             this.Palette.AutoSize = true;
-            this.Palette.Image = ((System.Drawing.Image)(resources.GetObject("Palette.Image")));
+            this.Palette.Image = global::NOTE.Properties.Resources.调色盘;
             this.Palette.Location = new System.Drawing.Point(1016, 33);
             this.Palette.Margin = new System.Windows.Forms.Padding(4);
             this.Palette.Name = "Palette";
@@ -452,7 +458,7 @@ namespace NOTE
             // 
             // NoteList
             // 
-            this.NoteList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.NoteList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteList.FormattingEnabled = true;
             this.NoteList.ItemHeight = 15;
@@ -465,7 +471,7 @@ namespace NOTE
             // 
             // PenBtn
             // 
-            this.PenBtn.Image = ((System.Drawing.Image)(resources.GetObject("PenBtn.Image")));
+            this.PenBtn.Image = global::NOTE.Properties.Resources.画笔;
             this.PenBtn.Location = new System.Drawing.Point(767, 33);
             this.PenBtn.Name = "PenBtn";
             this.PenBtn.Size = new System.Drawing.Size(36, 36);
@@ -474,7 +480,7 @@ namespace NOTE
             // 
             // Rubber
             // 
-            this.Rubber.Image = ((System.Drawing.Image)(resources.GetObject("Rubber.Image")));
+            this.Rubber.Image = global::NOTE.Properties.Resources.橡皮;
             this.Rubber.Location = new System.Drawing.Point(912, 36);
             this.Rubber.Name = "Rubber";
             this.Rubber.Size = new System.Drawing.Size(36, 36);
@@ -502,7 +508,7 @@ namespace NOTE
             // 
             // RevokeBtn
             // 
-            this.RevokeBtn.Image = ((System.Drawing.Image)(resources.GetObject("RevokeBtn.Image")));
+            this.RevokeBtn.Image = global::NOTE.Properties.Resources.撤销;
             this.RevokeBtn.Location = new System.Drawing.Point(683, 33);
             this.RevokeBtn.Name = "RevokeBtn";
             this.RevokeBtn.Size = new System.Drawing.Size(36, 36);
@@ -511,7 +517,7 @@ namespace NOTE
             // 
             // RestoreBtn
             // 
-            this.RestoreBtn.Image = ((System.Drawing.Image)(resources.GetObject("RestoreBtn.Image")));
+            this.RestoreBtn.Image = global::NOTE.Properties.Resources.恢复;
             this.RestoreBtn.Location = new System.Drawing.Point(725, 33);
             this.RestoreBtn.Name = "RestoreBtn";
             this.RestoreBtn.Size = new System.Drawing.Size(36, 36);
@@ -550,7 +556,7 @@ namespace NOTE
             // 
             // MouseBtn
             // 
-            this.MouseBtn.Image = ((System.Drawing.Image)(resources.GetObject("MouseBtn.Image")));
+            this.MouseBtn.Image = global::NOTE.Properties.Resources.指针;
             this.MouseBtn.Location = new System.Drawing.Point(641, 33);
             this.MouseBtn.Name = "MouseBtn";
             this.MouseBtn.Size = new System.Drawing.Size(36, 36);
@@ -642,13 +648,6 @@ namespace NOTE
             this.Fontbtn.Size = new System.Drawing.Size(36, 36);
             this.Fontbtn.TabIndex = 24;
             this.Fontbtn.UseVisualStyleBackColor = true;
-            // 
-            // 连接数据库ToolStripMenuItem
-            // 
-            this.连接数据库ToolStripMenuItem.Name = "连接数据库ToolStripMenuItem";
-            this.连接数据库ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
-            this.连接数据库ToolStripMenuItem.Text = "连接数据库";
-            this.连接数据库ToolStripMenuItem.Click += new System.EventHandler(this.连接数据库ToolStripMenuItem_Click);
             // 
             // Note
             // 
