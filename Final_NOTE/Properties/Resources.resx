@@ -118,38 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\redo_32px_1098339_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="搜索--1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\搜索--1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Colour_Palette" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Colour_Palette_32px_1080876_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pointer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pointer_36px_1074284_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="paintbrush" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\paintbrush_16px_35219_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\undo_32px_1098417_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="书 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\书 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="paletee" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\palette_128px_1074275_easyicon.net.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eraser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eraser_32px_510117_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="时间 历史记录 计时 钟表 线性" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\时间 历史记录 计时 钟表 线性.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="下划线" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\下划线.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="书__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\书 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="加粗" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\加粗.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,11 +145,17 @@
   <data name="指针" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\指针.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="搜索__1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\搜索--1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="撤销" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\撤销.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="斜体" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\斜体.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="时间_历史记录_计时_钟表_线性" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\时间 历史记录 计时 钟表 线性.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="格式刷" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\格式刷.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

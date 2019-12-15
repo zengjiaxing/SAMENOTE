@@ -12,7 +12,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using NOTE.ClassModel;
 using NOTE.ControlModel;
-
+using MySql.Data.MySqlClient;
+using NoteDAL;
 namespace NOTE
 {
     public partial class Note : Form
@@ -352,6 +353,7 @@ namespace NOTE
                     this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
                     this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
                     noteName = false;
+                    this.SearchBox.Visible = false;
                 }
                 //else
                 //{
@@ -412,6 +414,15 @@ namespace NOTE
             }
         }
 
-
-    }
+        private void 连接数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataSource data = new DataSource();
+            List<User> userlist = new List<User>();
+            userlist = data.init();
+            foreach(User x in userlist)
+            {
+                MessageBox.Show("用户姓名："+x.Name1+"，用户密码："+ x.Password1);
+            }
+        }
+    } 
 }
