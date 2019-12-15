@@ -559,7 +559,7 @@ namespace NOTE
             // 
             // UnderlineBtn
             // 
-            this.UnderlineBtn.Image = global::NOTE.Properties.Resources.下划线;
+            this.UnderlineBtn.Image = global::NOTE.Properties.Resources.撤销;
             this.UnderlineBtn.Location = new System.Drawing.Point(317, 28);
             this.UnderlineBtn.Name = "UnderlineBtn";
             this.UnderlineBtn.Size = new System.Drawing.Size(36, 36);
