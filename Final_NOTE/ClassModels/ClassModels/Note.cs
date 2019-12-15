@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace NOTE.ClassModel
 {
+    [Serializable]
     public class Note
     {
         int iD;

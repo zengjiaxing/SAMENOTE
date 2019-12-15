@@ -1,17 +1,13 @@
-﻿using NOTE.model;
+﻿
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing.Imaging;
-using System.IO;
-using NOTE.ClassModel;
 using NOTE.ControlModel;
+using System.Drawing;
+using System.Windows.Forms;
+using NOTE.ClassModel;
+using NOTE.model;
+using NOTE.Tools;
+using Models.ClassModels;
 //using MySql.Data.MySqlClient;
 //using NoteDAL;
 namespace NOTE
@@ -20,8 +16,7 @@ namespace NOTE
     {
         //List<Note> nl = new List<Note>();
         //User u = new User();
-        //Note n = new Note();
-
+        Note n = new Note();
 
         private DrawTools dt;
         private string sType;//绘图样式
@@ -29,13 +24,12 @@ namespace NOTE
         private bool bReSize = false;//是否改变画布大小
         private Size DefaultPicSize;//储存原始画布大小，用来新建文件时使用
 
-
-        MyDrawBox myDrawBox;
         List<string> list = new List<string>();
         //string[] list= new string[100];//存储搜索源
         //int index = 0;//list的下标
         Boolean search = false;//textbox的功能
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
+        List<TextBoxInfo> tbxinfos = new List<TextBoxInfo>();
         List<PictureBox> pbs = new List<PictureBox>();
         FontBrush fb = new FontBrush(); //格式刷
         bool fbstatus = false; // 格式刷状态
@@ -52,9 +46,9 @@ namespace NOTE
             penSize.Items.Add(13);
 
             //u.NoteList1 = nl;
-            //n.Paint = this.Drawbox;
-            //n.Texts = this.tbxs;
-
+            n.Paint = this.dt;
+            n.Texts = tbxinfos;
+            
 
             this.SearchBox.Visible = false;
             //初始生成10个笔记
@@ -111,6 +105,7 @@ namespace NOTE
         private void 文本框ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox tb = new TextBox();
+            TextBoxInfo tbf =  new TextBoxInfo();
             tb.Location = new Point(133, 98);
             tb.Size = new System.Drawing.Size(300, 100);
             tb.Name = "tb" + tbxs.Count.ToString();
@@ -122,9 +117,23 @@ namespace NOTE
             tb.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
             tb.MouseLeave += new System.EventHandler(textBox_MouseLeave);
             tb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
+            tb.TextChanged += new System.EventHandler(textBox_TextChanged);
             tb.Multiline = true;
+            ChangeTextInfo(tbf, tb);
+            tbxinfos.Add(tbf);
         }
-
+        void ChangeTextInfo(TextBoxInfo tbxif,TextBox tbx)
+        {
+            tbxif.Font = tbx.Font.ToString();
+            tbxif.Size = tbx.Size;
+            tbxif.Location = tbx.Location;
+            tbxif.Text = tbx.Text;
+            tbxif.FontSize = tbx.Font.Size;
+            tbxif.FontColor = tbx.ForeColor;
+            tbxif.Bold = tbx.Font.Bold;
+            tbxif.Italic = tbx.Font.Italic;
+            tbxif.Underline = tbx.Font.Underline;
+        }
         private void TextBox_Click(object sender, EventArgs e)
         {
             TextBox t = (TextBox)sender;
@@ -134,7 +143,12 @@ namespace NOTE
                 tbxs[TbxNum].Font = fb.f;
                 tbxs[TbxNum].ForeColor = fb.c;
                 fbstatus = false;
+                ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
             }
+        }
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
         }
         private void textBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -158,6 +172,7 @@ namespace NOTE
             {
                 tbxs[TbxNum].Font = new Font(FontBox.Items[cb.SelectedIndex].ToString(),
                                               tbxs[TbxNum].Font.Size, tbxs[TbxNum].Font.Style);
+                tbxinfos[TbxNum].Font = FontBox.Items[cb.SelectedIndex].ToString();
                 TbxNum = -1;
             }
         }
@@ -169,10 +184,12 @@ namespace NOTE
                 if (!tbxs[TbxNum].Font.Bold)
                 {
                     tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style | FontStyle.Bold);
+                    tbxinfos[TbxNum].Bold = true;
                 }
                 else
                 {
                     tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style ^ FontStyle.Bold);
+                    tbxinfos[TbxNum].Bold = false;
                 }
             }
         }
@@ -182,10 +199,12 @@ namespace NOTE
             if (!tbxs[TbxNum].Font.Italic)
             {
                 tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style | FontStyle.Italic);
+                tbxinfos[TbxNum].Italic = true;
             }
             else
             {
                 tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style ^ FontStyle.Italic);
+                tbxinfos[TbxNum].Italic = false;
             }
         }
 
@@ -194,10 +213,12 @@ namespace NOTE
             if (!tbxs[TbxNum].Font.Underline)
             {
                 tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style | FontStyle.Underline);
+                tbxinfos[TbxNum].Underline = true;
             }
             else
             {
                 tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font, tbxs[TbxNum].Font.Style ^ FontStyle.Underline);
+                tbxinfos[TbxNum].Underline = false;
             }
         }
 
@@ -209,11 +230,30 @@ namespace NOTE
                 if (TbxNum != -1)
                 {
                     tbxs[TbxNum].ForeColor = cldlg.Color;
+                    tbxinfos[TbxNum].FontColor = cldlg.Color;
                     TbxNum = -1;
                 }
             }
         }
+        private void FontSizePlus_Click(object sender, EventArgs e)
+        {
+            if (TbxNum != -1)
+            {
+                tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font.FontFamily, tbxs[TbxNum].Font.Size + 1, tbxs[TbxNum].Font.Style);
+                TbxNum = -1;
+                tbxinfos[TbxNum].FontSize = tbxs[TbxNum].Font.Size;
+            }
+        }
 
+        private void FontSizeMinus_Click(object sender, EventArgs e)
+        {
+            if (TbxNum != -1)
+            {
+                tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font.FontFamily, tbxs[TbxNum].Font.Size - 1, tbxs[TbxNum].Font.Style);
+                TbxNum = -1;
+                tbxinfos[TbxNum].FontSize = tbxs[TbxNum].Font.Size;
+            }
+        }
         private void Format_Painter_Click(object sender, EventArgs e)
         {
             if (TbxNum != -1)
@@ -232,6 +272,7 @@ namespace NOTE
             {
                 tbxs[TbxNum].Font = DefaultFont;
                 tbxs[TbxNum].ForeColor = DefaultForeColor;
+                ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
             }
         }
         //新增笔记本--名字
@@ -546,5 +587,24 @@ namespace NOTE
             //}
             //this.n = u.NoteList1[i-1];
         }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Serializer st = new Serializer();
+            st.NoteSerialize(this.n);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            Serializer st = new Serializer();
+            Note n = st.DeNoteSerialize();
+            for(int i = 0; i < n.Texts.Count; i++)
+            {
+                MessageBox.Show(n.Texts[i].Text);
+            }
+        }
+
+
     } 
 }

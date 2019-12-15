@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteBLL", "..\NoteBLL\NoteB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteDAL", "NoteDAL\NoteDAL.csproj", "{94848C0D-335D-486C-9B86-36C356F554E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{925EB074-D201-45F6-B662-26020E12848F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools", "DevTools\DevTools.csproj", "{71AF7D08-1026-4B59-BFBA-F826FECE8226}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{94848C0D-335D-486C-9B86-36C356F554E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94848C0D-335D-486C-9B86-36C356F554E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94848C0D-335D-486C-9B86-36C356F554E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925EB074-D201-45F6-B662-26020E12848F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925EB074-D201-45F6-B662-26020E12848F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925EB074-D201-45F6-B662-26020E12848F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925EB074-D201-45F6-B662-26020E12848F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71AF7D08-1026-4B59-BFBA-F826FECE8226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71AF7D08-1026-4B59-BFBA-F826FECE8226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71AF7D08-1026-4B59-BFBA-F826FECE8226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71AF7D08-1026-4B59-BFBA-F826FECE8226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

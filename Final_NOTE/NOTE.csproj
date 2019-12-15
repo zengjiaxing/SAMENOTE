@@ -48,10 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlModel\Drawtools.cs" />
-    <Compile Include="ControlModel\TransTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Forget.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,10 +60,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlModel\MyDrawBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ControlModel\SizeChange.cs" />
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +74,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\FontBrush.cs" />
+    <Compile Include="Tools\Serializer.cs" />
     <EmbeddedResource Include="Forget.resx">
       <DependentUpon>Forget.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,9 +148,17 @@
     <None Include="Resources\pointer_36px_1074284_easyicon.net.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tools\" />
+    <None Include="Resources\缩小减小字号_文字操作_jurassic.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="DevTools\DevTools.csproj">
+      <Project>{71af7d08-1026-4b59-bfba-f826fece8226}</Project>
+      <Name>DevTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="Models\Models.csproj">
+      <Project>{925eb074-d201-45f6-b662-26020e12848f}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="NoteDAL\NoteDAL.csproj">
       <Project>{94848c0d-335d-486c-9b86-36c356f554e4}</Project>
       <Name>NoteDAL</Name>
@@ -227,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\清除.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\增大字号_文字操作_jurassic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

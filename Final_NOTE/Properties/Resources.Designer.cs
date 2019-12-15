@@ -173,6 +173,16 @@ namespace NOTE.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 增大字号_文字操作_jurassic {
+            get {
+                object obj = ResourceManager.GetObject("增大字号_文字操作_jurassic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 字体_ {
             get {
                 object obj = ResourceManager.GetObject("字体_", resourceCulture);
@@ -306,6 +316,16 @@ namespace NOTE.Properties {
         internal static System.Drawing.Bitmap 画笔 {
             get {
                 object obj = ResourceManager.GetObject("画笔", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 缩小减小字号_文字操作_jurassic {
+            get {
+                object obj = ResourceManager.GetObject("缩小减小字号_文字操作_jurassic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
