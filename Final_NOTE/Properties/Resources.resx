@@ -148,46 +148,4 @@
   <data name="时间 历史记录 计时 钟表 线性" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\时间 历史记录 计时 钟表 线性.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="下划线" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\下划线.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="加粗" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\加粗.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="垃圾桶_删除" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\垃圾桶 删除.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="字体_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\字体+.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="字体颜色" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\字体颜色.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="恢复" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\恢复.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="指针" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\指针.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="撤销" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\撤销.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="斜体" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\斜体.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="格式刷" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\格式刷.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="橡皮" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\橡皮.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="清除格式" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\清除格式.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="画笔" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\画笔.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="调色盘" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\调色盘.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
