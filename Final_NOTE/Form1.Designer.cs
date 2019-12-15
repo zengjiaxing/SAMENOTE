@@ -30,7 +30,6 @@ namespace NOTE
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Note));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,13 +54,14 @@ namespace NOTE
             this.插入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文本框ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.表格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.图形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.正方形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.三角形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.圆形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.直线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.虚线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.图形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Ellipse = new System.Windows.Forms.ToolStripMenuItem();
+            this.Line = new System.Windows.Forms.ToolStripMenuItem();
+            this.Rect = new System.Windows.Forms.ToolStripMenuItem();
+            this.Circle = new System.Windows.Forms.ToolStripMenuItem();
+            this.Fillrect = new System.Windows.Forms.ToolStripMenuItem();
+            this.Fillcircle = new System.Windows.Forms.ToolStripMenuItem();
             this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.页面颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.基准线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,14 +73,12 @@ namespace NOTE
             this.切换用户ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.忘记密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.连接数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Palette = new System.Windows.Forms.Button();
-            this.penSize = new System.Windows.Forms.ComboBox();
             this.NoteList = new System.Windows.Forms.ListBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.PenBtn = new System.Windows.Forms.Button();
-            this.Rubber = new System.Windows.Forms.Button();
-            this.RubberSize = new System.Windows.Forms.ComboBox();
+            this.Eraser = new System.Windows.Forms.Button();
+            this.penSize = new System.Windows.Forms.ComboBox();
             this.AddNoteBtn = new System.Windows.Forms.Button();
             this.RevokeBtn = new System.Windows.Forms.Button();
             this.RestoreBtn = new System.Windows.Forms.Button();
@@ -97,9 +95,17 @@ namespace NOTE
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.delete = new System.Windows.Forms.Button();
             this.Fontbtn = new System.Windows.Forms.Button();
-            this.连接数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.reSize = new System.Windows.Forms.PictureBox();
+            this.Drawbox = new System.Windows.Forms.PictureBox();
+            this.Dash = new System.Windows.Forms.Button();
+            this.Normal = new System.Windows.Forms.Button();
+            this.Dot = new System.Windows.Forms.Button();
+            this.Clearpicture = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Drawbox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -266,8 +272,8 @@ namespace NOTE
             this.插入ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文本框ToolStripMenuItem,
             this.表格ToolStripMenuItem,
-            this.图形ToolStripMenuItem,
-            this.图片ToolStripMenuItem});
+            this.图片ToolStripMenuItem,
+            this.图形ToolStripMenuItem});
             this.插入ToolStripMenuItem.Name = "插入ToolStripMenuItem";
             this.插入ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.插入ToolStripMenuItem.Text = "插入";
@@ -285,54 +291,67 @@ namespace NOTE
             this.表格ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.表格ToolStripMenuItem.Text = "表格";
             // 
-            // 图形ToolStripMenuItem
-            // 
-            this.图形ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.正方形ToolStripMenuItem,
-            this.三角形ToolStripMenuItem,
-            this.圆形ToolStripMenuItem,
-            this.直线ToolStripMenuItem,
-            this.虚线ToolStripMenuItem});
-            this.图形ToolStripMenuItem.Name = "图形ToolStripMenuItem";
-            this.图形ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.图形ToolStripMenuItem.Text = "图形";
-            // 
-            // 正方形ToolStripMenuItem
-            // 
-            this.正方形ToolStripMenuItem.Name = "正方形ToolStripMenuItem";
-            this.正方形ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.正方形ToolStripMenuItem.Text = "矩形";
-            // 
-            // 三角形ToolStripMenuItem
-            // 
-            this.三角形ToolStripMenuItem.Name = "三角形ToolStripMenuItem";
-            this.三角形ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.三角形ToolStripMenuItem.Text = "三角形";
-            // 
-            // 圆形ToolStripMenuItem
-            // 
-            this.圆形ToolStripMenuItem.Name = "圆形ToolStripMenuItem";
-            this.圆形ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.圆形ToolStripMenuItem.Text = "圆形";
-            // 
-            // 直线ToolStripMenuItem
-            // 
-            this.直线ToolStripMenuItem.Name = "直线ToolStripMenuItem";
-            this.直线ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.直线ToolStripMenuItem.Text = "直线";
-            // 
-            // 虚线ToolStripMenuItem
-            // 
-            this.虚线ToolStripMenuItem.Name = "虚线ToolStripMenuItem";
-            this.虚线ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
-            this.虚线ToolStripMenuItem.Text = "虚线";
-            // 
             // 图片ToolStripMenuItem
             // 
             this.图片ToolStripMenuItem.Name = "图片ToolStripMenuItem";
             this.图片ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.图片ToolStripMenuItem.Text = "图片";
             this.图片ToolStripMenuItem.Click += new System.EventHandler(this.图片ToolStripMenuItem_Click);
+            // 
+            // 图形ToolStripMenuItem
+            // 
+            this.图形ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Ellipse,
+            this.Line,
+            this.Rect,
+            this.Circle,
+            this.Fillrect,
+            this.Fillcircle});
+            this.图形ToolStripMenuItem.Name = "图形ToolStripMenuItem";
+            this.图形ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.图形ToolStripMenuItem.Text = "图形";
+            // 
+            // Ellipse
+            // 
+            this.Ellipse.Name = "Ellipse";
+            this.Ellipse.Size = new System.Drawing.Size(144, 26);
+            this.Ellipse.Text = "椭圆";
+            this.Ellipse.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
+            // 
+            // Line
+            // 
+            this.Line.Name = "Line";
+            this.Line.Size = new System.Drawing.Size(144, 26);
+            this.Line.Text = "直线";
+            this.Line.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
+            // 
+            // Rect
+            // 
+            this.Rect.Name = "Rect";
+            this.Rect.Size = new System.Drawing.Size(144, 26);
+            this.Rect.Text = "矩形";
+            this.Rect.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
+            // 
+            // Circle
+            // 
+            this.Circle.Name = "Circle";
+            this.Circle.Size = new System.Drawing.Size(144, 26);
+            this.Circle.Text = "圆";
+            this.Circle.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
+            // 
+            // Fillrect
+            // 
+            this.Fillrect.Name = "Fillrect";
+            this.Fillrect.Size = new System.Drawing.Size(144, 26);
+            this.Fillrect.Text = "实心矩形";
+            this.Fillrect.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
+            // 
+            // Fillcircle
+            // 
+            this.Fillcircle.Name = "Fillcircle";
+            this.Fillcircle.Size = new System.Drawing.Size(144, 26);
+            this.Fillcircle.Text = "实心圆";
+            this.Fillcircle.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
             // 
             // 视图ToolStripMenuItem
             // 
@@ -412,27 +431,17 @@ namespace NOTE
             this.忘记密码ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.忘记密码ToolStripMenuItem.Text = "忘记密码";
             // 
-            // pictureBox1
+            // 连接数据库ToolStripMenuItem
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(133, 108);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(934, 488);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            this.连接数据库ToolStripMenuItem.Name = "连接数据库ToolStripMenuItem";
+            this.连接数据库ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.连接数据库ToolStripMenuItem.Text = "连接数据库";
             // 
             // Palette
             // 
             this.Palette.AutoSize = true;
-            this.Palette.Image = ((System.Drawing.Image)(resources.GetObject("Palette.Image")));
-            this.Palette.Location = new System.Drawing.Point(1016, 33);
+            this.Palette.Image = global::NOTE.Properties.Resources.调色盘;
+            this.Palette.Location = new System.Drawing.Point(875, 33);
             this.Palette.Margin = new System.Windows.Forms.Padding(4);
             this.Palette.Name = "Palette";
             this.Palette.Size = new System.Drawing.Size(36, 36);
@@ -440,19 +449,9 @@ namespace NOTE
             this.Palette.UseVisualStyleBackColor = true;
             this.Palette.Click += new System.EventHandler(this.button1_Click);
             // 
-            // penSize
-            // 
-            this.penSize.FormattingEnabled = true;
-            this.penSize.Location = new System.Drawing.Point(853, 35);
-            this.penSize.Margin = new System.Windows.Forms.Padding(4);
-            this.penSize.Name = "penSize";
-            this.penSize.Size = new System.Drawing.Size(53, 23);
-            this.penSize.TabIndex = 3;
-            this.penSize.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // NoteList
             // 
-            this.NoteList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.NoteList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteList.FormattingEnabled = true;
             this.NoteList.ItemHeight = 15;
@@ -463,32 +462,25 @@ namespace NOTE
             this.NoteList.TabIndex = 4;
             this.NoteList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseClick);
             // 
-            // PenBtn
+            // Eraser
             // 
-            this.PenBtn.Image = ((System.Drawing.Image)(resources.GetObject("PenBtn.Image")));
-            this.PenBtn.Location = new System.Drawing.Point(767, 33);
-            this.PenBtn.Name = "PenBtn";
-            this.PenBtn.Size = new System.Drawing.Size(36, 36);
-            this.PenBtn.TabIndex = 15;
-            this.PenBtn.UseVisualStyleBackColor = true;
+            this.Eraser.Image = global::NOTE.Properties.Resources.橡皮;
+            this.Eraser.Location = new System.Drawing.Point(927, 33);
+            this.Eraser.Name = "Eraser";
+            this.Eraser.Size = new System.Drawing.Size(36, 36);
+            this.Eraser.TabIndex = 16;
+            this.Eraser.UseVisualStyleBackColor = true;
+            this.Eraser.Click += new System.EventHandler(this.Rubber_Click);
             // 
-            // Rubber
+            // penSize
             // 
-            this.Rubber.Image = ((System.Drawing.Image)(resources.GetObject("Rubber.Image")));
-            this.Rubber.Location = new System.Drawing.Point(912, 36);
-            this.Rubber.Name = "Rubber";
-            this.Rubber.Size = new System.Drawing.Size(36, 36);
-            this.Rubber.TabIndex = 16;
-            this.Rubber.UseVisualStyleBackColor = true;
-            // 
-            // RubberSize
-            // 
-            this.RubberSize.FormattingEnabled = true;
-            this.RubberSize.Location = new System.Drawing.Point(955, 35);
-            this.RubberSize.Margin = new System.Windows.Forms.Padding(4);
-            this.RubberSize.Name = "RubberSize";
-            this.RubberSize.Size = new System.Drawing.Size(53, 23);
-            this.RubberSize.TabIndex = 17;
+            this.penSize.FormattingEnabled = true;
+            this.penSize.Location = new System.Drawing.Point(983, 33);
+            this.penSize.Margin = new System.Windows.Forms.Padding(4);
+            this.penSize.Name = "penSize";
+            this.penSize.Size = new System.Drawing.Size(53, 23);
+            this.penSize.TabIndex = 17;
+            this.penSize.SelectedIndexChanged += new System.EventHandler(this.penSize_SelectedIndexChanged);
             // 
             // AddNoteBtn
             // 
@@ -502,21 +494,23 @@ namespace NOTE
             // 
             // RevokeBtn
             // 
-            this.RevokeBtn.Image = ((System.Drawing.Image)(resources.GetObject("RevokeBtn.Image")));
+            this.RevokeBtn.Image = global::NOTE.Properties.Resources.撤销;
             this.RevokeBtn.Location = new System.Drawing.Point(683, 33);
             this.RevokeBtn.Name = "RevokeBtn";
             this.RevokeBtn.Size = new System.Drawing.Size(36, 36);
             this.RevokeBtn.TabIndex = 6;
             this.RevokeBtn.UseVisualStyleBackColor = true;
+            this.RevokeBtn.Click += new System.EventHandler(this.RevokeBtn_Click);
             // 
             // RestoreBtn
             // 
-            this.RestoreBtn.Image = ((System.Drawing.Image)(resources.GetObject("RestoreBtn.Image")));
+            this.RestoreBtn.Image = global::NOTE.Properties.Resources.恢复;
             this.RestoreBtn.Location = new System.Drawing.Point(725, 33);
             this.RestoreBtn.Name = "RestoreBtn";
             this.RestoreBtn.Size = new System.Drawing.Size(36, 36);
             this.RestoreBtn.TabIndex = 7;
             this.RestoreBtn.UseVisualStyleBackColor = true;
+            this.RestoreBtn.Click += new System.EventHandler(this.RestoreBtn_Click);
             // 
             // Format_Painter
             // 
@@ -550,16 +544,17 @@ namespace NOTE
             // 
             // MouseBtn
             // 
-            this.MouseBtn.Image = ((System.Drawing.Image)(resources.GetObject("MouseBtn.Image")));
+            this.MouseBtn.Image = global::NOTE.Properties.Resources.指针;
             this.MouseBtn.Location = new System.Drawing.Point(641, 33);
             this.MouseBtn.Name = "MouseBtn";
             this.MouseBtn.Size = new System.Drawing.Size(36, 36);
             this.MouseBtn.TabIndex = 14;
             this.MouseBtn.UseVisualStyleBackColor = true;
+            this.MouseBtn.Click += new System.EventHandler(this.Rubber_Click);
             // 
             // UnderlineBtn
             // 
-            this.UnderlineBtn.Image = global::NOTE.Properties.Resources.撤销;
+            this.UnderlineBtn.Image = global::NOTE.Properties.Resources.下划线;
             this.UnderlineBtn.Location = new System.Drawing.Point(317, 28);
             this.UnderlineBtn.Name = "UnderlineBtn";
             this.UnderlineBtn.Size = new System.Drawing.Size(36, 36);
@@ -643,28 +638,100 @@ namespace NOTE
             this.Fontbtn.TabIndex = 24;
             this.Fontbtn.UseVisualStyleBackColor = true;
             // 
-            // 连接数据库ToolStripMenuItem
+            // panel1
             // 
-            this.连接数据库ToolStripMenuItem.Name = "连接数据库ToolStripMenuItem";
-            this.连接数据库ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
-            this.连接数据库ToolStripMenuItem.Text = "连接数据库";
-            this.连接数据库ToolStripMenuItem.Click += new System.EventHandler(this.连接数据库ToolStripMenuItem_Click);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.reSize);
+            this.panel1.Controls.Add(this.Drawbox);
+            this.panel1.Location = new System.Drawing.Point(133, 109);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(934, 483);
+            this.panel1.TabIndex = 25;
+            // 
+            // reSize
+            // 
+            this.reSize.BackColor = System.Drawing.Color.Black;
+            this.reSize.Location = new System.Drawing.Point(396, 325);
+            this.reSize.Name = "reSize";
+            this.reSize.Size = new System.Drawing.Size(10, 10);
+            this.reSize.TabIndex = 1;
+            this.reSize.TabStop = false;
+            this.reSize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.reSize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.reSize.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            // 
+            // Drawbox
+            // 
+            this.Drawbox.BackColor = System.Drawing.Color.White;
+            this.Drawbox.Location = new System.Drawing.Point(0, 0);
+            this.Drawbox.Name = "Drawbox";
+            this.Drawbox.Size = new System.Drawing.Size(396, 324);
+            this.Drawbox.TabIndex = 0;
+            this.Drawbox.TabStop = false;
+            this.Drawbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Drawbox_MouseDown);
+            this.Drawbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drawbox_MouseMove);
+            this.Drawbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Drawbox_MouseUp);
+            // 
+            // Dash
+            // 
+            this.Dash.Image = global::NOTE.Properties.Resources.虚线_1_;
+            this.Dash.Location = new System.Drawing.Point(875, 70);
+            this.Dash.Name = "Dash";
+            this.Dash.Size = new System.Drawing.Size(36, 36);
+            this.Dash.TabIndex = 26;
+            this.Dash.UseVisualStyleBackColor = true;
+            this.Dash.Click += new System.EventHandler(this.Dash_Click);
+            // 
+            // Normal
+            // 
+            this.Normal.Image = global::NOTE.Properties.Resources.实线_1_;
+            this.Normal.Location = new System.Drawing.Point(927, 70);
+            this.Normal.Name = "Normal";
+            this.Normal.Size = new System.Drawing.Size(36, 36);
+            this.Normal.TabIndex = 27;
+            this.Normal.UseVisualStyleBackColor = true;
+            this.Normal.Click += new System.EventHandler(this.Dash_Click);
+            // 
+            // Dot
+            // 
+            this.Dot.Image = global::NOTE.Properties.Resources.画笔;
+            this.Dot.Location = new System.Drawing.Point(767, 33);
+            this.Dot.Name = "Dot";
+            this.Dot.Size = new System.Drawing.Size(36, 36);
+            this.Dot.TabIndex = 28;
+            this.Dot.UseVisualStyleBackColor = true;
+            this.Dot.Click += new System.EventHandler(this.Rubber_Click);
+            // 
+            // Clearpicture
+            // 
+            this.Clearpicture.Image = global::NOTE.Properties.Resources.清除;
+            this.Clearpicture.Location = new System.Drawing.Point(503, 33);
+            this.Clearpicture.Name = "Clearpicture";
+            this.Clearpicture.Size = new System.Drawing.Size(36, 36);
+            this.Clearpicture.TabIndex = 29;
+            this.Clearpicture.UseVisualStyleBackColor = true;
+            this.Clearpicture.Click += new System.EventHandler(this.Clearpicture_Click);
             // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 596);
+            this.Controls.Add(this.Clearpicture);
+            this.Controls.Add(this.Dot);
+            this.Controls.Add(this.Normal);
+            this.Controls.Add(this.Dash);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.Fontbtn);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Palette);
-            this.Controls.Add(this.RubberSize);
-            this.Controls.Add(this.Rubber);
             this.Controls.Add(this.penSize);
-            this.Controls.Add(this.PenBtn);
+            this.Controls.Add(this.Eraser);
             this.Controls.Add(this.RevokeBtn);
             this.Controls.Add(this.RestoreBtn);
             this.Controls.Add(this.MouseBtn);
@@ -678,7 +745,6 @@ namespace NOTE
             this.Controls.Add(this.AddNoteBtn);
             this.Controls.Add(this.NoteList);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Note";
@@ -686,7 +752,9 @@ namespace NOTE
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.reSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Drawbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -714,24 +782,15 @@ namespace NOTE
         private System.Windows.Forms.ToolStripMenuItem 时间ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 名称ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 视图ToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Palette;
-        private System.Windows.Forms.ComboBox penSize;
         private System.Windows.Forms.ListBox NoteList;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripMenuItem 最近的ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 插入ToolStripMenuItem;
-        private System.Windows.Forms.Button PenBtn;
-        private System.Windows.Forms.Button Rubber;
-        private System.Windows.Forms.ComboBox RubberSize;
+        private System.Windows.Forms.Button Eraser;
+        private System.Windows.Forms.ComboBox penSize;
         private System.Windows.Forms.ToolStripMenuItem 修改时间ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 表格ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 图形ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 正方形ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 三角形ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 圆形ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 直线ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 虚线ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 页面颜色ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 基准线ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 行线ToolStripMenuItem;
@@ -761,6 +820,20 @@ namespace NOTE
         private System.Windows.Forms.ToolStripMenuItem 图片ToolStripMenuItem;
         private System.Windows.Forms.Button Fontbtn;
         private System.Windows.Forms.ToolStripMenuItem 连接数据库ToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox Drawbox;
+        private System.Windows.Forms.Button Dash;
+        private System.Windows.Forms.Button Normal;
+        private System.Windows.Forms.ToolStripMenuItem 图形ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Ellipse;
+        private System.Windows.Forms.ToolStripMenuItem Line;
+        private System.Windows.Forms.ToolStripMenuItem Rect;
+        private System.Windows.Forms.ToolStripMenuItem Circle;
+        private System.Windows.Forms.ToolStripMenuItem Fillrect;
+        private System.Windows.Forms.ToolStripMenuItem Fillcircle;
+        private System.Windows.Forms.Button Dot;
+        private System.Windows.Forms.PictureBox reSize;
+        private System.Windows.Forms.Button Clearpicture;
     }
 }
 

@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlModel\Drawtools.cs" />
     <Compile Include="ControlModel\TransTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -211,6 +212,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\字体颜色.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\实线.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\虚线.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\实线%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\虚线%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\清除.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

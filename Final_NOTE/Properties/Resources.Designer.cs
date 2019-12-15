@@ -193,6 +193,16 @@ namespace NOTE.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 实线_1_ {
+            get {
+                object obj = ResourceManager.GetObject("实线_1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 恢复 {
             get {
                 object obj = ResourceManager.GetObject("恢复", resourceCulture);
@@ -273,6 +283,16 @@ namespace NOTE.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 清除 {
+            get {
+                object obj = ResourceManager.GetObject("清除", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 清除格式 {
             get {
                 object obj = ResourceManager.GetObject("清除格式", resourceCulture);
@@ -286,6 +306,16 @@ namespace NOTE.Properties {
         internal static System.Drawing.Bitmap 画笔 {
             get {
                 object obj = ResourceManager.GetObject("画笔", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 虚线_1_ {
+            get {
+                object obj = ResourceManager.GetObject("虚线_1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
