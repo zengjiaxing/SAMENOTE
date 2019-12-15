@@ -81,7 +81,7 @@ namespace NOTE
             this.PenBtn = new System.Windows.Forms.Button();
             this.Rubber = new System.Windows.Forms.Button();
             this.RubberSize = new System.Windows.Forms.ComboBox();
-            this.AddNoteBtn = new System.Windows.Forms.Button();
+            this.ShowNoteBtn = new System.Windows.Forms.Button();
             this.RevokeBtn = new System.Windows.Forms.Button();
             this.RestoreBtn = new System.Windows.Forms.Button();
             this.Format_Painter = new System.Windows.Forms.Button();
@@ -97,6 +97,7 @@ namespace NOTE
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.delete = new System.Windows.Forms.Button();
             this.Fontbtn = new System.Windows.Forms.Button();
+            this.UserLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -114,7 +115,7 @@ namespace NOTE
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1065, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -386,6 +387,7 @@ namespace NOTE
             this.登入ToolStripMenuItem.Name = "登入ToolStripMenuItem";
             this.登入ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.登入ToolStripMenuItem.Text = "登入";
+            this.登入ToolStripMenuItem.Click += new System.EventHandler(this.登入ToolStripMenuItem_Click);
             // 
             // 登出ToolStripMenuItem
             // 
@@ -427,7 +429,7 @@ namespace NOTE
             this.pictureBox1.Location = new System.Drawing.Point(133, 108);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(934, 488);
+            this.pictureBox1.Size = new System.Drawing.Size(932, 486);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -465,9 +467,9 @@ namespace NOTE
             this.NoteList.Location = new System.Drawing.Point(0, 108);
             this.NoteList.Margin = new System.Windows.Forms.Padding(4);
             this.NoteList.Name = "NoteList";
-            this.NoteList.Size = new System.Drawing.Size(125, 484);
+            this.NoteList.Size = new System.Drawing.Size(125, 469);
             this.NoteList.TabIndex = 4;
-            this.NoteList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseClick);
+            this.NoteList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseDown);
             // 
             // PenBtn
             // 
@@ -496,15 +498,15 @@ namespace NOTE
             this.RubberSize.Size = new System.Drawing.Size(53, 23);
             this.RubberSize.TabIndex = 17;
             // 
-            // AddNoteBtn
+            // ShowNoteBtn
             // 
-            this.AddNoteBtn.Image = global::NOTE.Properties.Resources.书__1_;
-            this.AddNoteBtn.Location = new System.Drawing.Point(5, 67);
-            this.AddNoteBtn.Name = "AddNoteBtn";
-            this.AddNoteBtn.Size = new System.Drawing.Size(36, 36);
-            this.AddNoteBtn.TabIndex = 18;
-            this.AddNoteBtn.UseVisualStyleBackColor = true;
-            this.AddNoteBtn.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
+            this.ShowNoteBtn.Image = global::NOTE.Properties.Resources.书__1_;
+            this.ShowNoteBtn.Location = new System.Drawing.Point(5, 67);
+            this.ShowNoteBtn.Name = "ShowNoteBtn";
+            this.ShowNoteBtn.Size = new System.Drawing.Size(36, 36);
+            this.ShowNoteBtn.TabIndex = 18;
+            this.ShowNoteBtn.UseVisualStyleBackColor = true;
+            this.ShowNoteBtn.Click += new System.EventHandler(this.ShowNoteBtn_Click);
             // 
             // RevokeBtn
             // 
@@ -527,7 +529,7 @@ namespace NOTE
             // Format_Painter
             // 
             this.Format_Painter.Image = global::NOTE.Properties.Resources.格式刷;
-            this.Format_Painter.Location = new System.Drawing.Point(443, 27);
+            this.Format_Painter.Location = new System.Drawing.Point(439, 36);
             this.Format_Painter.Name = "Format_Painter";
             this.Format_Painter.Size = new System.Drawing.Size(36, 36);
             this.Format_Painter.TabIndex = 12;
@@ -649,11 +651,21 @@ namespace NOTE
             this.Fontbtn.TabIndex = 24;
             this.Fontbtn.UseVisualStyleBackColor = true;
             // 
+            // UserLabel
+            // 
+            this.UserLabel.AutoSize = true;
+            this.UserLabel.Location = new System.Drawing.Point(926, 9);
+            this.UserLabel.Name = "UserLabel";
+            this.UserLabel.Size = new System.Drawing.Size(127, 15);
+            this.UserLabel.TabIndex = 26;
+            this.UserLabel.Text = "当前用户：未登录";
+            // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 596);
+            this.ClientSize = new System.Drawing.Size(1065, 594);
+            this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.Fontbtn);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.SearchBox);
@@ -674,10 +686,11 @@ namespace NOTE
             this.Controls.Add(this.ItalicBtn);
             this.Controls.Add(this.BoldBtn);
             this.Controls.Add(this.FontBox);
-            this.Controls.Add(this.AddNoteBtn);
+            this.Controls.Add(this.ShowNoteBtn);
             this.Controls.Add(this.NoteList);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Note";
@@ -741,7 +754,7 @@ namespace NOTE
         private System.Windows.Forms.ToolStripMenuItem 切换用户ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 忘记密码ToolStripMenuItem;
-        private System.Windows.Forms.Button AddNoteBtn;
+        private System.Windows.Forms.Button ShowNoteBtn;
         private System.Windows.Forms.Button RevokeBtn;
         private System.Windows.Forms.Button RestoreBtn;
         private System.Windows.Forms.ToolStripMenuItem 文本框ToolStripMenuItem;
@@ -760,6 +773,7 @@ namespace NOTE
         private System.Windows.Forms.ToolStripMenuItem 图片ToolStripMenuItem;
         private System.Windows.Forms.Button Fontbtn;
         private System.Windows.Forms.ToolStripMenuItem 连接数据库ToolStripMenuItem;
+        private System.Windows.Forms.Label UserLabel;
     }
 }
 

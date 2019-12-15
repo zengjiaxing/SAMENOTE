@@ -43,6 +43,7 @@
             this.ConfirmBtn.TabIndex = 10;
             this.ConfirmBtn.Text = "确认";
             this.ConfirmBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // PasswordTbx
             // 
