@@ -10,12 +10,21 @@ namespace NOTE.ClassModel
 {
     public class Note
     {
-        int ID;
+        int iD;
         String name;//笔记名字
-        String Path;//笔记路径
-        DateTime CreateTime;//创建时间
-        DateTime LastModify;//最后一次修改时间
-        PictureBox Paint;
-        List<TextBox> Texts;
+        String path;//笔记路径
+        DateTime rreateTime;//创建时间
+        DateTime lastModify;//最后一次修改时间
+        PictureBox paint;
+        List<TextBox> texts;
+
+
+        public string Name { get => name; set => name = value; }
+        public int ID { get => ID; set => ID = value; }
+        public string Path { get => path; set => path = value; }
+        public DateTime RreateTime { get => rreateTime; set => rreateTime = value; }
+        public DateTime LastModify { get => lastModify; set => lastModify = value; }
+        public PictureBox Paint { get => paint; set => paint = value; }
+        public List<TextBox> Texts { get => texts; set => texts = value; }
     }
 }

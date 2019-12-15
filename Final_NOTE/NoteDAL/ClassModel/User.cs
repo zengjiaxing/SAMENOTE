@@ -13,6 +13,7 @@ namespace NOTE.ClassModel
         string Password;
         List<Note> NoteList;
 
+        public User() { }
         public User(string v1, string v2, List<Note> p)
         {
             this.Name = v1;

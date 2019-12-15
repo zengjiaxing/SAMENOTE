@@ -154,7 +154,7 @@ namespace NOTE.ControlModel
 
             }
         }
-
+        
 
         public void EndDraw()
         {
@@ -214,8 +214,10 @@ namespace NOTE.ControlModel
 
         public void clear()//清空
         {
-                orginalImg = images.First();
-                finishingImg = images.First();
+                newGraphics = Graphics.FromImage(orginalImg);
+                newGraphics.Clear(Color.White);
+                newGraphics = Graphics.FromImage(finishingImg);
+                newGraphics.Clear(Color.White);
                 targetGraphics.Clear(Color.White);
                 images.Clear();
                 imagesSave.Clear();

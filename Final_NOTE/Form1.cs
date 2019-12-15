@@ -16,8 +16,13 @@ using NOTE.ControlModel;
 //using NoteDAL;
 namespace NOTE
 {
-    public partial class Note : Form
+    public partial class NoteInterface : Form
     {
+        //List<Note> nl = new List<Note>();
+        //User u = new User();
+        //Note n = new Note();
+
+
         private DrawTools dt;
         private string sType;//绘图样式
         private string sFileName;//打开的文件名
@@ -36,7 +41,7 @@ namespace NOTE
         bool fbstatus = false; // 格式刷状态
         int TbxNum = -1;  //选中文本框的号码
         SizeChange sizeChange = new SizeChange();
-        public Note()
+        public NoteInterface()
         {
 
             InitializeComponent();
@@ -46,15 +51,20 @@ namespace NOTE
             penSize.Items.Add(10);
             penSize.Items.Add(13);
 
+            //u.NoteList1 = nl;
+            //n.Paint = this.Drawbox;
+            //n.Texts = this.tbxs;
+
+
             this.SearchBox.Visible = false;
             //初始生成10个笔记
-            for (int i = 0; i < 10; i++)
-            {
-                this.NoteList.Items.Add("笔记" + (i + 1));
-                //list[i] = "笔记" + (i+1);
-                //index = i;
-                list.Add("笔记" + (i + 1));
-            }
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    this.NoteList.Items.Add("笔记" + (i + 1));
+            //    //list[i] = "笔记" + (i+1);
+            //    //index = i;
+            //    list.Add("笔记" + (i + 1));
+            //}
             string[] str = list.ToArray();
             //搜索匹配
             this.SearchBox.AutoCompleteCustomSource.Clear();
@@ -330,6 +340,12 @@ namespace NOTE
                 {
                     this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
                     list.Add(this.SearchBox.Text);//list添加
+
+
+                    //n.Name = this.SearchBox.Text;
+                    //this.u.NoteList1.Add(n);
+
+
                     this.SearchBox.Text = "";
                     string[] str = list.ToArray();
                     //搜索匹配
@@ -516,6 +532,19 @@ namespace NOTE
         private void Clearpicture_Click(object sender, EventArgs e)
         {
             dt.clear();
+        }
+
+        private void NoteList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //int i = 0;
+            //for (i = 0; i < this.u.NoteList1.Count; i++)
+            //{
+            //    if (this.u.NoteList1[i].Name == NoteList.Items[NoteList.SelectedIndex].ToString())
+            //    {
+            //        break;
+            //    }
+            //}
+            //this.n = u.NoteList1[i-1];
         }
     } 
 }
