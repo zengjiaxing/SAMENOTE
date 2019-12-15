@@ -304,7 +304,7 @@
             // 
             // TextBox1
             // 
-            this.TextBox1.Location = new System.Drawing.Point(570, 82);
+            this.TextBox1.Location = new System.Drawing.Point(435, 33);
             this.TextBox1.Multiline = true;
             this.TextBox1.Name = "TextBox1";
             this.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -326,7 +326,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(413, 246);

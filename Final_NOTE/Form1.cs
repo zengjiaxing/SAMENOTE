@@ -58,8 +58,8 @@ namespace NOTE
             sizeChange.MyMouseMove(sender, e, this.Cursor);
         }
 
-        //画图
-        private void Form1_Load(object sender, EventArgs e)
+        
+        private void Form1_Load(object sender, EventArgs e)//画图初始化
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
@@ -73,11 +73,11 @@ namespace NOTE
 
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//形状
         {
            sType = ((Button)sender).Text;
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)//实线或者虚线
         {
             dt.Dash(((Button)sender).Text);
         }
@@ -89,7 +89,7 @@ namespace NOTE
 
      
 
-        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)//开始画图
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -101,7 +101,7 @@ namespace NOTE
             }
         }
 
-        private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
+        private void pictureBox2_MouseMove(object sender, MouseEventArgs e)//画图时
         {
            
            // mousePostion.Text = e.Location.ToString();
@@ -116,7 +116,7 @@ namespace NOTE
             }
         }
 
-        private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
+        private void pictureBox2_MouseUp(object sender, MouseEventArgs e)//结束画图
         {
             if (dt != null)
             {
@@ -129,7 +129,7 @@ namespace NOTE
 
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e)//颜色
         {
             if(colorDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -137,17 +137,17 @@ namespace NOTE
             }
         }
 
-        private void penSize_SelectedIndexChanged(object sender, EventArgs e)
+        private void penSize_SelectedIndexChanged(object sender, EventArgs e)//画笔大小
         {
             dt.pen.Width = Convert.ToInt32(penSize.Text);
         }
 
-        private void reSize_MouseDown(object sender, MouseEventArgs e)
+        private void reSize_MouseDown(object sender, MouseEventArgs e)//画板大小按下
         {
             bReSize = true;//当鼠标按下时，说明要开始调节大小
         }
 
-        private void reSize_MouseMove(object sender, MouseEventArgs e)
+        private void reSize_MouseMove(object sender, MouseEventArgs e)//画板大小移动
         {
             if (bReSize)
             {
@@ -156,7 +156,7 @@ namespace NOTE
             }
         }
 
-        private void reSize_MouseUp(object sender, MouseEventArgs e)
+        private void reSize_MouseUp(object sender, MouseEventArgs e)//画板大小放开
         {
             bReSize = false;//大小改变结束
             //调节大小可能造成画板大小超过屏幕区域，所以事先要设置autoScroll为true.
@@ -182,12 +182,12 @@ namespace NOTE
             bmp.Dispose();
         }
 
-        private void revocation_Click(object sender, EventArgs e)
+        private void revocation_Click(object sender, EventArgs e)//撤销
         {
             dt.revocation();
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void button12_Click(object sender, EventArgs e)//前进
         {
             dt.advance();
         }
