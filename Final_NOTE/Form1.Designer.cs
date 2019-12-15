@@ -57,16 +57,30 @@
             this.绘图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文字ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.penSize = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextBox1 = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.reSize = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.revocation = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reSize)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -279,92 +293,227 @@
             this.视图ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.视图ToolStripMenuItem.Text = "视图";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(59, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // penSize
             // 
             this.penSize.FormattingEnabled = true;
-            this.penSize.Location = new System.Drawing.Point(12, 31);
+            this.penSize.Location = new System.Drawing.Point(0, 31);
             this.penSize.Name = "penSize";
             this.penSize.Size = new System.Drawing.Size(41, 20);
             this.penSize.TabIndex = 3;
-            this.penSize.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.penSize.SelectedIndexChanged += new System.EventHandler(this.penSize_SelectedIndexChanged);
             // 
-            // listBox1
+            // TextBox1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(0, 53);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(95, 388);
-            this.listBox1.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(328, 148);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(97, 27);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
-            this.textBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDown);
-            this.textBox1.MouseLeave += new System.EventHandler(this.textBox1_MouseLeave);
-            this.textBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseMove);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(101, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(687, 398);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            this.TextBox1.Location = new System.Drawing.Point(570, 82);
+            this.TextBox1.Multiline = true;
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TextBox1.Size = new System.Drawing.Size(99, 80);
+            this.TextBox1.TabIndex = 6;
+            this.TextBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDown);
+            this.TextBox1.MouseLeave += new System.EventHandler(this.textBox1_MouseLeave);
+            this.TextBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseMove);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(122, 28);
+            this.button2.Location = new System.Drawing.Point(195, 28);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(68, 23);
             this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
+            this.button2.Text = "Line";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(413, 246);
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
+            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(281, 28);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(68, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Rect";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(367, 29);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(68, 23);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Circle";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(453, 28);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(68, 23);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "Fillrect";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(536, 28);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(68, 23);
+            this.button6.TabIndex = 12;
+            this.button6.Text = "Fillcircle";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(629, 29);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(68, 23);
+            this.button7.TabIndex = 13;
+            this.button7.Text = "Dot";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(720, 28);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(68, 23);
+            this.button8.TabIndex = 14;
+            this.button8.Text = "Color";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.Controls.Add(this.reSize);
+            this.panel1.Controls.Add(this.TextBox1);
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Location = new System.Drawing.Point(101, 53);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(699, 392);
+            this.panel1.TabIndex = 15;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // reSize
+            // 
+            this.reSize.Location = new System.Drawing.Point(410, 247);
+            this.reSize.Name = "reSize";
+            this.reSize.Size = new System.Drawing.Size(10, 10);
+            this.reSize.TabIndex = 9;
+            this.reSize.TabStop = false;
+            this.reSize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.reSize_MouseDown);
+            this.reSize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.reSize_MouseMove);
+            this.reSize.MouseUp += new System.Windows.Forms.MouseEventHandler(this.reSize_MouseUp);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(121, 29);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(68, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Eraser";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(47, 31);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(68, 23);
+            this.button9.TabIndex = 17;
+            this.button9.Text = "Ellipse";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(0, 115);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(68, 23);
+            this.button10.TabIndex = 18;
+            this.button10.Text = "Dash";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(0, 86);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(68, 23);
+            this.button11.TabIndex = 19;
+            this.button11.Text = "Normal";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // revocation
+            // 
+            this.revocation.Location = new System.Drawing.Point(0, 144);
+            this.revocation.Name = "revocation";
+            this.revocation.Size = new System.Drawing.Size(68, 23);
+            this.revocation.TabIndex = 20;
+            this.revocation.Text = "revocation";
+            this.revocation.UseVisualStyleBackColor = true;
+            this.revocation.Click += new System.EventHandler(this.revocation_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(0, 173);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(68, 23);
+            this.button12.TabIndex = 21;
+            this.button12.Text = "advance";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.penSize);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.revocation);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.penSize);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,14 +550,26 @@
         private System.Windows.Forms.ToolStripMenuItem 绘图ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 文字ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 视图ToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox penSize;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.PictureBox reSize;
+        private System.Windows.Forms.Button revocation;
+        private System.Windows.Forms.Button button12;
     }
 }
 
