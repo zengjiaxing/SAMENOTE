@@ -156,10 +156,16 @@
     <Folder Include="Tools\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\调色盘.png" />
+    <ProjectReference Include="NoteDAL\NoteDAL.csproj">
+      <Project>{94848c0d-335d-486c-9b86-36c356f554e4}</Project>
+      <Name>NoteDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\橡皮.png" />
+    <None Include="Resources\撤销.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\格式刷.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\画笔.png" />
@@ -168,40 +174,43 @@
     <None Include="Resources\恢复.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\撤销.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\指针.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\格式刷.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\清除格式.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\字体颜色.png" />
+    <None Include="Resources\加粗.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\垃圾桶 删除.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\清除格式.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\时间 历史记录 计时 钟表 线性.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\书 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\搜索--1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\调色盘.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\下划线.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\橡皮.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\斜体.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\加粗.png" />
+    <None Include="Resources\指针.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\字体+.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NoteDAL\NoteDAL.csproj">
-      <Project>{94848c0d-335d-486c-9b86-36c356f554e4}</Project>
-      <Name>NoteDAL</Name>
-    </ProjectReference>
+    <None Include="Resources\字体颜色.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
