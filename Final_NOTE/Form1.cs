@@ -124,6 +124,7 @@ namespace NOTE
         }
         void ChangeTextInfo(TextBoxInfo tbxif,TextBox tbx)
         {
+            tbxif.Name = tbx.Name;
             tbxif.Font = tbx.Font.ToString();
             tbxif.Size = tbx.Size;
             tbxif.Location = tbx.Location;
@@ -422,11 +423,12 @@ namespace NOTE
             {
                 this.Controls.Remove(tbxs[TbxNum]);
                 tbxs.Remove(tbxs[TbxNum]);
+                for (int i = 0; i < tbxs.Count; i++)
+                {
+                    tbxs[TbxNum].Name = "tb" + i;
+                }
             }
-            for (int i = 0; i < tbxs.Count; i++)
-            {
-                tbxs[TbxNum].Name = "tb" + i;
-            }
+
         }
 
         private void 图片ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -590,6 +592,7 @@ namespace NOTE
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            this.n.Paint = this.dt;
             Serializer st = new Serializer();
             st.NoteSerialize(this.n);
         }
@@ -599,12 +602,51 @@ namespace NOTE
 
             Serializer st = new Serializer();
             Note n = st.DeNoteSerialize();
-            for(int i = 0; i < n.Texts.Count; i++)
-            {
-                MessageBox.Show(n.Texts[i].Text);
-            }
+            TextBox t = new TextBox();
+            //MessageBox.Show(n.Texts[0].Text+"\n"+ n.Texts[0].Location);
+            //MessageBox.Show(n.Texts[0].Name);
+            //t = loadTextBox(n.Texts[0]);
+            this.dt = n.Paint;
+            Controls.Add(t);
+            tbxs.Add(t);
+            //MessageBox.Show(t.Text + "\n" + t.Location + "\n" + t.Name +"\n"+t.Size);
         }
 
+        private TextBox loadTextBox(TextBoxInfo tf)
+        {
+            TextBox t = new TextBox();
+            t.Location = tf.Location;
+            t.Size = tf.Size;
+            if (tf.Bold)
+            {
+                t.Font = new Font(tf.Font, t.Font.Size, t.Font.Style ^ FontStyle.Bold);
+            }
+            if (tf.Italic)
+            {
+                t.Font = new Font(tf.Font, t.Font.Size, t.Font.Style ^ FontStyle.Italic);
+            }
+            if (tf.Underline)
+            {
+                t.Font = new Font(tf.Font, t.Font.Size, t.Font.Style ^ FontStyle.Underline);
+            }
+            t.ForeColor = tf.FontColor;
+            t.Name = tf.Name;
+            t.Text = tf.Text;
+            t.BringToFront();
+            t.Multiline = true;
+            t.BorderStyle = BorderStyle.Fixed3D;
+            t.BorderStyle = BorderStyle.Fixed3D;
+            t.Click += new System.EventHandler(TextBox_Click);
+            t.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
+            t.MouseLeave += new System.EventHandler(textBox_MouseLeave);
+            t.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
+            t.TextChanged += new System.EventHandler(textBox_TextChanged);
+            return t;
+        }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.dt.Save();
+        }
     } 
 }

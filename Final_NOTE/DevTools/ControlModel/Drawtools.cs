@@ -243,6 +243,12 @@ public    class DrawTools
             orginalImg.Dispose();
             pen.Dispose();
         }
+
+        public void Save()
+        {
+            Bitmap bmp = new Bitmap(finishingImg);
+            bmp.Save("D:/a.bmp");
+        }
     }
 }
 
