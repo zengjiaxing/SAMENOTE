@@ -60,6 +60,7 @@ namespace NOTE
         //用户登录
         public void ConfirmBtn_Click(object sender, EventArgs e)
         {
+            Boolean LoginSuccess = false;
             string uname = this.UserNameTbx.Text;
             string psw = this.PasswordTbx.Text;
             DataSource data = new DataSource();
@@ -75,15 +76,23 @@ namespace NOTE
                     this.Close();
                     Note.UserName = uname;
                     Note.LoginSuccess = true;
-                    //return true;
+                    LoginSuccess = true;
                 }
             }
+            if (!LoginSuccess)
+            {
+                this.UserNameTbx.Text = "";
+                this.PasswordTbx.Text = "";
+                MessageBox.Show("用户名与密码不匹配，请重新输入");
+            }
+            
             //return false;
 
         }
         //忘记密码
-        private void ForgetBtn_Click(object sender, EventArgs e)
+        public void ForgetBtn_Click(object sender, EventArgs e)
         {
+            Boolean User = false;//用户身份验证
             string uname = this.UserNameTbx.Text;
             string tel = this.TELBox.Text;
             //string psw = this.PasswordTbx.Text;
@@ -95,6 +104,7 @@ namespace NOTE
             {
                 if (u.Name1 == uname && u.Tel1 == tel)
                 {
+                    User = true;
                     MessageBox.Show("用户验证身份成功");
                     this.UserNameTbx.Text = "";
                     this.TELBox.Text = "";
@@ -102,6 +112,12 @@ namespace NOTE
                     Modify modify = new Modify();
                     modify.Show();
                 }
+            }
+            if (!User)
+            {
+                MessageBox.Show("用户验证身份失败，请重新输入");
+                this.UserNameTbx.Text = "";
+                this.TELBox.Text = "";
             }
         }
     }

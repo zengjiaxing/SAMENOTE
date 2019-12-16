@@ -14,7 +14,8 @@ namespace NOTE.ClassModel
         string Tel;
         List<Note> NoteList;
 
-        public User(string v1, string v2,string v3, List<Note> p)
+        public User() { }
+        public User(string v1, string v2, List<Note> p)
         {
             this.Name = v1;
             this.Password = v2;
