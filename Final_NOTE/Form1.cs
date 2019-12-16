@@ -8,6 +8,7 @@ using NOTE.ClassModel;
 using NOTE.model;
 using NOTE.Tools;
 using Models.ClassModels;
+using System.IO;
 //using MySql.Data.MySqlClient;
 //using NoteDAL;
 namespace NOTE
@@ -20,6 +21,7 @@ namespace NOTE
 
         private DrawTools dt;
         private string sType;//绘图样式
+
         private string sFileName;//打开的文件名
         private bool bReSize = false;//是否改变画布大小
         private Size DefaultPicSize;//储存原始画布大小，用来新建文件时使用
@@ -592,24 +594,31 @@ namespace NOTE
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            this.n.Paint = this.dt;
             Serializer st = new Serializer();
             st.NoteSerialize(this.n);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
             Serializer st = new Serializer();
             Note n = st.DeNoteSerialize();
-            TextBox t = new TextBox();
-            //MessageBox.Show(n.Texts[0].Text+"\n"+ n.Texts[0].Location);
-            //MessageBox.Show(n.Texts[0].Name);
-            //t = loadTextBox(n.Texts[0]);
-            this.dt = n.Paint;
-            Controls.Add(t);
-            tbxs.Add(t);
-            //MessageBox.Show(t.Text + "\n" + t.Location + "\n" + t.Name +"\n"+t.Size);
+
+
+            TextBox tb = new TextBox();
+            tb.Location = n.Texts[0].Location;
+            tb.Size = new System.Drawing.Size(300, 100);
+            tb.Name = "tb" + tbxs.Count.ToString();
+            this.Controls.Add(tb);
+            tbxs.Add(tb);
+            tb.BringToFront();//生成新文本框
+            tb.BorderStyle = BorderStyle.Fixed3D;
+            tb.Click += new System.EventHandler(TextBox_Click);
+            tb.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
+            tb.MouseLeave += new System.EventHandler(textBox_MouseLeave);
+            tb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
+            tb.TextChanged += new System.EventHandler(textBox_TextChanged);
+            tb.Multiline = true;
+            tb.Text = n.Texts[0].Text;
         }
 
         private TextBox loadTextBox(TextBoxInfo tf)
@@ -635,7 +644,6 @@ namespace NOTE
             t.BringToFront();
             t.Multiline = true;
             t.BorderStyle = BorderStyle.Fixed3D;
-            t.BorderStyle = BorderStyle.Fixed3D;
             t.Click += new System.EventHandler(TextBox_Click);
             t.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
             t.MouseLeave += new System.EventHandler(textBox_MouseLeave);
@@ -647,6 +655,19 @@ namespace NOTE
         private void button5_Click(object sender, EventArgs e)
         {
             this.dt.Save();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Stream s = File.Open("D:/a.bmp",FileMode.Open);
+            Image source = Image.FromStream(s);
+            this.Drawbox.Height = source.Height;
+            this.Drawbox.Width = source.Width;
+            this.reSize.Location = this.Drawbox.Location + this.Drawbox.Size;
+            this.dt.FinishingImg = source;
+            dt.targetGraphics = Graphics.FromImage(dt.FinishingImg);
+            s.Close();
+
         }
     } 
 }
