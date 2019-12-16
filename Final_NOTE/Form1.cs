@@ -28,11 +28,12 @@ namespace NOTE
         List<int> IdList = new List<int>();
 
         List<string> list = new List<string>();
-        //string[] list= new string[100];//存储搜索源
-        //int index = 0;//list的下标
-        Boolean search = false;//textbox的功能
-
-
+        //存储笔记名
+        public List<string> strlist = new List<string>();
+        public static string UserName = "当前用户未登录";//当前登录用户
+        public static Boolean LoginSuccess = false;//用户是否登录成功
+        Boolean search = false;//textbox的搜索功能
+        Boolean alter = false;//textbox的修改功能
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
         List<TextBoxInfo> tbxinfos = new List<TextBoxInfo>();
         FontBrush fb = new FontBrush(); //格式刷
@@ -54,20 +55,7 @@ namespace NOTE
 
             this.SearchBox.Visible = false;
 
-            string[] str = list.ToArray();
-            //搜索匹配
-            this.SearchBox.AutoCompleteCustomSource.Clear();
-            this.SearchBox.AutoCompleteCustomSource.AddRange(str);
-            this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            //for(int i = 0; NoteList.SelectedIndex != -1; i++)
-            //{
-            //    if (this.textBox1.Text == NoteList.SelectedItem.ToString())
-            //    {
-            //        MessageBox.Show(this.textBox1.Text);
-            //    }
-            //}
-            //textBox1.KeyUp += new KeyEventHandler(textBox1_KeyUp);
+
         }
 
        
@@ -290,46 +278,81 @@ namespace NOTE
         Boolean noteName = false;
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            noteName = true;
-            this.SearchBox.Visible = true;
+            //已经打开搜索框
+            if (SearchBox.Visible)
+            {
+                this.SearchBox.Text = "";
+                this.SearchBox.Visible = false;
+            }
+            if (LoginSuccess)
+            {
+                noteName = true;
+                this.SearchBox.Visible = true;
 
+            }
+            else
+            {
+                MessageBox.Show("用户需要登录后新增笔记");
+            }
         }
-        //测试数据
-        //private List<string> GetTestList()
-        //{
-        //    var list = new List<string>();
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        list.Add("笔记" + (i + 1));
-        //    }
-        //    return list;
-        //}
-        private void button1_Click_1(object sender, EventArgs e)
+ 
+            //从数据库读取笔记
+            private void ShowNoteBtn_Click(object sender, EventArgs e)
         {
-            /*还不知道什么用途*/
-            //var list = GetTestList();
-            //for(int i = 0;i<10 ; i++)
-            //{
-            //    this.NoteList.Items.Add("笔记" + i);
-            //    list[i] = "笔记"+i;
-            //}
-            //this.textBox1.Visible = true;
-            //this.NoteList.Items.Add(this.textBox1.Text);
-            //index++;
-            //list[index] = this.textBox1.Text;
+            if (LoginSuccess)//登录成功
+            {
+                //如果当前列表已有item,清空数据源和列表信息，清空存储列表
+                if (NoteList.Items.Count > 0)
+                {
+                    NoteList.DataSource = null;
+                    NoteList.Items.Clear();
+                    strlist.Clear();
+                }
+                this.UserLabel.Text = UserName;//显示登录用户名
+                DataSource data = new DataSource();
+                List<ClassModel.Note> list = new List<ClassModel.Note>();
+                list = data.ReadDatabaseNOTE();
+                foreach (ClassModel.Note n in list)
+                {
+                    strlist.Add(n.Name);
+                }
+                SearchInfo();
+            }
+            else
+            {
+                MessageBox.Show("当前用户未登录，请先登录");
+            }
+        }
+        private void SearchInfo()
+        {
+            //笔记名显示
+            NoteList.DataSource = strlist;
+            string[] str = strlist.ToArray();
+            //搜索匹配
+            this.SearchBox.AutoCompleteCustomSource.Clear();
+            this.SearchBox.AutoCompleteCustomSource.AddRange(str);
+            this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
         }
 
-        private void NoteList_MouseClick(object sender, MouseEventArgs e)
+        private void NoteList_MouseDown(object sender, MouseEventArgs e)
         {
             int index = NoteList.IndexFromPoint(e.X, e.Y);
             NoteList.SelectedIndex = index;
-            if (NoteList.SelectedIndex != -1)
+            //鼠标左键显示笔记，右键修改笔记信息
+            if (e.Button == MouseButtons.Right)
             {
+                //this.SearchBox.Visible = true;
+                //this.alter = true;
+            }
+            else
+            {
+                if (NoteList.SelectedIndex != -1)
                 {
+                    MessageBox.Show(NoteList.SelectedItem.ToString());
                 }
             }
         }
-
 
         #region 提示文字
         Boolean textboxHasText = false;
@@ -389,22 +412,32 @@ namespace NOTE
                 }
                 else if (noteName)
                 {
-                    this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
-                    list.Add(this.SearchBox.Text);//list添加
+                    strlist.Add(this.SearchBox.Text);
+                    SearchInfo();
+                    //this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
 
-
-                    //n.Name = this.SearchBox.Text;
-                    //this.u.NoteList1.Add(n);
-
-
-                    this.SearchBox.Text = "";
-                    string[] str = list.ToArray();
-                    //搜索匹配
-                    this.SearchBox.AutoCompleteCustomSource.Clear();
-                    this.SearchBox.AutoCompleteCustomSource.AddRange(str);
-                    this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-                    this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+                    DataSource data = new DataSource();
+                    //Random r = new Random();
+                    data.InsertDatabaseNOTE(UserName, this.SearchBox.Text, "11", DateTime.Now, DateTime.Now);
+                    
                     noteName = false;
+                    this.SearchBox.Visible = false;
+                }
+                else if (alter)
+                {
+                    DataSource data = new DataSource();
+                    Random r = new Random();
+
+                    for (int i = 0; i < this.NoteList.Items.Count; i++)
+                    {
+                        if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
+                        {
+                            data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
+                            this.SearchBox.Text = "";
+                            this.SearchBox.Visible = false;
+                            MessageBox.Show("已更新笔记名称，请刷新笔记");
+                        }
+                    }
                 }
                 //else
                 //{
@@ -676,5 +709,5 @@ namespace NOTE
             DataSource ds = new DataSource();
             ds.OpenDatabase();
         }
-    } 
+    }
 }
