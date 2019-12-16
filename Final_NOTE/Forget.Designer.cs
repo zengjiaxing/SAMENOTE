@@ -43,6 +43,7 @@
             this.ConfirmBtn.TabIndex = 15;
             this.ConfirmBtn.Text = "确认";
             this.ConfirmBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // PasswordTbx
             // 
@@ -63,9 +64,9 @@
             this.IdLb.AutoSize = true;
             this.IdLb.Location = new System.Drawing.Point(91, 118);
             this.IdLb.Name = "IdLb";
-            this.IdLb.Size = new System.Drawing.Size(79, 15);
+            this.IdLb.Size = new System.Drawing.Size(31, 15);
             this.IdLb.TabIndex = 12;
-            this.IdLb.Text = "IDnumbers";
+            this.IdLb.Text = "Tel";
             // 
             // UserNameLb
             // 

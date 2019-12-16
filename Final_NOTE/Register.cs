@@ -10,26 +10,29 @@ using System.Windows.Forms;
 using NoteBLL.DBOperate;
 namespace NOTE
 {
-    public partial class Forget : Form
+    public partial class Register : Form
     {
-        public Forget()
+        public Register()
         {
             InitializeComponent();
         }
 
-        private void ConfirmBtn_Click(object sender, EventArgs e)
+        private void confirm_Click(object sender, EventArgs e)
         {
             UserFunction uf = new UserFunction();
-            if (uf.Forget(this.UserNameTbx.Text, this.PasswordTbx.Text))
+            if(uf.Register(this.username.Text, this.password.Text, this.tel.Text))
             {
-                Modify m = new Modify(this.UserNameTbx.Text);
-                m.Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("输入错误");
+                MessageBox.Show("此用户名已被注册");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

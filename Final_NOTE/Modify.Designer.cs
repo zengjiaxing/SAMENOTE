@@ -28,65 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ConfirmBtn = new System.Windows.Forms.Button();
-            this.PasswordTbx = new System.Windows.Forms.TextBox();
-            this.UserNameTbx = new System.Windows.Forms.TextBox();
-            this.PasswordLb = new System.Windows.Forms.Label();
-            this.UserNameLb = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.confirm = new System.Windows.Forms.Button();
+            this.password = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
-            // ConfirmBtn
+            // label2
             // 
-            this.ConfirmBtn.Location = new System.Drawing.Point(401, 181);
-            this.ConfirmBtn.Name = "ConfirmBtn";
-            this.ConfirmBtn.Size = new System.Drawing.Size(71, 28);
-            this.ConfirmBtn.TabIndex = 10;
-            this.ConfirmBtn.Text = "确认";
-            this.ConfirmBtn.UseVisualStyleBackColor = true;
-            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 122);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "password";
             // 
-            // PasswordTbx
+            // confirm
             // 
-            this.PasswordTbx.Location = new System.Drawing.Point(188, 121);
-            this.PasswordTbx.Name = "PasswordTbx";
-            this.PasswordTbx.Size = new System.Drawing.Size(284, 25);
-            this.PasswordTbx.TabIndex = 9;
+            this.confirm.Location = new System.Drawing.Point(330, 172);
+            this.confirm.Name = "confirm";
+            this.confirm.Size = new System.Drawing.Size(75, 23);
+            this.confirm.TabIndex = 9;
+            this.confirm.Text = "确认";
+            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
-            // UserNameTbx
+            // password
             // 
-            this.UserNameTbx.Location = new System.Drawing.Point(188, 75);
-            this.UserNameTbx.Name = "UserNameTbx";
-            this.UserNameTbx.Size = new System.Drawing.Size(284, 25);
-            this.UserNameTbx.TabIndex = 8;
-            // 
-            // PasswordLb
-            // 
-            this.PasswordLb.AutoSize = true;
-            this.PasswordLb.Location = new System.Drawing.Point(100, 124);
-            this.PasswordLb.Name = "PasswordLb";
-            this.PasswordLb.Size = new System.Drawing.Size(71, 15);
-            this.PasswordLb.TabIndex = 7;
-            this.PasswordLb.Text = "password";
-            // 
-            // UserNameLb
-            // 
-            this.UserNameLb.AutoSize = true;
-            this.UserNameLb.Location = new System.Drawing.Point(100, 78);
-            this.UserNameLb.Name = "UserNameLb";
-            this.UserNameLb.Size = new System.Drawing.Size(71, 15);
-            this.UserNameLb.TabIndex = 6;
-            this.UserNameLb.Text = "UserName";
+            this.password.Location = new System.Drawing.Point(163, 122);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(242, 25);
+            this.password.TabIndex = 8;
             // 
             // Modify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 311);
-            this.Controls.Add(this.ConfirmBtn);
-            this.Controls.Add(this.PasswordTbx);
-            this.Controls.Add(this.UserNameTbx);
-            this.Controls.Add(this.PasswordLb);
-            this.Controls.Add(this.UserNameLb);
+            this.ClientSize = new System.Drawing.Size(531, 303);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.confirm);
+            this.Controls.Add(this.password);
             this.Name = "Modify";
             this.Text = "Modify";
             this.ResumeLayout(false);
@@ -95,10 +75,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button ConfirmBtn;
-        private System.Windows.Forms.TextBox PasswordTbx;
-        private System.Windows.Forms.TextBox UserNameTbx;
-        private System.Windows.Forms.Label PasswordLb;
-        private System.Windows.Forms.Label UserNameLb;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button confirm;
+        private System.Windows.Forms.MaskedTextBox password;
     }
 }

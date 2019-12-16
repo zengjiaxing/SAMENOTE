@@ -28,121 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.UserNameLb = new System.Windows.Forms.Label();
-            this.PasswordLb = new System.Windows.Forms.Label();
-            this.UserNameTbx = new System.Windows.Forms.TextBox();
-            this.PasswordTbx = new System.Windows.Forms.TextBox();
-            this.ConfirmBtn = new System.Windows.Forms.Button();
-            this.ForgetBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.TELBox = new System.Windows.Forms.TextBox();
-            this.TelLabel = new System.Windows.Forms.Label();
-            this.Tishi = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.confirm = new System.Windows.Forms.Button();
+            this.password = new System.Windows.Forms.MaskedTextBox();
+            this.username = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // UserNameLb
+            // label2
             // 
-            this.UserNameLb.AutoSize = true;
-            this.UserNameLb.Location = new System.Drawing.Point(103, 32);
-            this.UserNameLb.Name = "UserNameLb";
-            this.UserNameLb.Size = new System.Drawing.Size(71, 15);
-            this.UserNameLb.TabIndex = 0;
-            this.UserNameLb.Text = "UserName";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(92, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "password";
             // 
-            // PasswordLb
+            // label1
             // 
-            this.PasswordLb.AutoSize = true;
-            this.PasswordLb.Location = new System.Drawing.Point(103, 76);
-            this.PasswordLb.Name = "PasswordLb";
-            this.PasswordLb.Size = new System.Drawing.Size(71, 15);
-            this.PasswordLb.TabIndex = 1;
-            this.PasswordLb.Text = "password";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(108, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "name";
             // 
-            // UserNameTbx
+            // confirm
             // 
-            this.UserNameTbx.Location = new System.Drawing.Point(191, 29);
-            this.UserNameTbx.Name = "UserNameTbx";
-            this.UserNameTbx.Size = new System.Drawing.Size(284, 25);
-            this.UserNameTbx.TabIndex = 2;
+            this.confirm.Location = new System.Drawing.Point(350, 181);
+            this.confirm.Name = "confirm";
+            this.confirm.Size = new System.Drawing.Size(75, 23);
+            this.confirm.TabIndex = 9;
+            this.confirm.Text = "确认";
+            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
-            // PasswordTbx
+            // password
             // 
-            this.PasswordTbx.Location = new System.Drawing.Point(191, 73);
-            this.PasswordTbx.Name = "PasswordTbx";
-            this.PasswordTbx.Size = new System.Drawing.Size(284, 25);
-            this.PasswordTbx.TabIndex = 3;
+            this.password.Location = new System.Drawing.Point(183, 127);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(242, 25);
+            this.password.TabIndex = 8;
             // 
-            // ConfirmBtn
+            // username
             // 
-            this.ConfirmBtn.Location = new System.Drawing.Point(301, 176);
-            this.ConfirmBtn.Name = "ConfirmBtn";
-            this.ConfirmBtn.Size = new System.Drawing.Size(71, 28);
-            this.ConfirmBtn.TabIndex = 4;
-            this.ConfirmBtn.Text = "登入";
-            this.ConfirmBtn.UseVisualStyleBackColor = true;
-            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
-            // 
-            // ForgetBtn
-            // 
-            this.ForgetBtn.Location = new System.Drawing.Point(436, 176);
-            this.ForgetBtn.Name = "ForgetBtn";
-            this.ForgetBtn.Size = new System.Drawing.Size(113, 28);
-            this.ForgetBtn.TabIndex = 5;
-            this.ForgetBtn.Text = "忘记密码";
-            this.ForgetBtn.UseVisualStyleBackColor = true;
-            this.ForgetBtn.Click += new System.EventHandler(this.ForgetBtn_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(159, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 28);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "注册";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // TELBox
-            // 
-            this.TELBox.Location = new System.Drawing.Point(191, 117);
-            this.TELBox.Name = "TELBox";
-            this.TELBox.Size = new System.Drawing.Size(284, 25);
-            this.TELBox.TabIndex = 7;
-            // 
-            // TelLabel
-            // 
-            this.TelLabel.AutoSize = true;
-            this.TelLabel.Location = new System.Drawing.Point(103, 120);
-            this.TelLabel.Name = "TelLabel";
-            this.TelLabel.Size = new System.Drawing.Size(31, 15);
-            this.TelLabel.TabIndex = 8;
-            this.TelLabel.Text = "TEL";
-            // 
-            // Tishi
-            // 
-            this.Tishi.AutoSize = true;
-            this.Tishi.ForeColor = System.Drawing.Color.Red;
-            this.Tishi.Location = new System.Drawing.Point(71, 228);
-            this.Tishi.Name = "Tishi";
-            this.Tishi.Size = new System.Drawing.Size(382, 15);
-            this.Tishi.TabIndex = 9;
-            this.Tishi.Text = "如果忘记密码，请输入用户名和电话号码再点击忘记密码";
+            this.username.Location = new System.Drawing.Point(183, 76);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(242, 25);
+            this.username.TabIndex = 7;
             // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 292);
-            this.Controls.Add(this.Tishi);
-            this.Controls.Add(this.TelLabel);
-            this.Controls.Add(this.TELBox);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.ForgetBtn);
-            this.Controls.Add(this.ConfirmBtn);
-            this.Controls.Add(this.PasswordTbx);
-            this.Controls.Add(this.UserNameTbx);
-            this.Controls.Add(this.PasswordLb);
-            this.Controls.Add(this.UserNameLb);
+            this.ClientSize = new System.Drawing.Size(641, 344);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.confirm);
+            this.Controls.Add(this.password);
+            this.Controls.Add(this.username);
             this.Name = "LogIn";
             this.Text = "LogIn";
             this.ResumeLayout(false);
@@ -151,16 +95,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label UserNameLb;
-        private System.Windows.Forms.Label PasswordLb;
-        private System.Windows.Forms.TextBox UserNameTbx;
-        private System.Windows.Forms.TextBox PasswordTbx;
-        private System.Windows.Forms.Button ConfirmBtn;
-        private System.Windows.Forms.Button ForgetBtn;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox TELBox;
-        private System.Windows.Forms.Label TelLabel;
-        private System.Windows.Forms.Label Tishi;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button confirm;
+        private System.Windows.Forms.MaskedTextBox password;
+        private System.Windows.Forms.TextBox username;
     }
 }

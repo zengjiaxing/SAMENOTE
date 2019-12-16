@@ -10,6 +10,7 @@ using Models.ClassModels;
 using System.IO;
 using NoteDAL;
 using NoteBLL.ReadAndWrite;
+using NoteBLL.DBOperate;
 //using MySql.Data.MySqlClient;
 //using NoteDAL;
 namespace NOTE
@@ -308,7 +309,7 @@ namespace NOTE
                     NoteList.Items.Clear();
                     strlist.Clear();
                 }
-                this.UserLabel.Text = UserName;//显示登录用户名
+                //this.UserLabel.Text = UserName;//显示登录用户名
                 DataSource data = new DataSource();
                 List<ClassModel.Note> list = new List<ClassModel.Note>();
                 list = data.ReadDatabaseNOTE();
@@ -432,7 +433,7 @@ namespace NOTE
                     {
                         if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
                         {
-                            data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
+                            //data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
                             this.SearchBox.Text = "";
                             this.SearchBox.Visible = false;
                             MessageBox.Show("已更新笔记名称，请刷新笔记");
@@ -664,6 +665,21 @@ namespace NOTE
                 ChangeTextInfo(tbf, tb);
                 tbxinfos.Add(tbf);
             }
+            
+            dt.clear();
+            this.Drawbox.Height = this.n.Paint.Height;
+            this.Drawbox.Width = this.n.Paint.Width;
+            this.reSize.Location = this.Drawbox.Location + this.Drawbox.Size;
+
+            //dt.targetGraphics = this.Drawbox.CreateGraphics();
+            Bitmap bmp = new Bitmap(Drawbox.Width, Drawbox.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.FillRectangle(new SolidBrush(Drawbox.BackColor), new Rectangle(0, 0, Drawbox.Width, Drawbox.Height));
+            g.Dispose();
+            dt = new DrawTools(this.Drawbox.CreateGraphics(), colorDialog1.Color, bmp);//实例化工具类
+            dt.draw = (Image)this.n.Paint.Clone();
+            dt.Draw(dt.draw);
+
         }
         private void SavePage()
         {
@@ -708,6 +724,73 @@ namespace NOTE
         {
             DataSource ds = new DataSource();
             ds.OpenDatabase();
+        }
+
+        private void 注册ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Register r = new Register();
+            r.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 登入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogIn l = new LogIn();
+            l.passname += new PassName(Change_text);
+            l.ShowDialog();
+            NoteFunction nf = new NoteFunction();
+            u.NoteList = nf.GetMyNote(u.Name);
+            AddNotesToList();
+        }
+        private void AddNotesToList()
+        {
+            for(int i = 0; i < u.NoteList.Count; i++)
+            {
+                NoteList.Items.Add(u.NoteList[i].Name);
+            }
+        }
+        public void Change_text(string str)
+        {
+            namelabel.Text = str;
+            this.u.Name = str;
+        }
+
+        private void 修改密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.u.Name == "")
+            {
+                MessageBox.Show("请先登入");
+            }
+            else
+            {
+                Modify m = new Modify(this.u.Name);
+                m.ShowDialog();
+            }
+        }
+
+        private void 忘记密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forget f = new Forget();
+            f.ShowDialog();
+        }
+
+        private void 登出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.u.Name = null;
+            this.namelabel.Text = "";
+        }
+
+        private void 切换用户ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.u.Name = null;
+            this.namelabel.Text = "";
+            LogIn l = new LogIn();
+            l.passname += new PassName(Change_text);
+            l.ShowDialog();
         }
     }
 }

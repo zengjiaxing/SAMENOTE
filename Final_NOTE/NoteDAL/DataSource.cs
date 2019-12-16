@@ -48,7 +48,10 @@ namespace NoteDAL
             }
 
         }
-
+        public void CloseDataBase(SqlConnection c)
+        {
+            c.Close();
+        }
         public SqlConnection ConnectToDataBase()
         {
             string constr = "server=.;database=Note;uid=sun;pwd=sun5j666";
@@ -61,9 +64,10 @@ namespace NoteDAL
         public List<User> ReadDatabaseUSER()
         {
             //1.sql语句  
-            string readSql = "SELECT * FROM user";
+            string readSql = "SELECT * FROM Users";
             SqlConnection conn = ConnectToDataBase();
             //1.参sql语句 2.参是当前数据库服务器连接对象
+            conn.Close();
             conn.Open();
             SqlCommand command = new SqlCommand(readSql, conn);
             //.检索数据
@@ -74,35 +78,70 @@ namespace NoteDAL
                 User user = new User(reader.GetString(0), reader.GetString(1), reader.GetString(2), null);
                 userList.Add(user);
             }
+            conn.Close();
             return userList;
 
         }
 
         //插入数据库USER
-        public void InsertDatabaseUSER(string name, string psw, string tel)
+        public bool InsertDatabaseUSER(string name, string psw, string tel)
         {
             //string sqlstr = "INSERT INTO note.user VALUES ('11','11')";
             SqlConnection conn = ConnectToDataBase();
             SqlCommand command = conn.CreateCommand();
-            command.CommandText = "INSERT INTO note.user VALUES (@name,@pswd,@tel)";
+            command.CommandText = "INSERT INTO Users VALUES (@name,@pswd,@tel)";
             command.Parameters.AddWithValue("@name", name);
             command.Parameters.AddWithValue("@pswd", psw);
             command.Parameters.AddWithValue("@tel", tel);
             conn.Open();
-            command.ExecuteNonQuery();
+            try
+            {
+                command.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                conn.Close();
+                return false;
+            }
+
             //ReadDatabase();
             ////返回值
             //int result = command.ExecuteNonQuery();
             ////查询
             //ReadDatabase();
         }
+
+        public bool GetUser(string name)
+        {
+            SqlConnection conn = ConnectToDataBase();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Users WHERE userName = @name";
+            command.Parameters.AddWithValue("@name", name);
+            //.检索数据
+            SqlDataReader reader = command.ExecuteReader();
+            if(reader != null)
+            {
+                conn.Close();
+                return true;
+            }
+            else
+            {
+                conn.Close();
+                return  false;
+            }
+        }
+
+
         //修改数据库USER
         public void AlterDatabaseUSER(string name, string psw)
         {
             //string sqlstr = "INSERT INTO note.user VALUES ('11','11')";
             SqlConnection conn = ConnectToDataBase();
             SqlCommand command = conn.CreateCommand();
-            command.CommandText = "update note.user set passWord = '" + psw + "' where userName = '" + name + "'";
+            command.CommandText = "update Users set passWord = '" + psw + "' where userName = '" + name + "'";
+            conn.Close();
             conn.Open();
             command.ExecuteNonQuery();
             //ReadDatabase();
@@ -116,9 +155,10 @@ namespace NoteDAL
         public List<Note> ReadDatabaseNOTE()
         {
             //1.sql语句  people表名字
-            string readSql = "SELECT * FROM notelist";
+            string readSql = "SELECT * FROM Notes";
             SqlConnection conn = ConnectToDataBase();
             //1.参sql语句 2.参是当前数据库服务器连接对象
+            conn.Close();
             conn.Open();
             SqlCommand command = new SqlCommand(readSql, conn);
             //.检索数据
@@ -128,8 +168,10 @@ namespace NoteDAL
                 Note note = new Note(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetDateTime(5), null, null);
                 noteList.Add(note);
             }
+            conn.Close();
             return noteList;
         }
+
         //插入数据库NOTE
         public void InsertDatabaseNOTE(string UserName, string NoteName, string Path, DateTime CTime, DateTime LTime)
         {

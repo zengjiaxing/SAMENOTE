@@ -9,6 +9,7 @@ namespace NOTE.ControlModel
     [Serializable]
 public    class DrawTools
     {
+        public Image draw;
         public Graphics targetGraphics;//目标绘图板
         public Pen pen;//笔
         private Image orginalImg;//原始画布
@@ -244,6 +245,17 @@ public    class DrawTools
             finishingImg.Dispose();
             orginalImg.Dispose();
             pen.Dispose();
+        }
+        public void Draw(Image image)
+        {
+            targetGraphics.DrawImage(image, 0, 0);
+            newGraphics = Graphics.FromImage(finishingImg);//另建一个中间画板，画布为中间图片
+            newGraphics.DrawImage(image, 0, 0);//将图片画到中间图片
+            newGraphics.Dispose();
+            newGraphics = Graphics.FromImage(orginalImg);//另建一个中间画板，画布为中间图片
+            newGraphics.DrawImage(image, 0, 0);//将图片画到中间图片
+            newGraphics.Dispose();
+            images.Add((Image)orginalImg.Clone());
         }
 
     }
