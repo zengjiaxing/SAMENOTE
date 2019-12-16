@@ -42,15 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadAndWrite\NoteWriter.cs" />
-    <Compile Include="Serialize\Serializer.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Final_NOTE\Models\Models.csproj">
-      <Project>{925eb074-d201-45f6-b662-26020e12848f}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
