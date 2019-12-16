@@ -282,6 +282,7 @@ namespace NOTE
             this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
         }
+
         private void NoteList_MouseDown(object sender, MouseEventArgs e)
         {
             int index = NoteList.IndexFromPoint(e.X, e.Y);
@@ -289,8 +290,8 @@ namespace NOTE
             //鼠标左键显示笔记，右键修改笔记信息
             if (e.Button == MouseButtons.Right)
             {
-                this.SearchBox.Visible = true;
-                this.alter = true;
+                //this.SearchBox.Visible = true;
+                //this.alter = true;
             }
             else
             {
@@ -366,13 +367,7 @@ namespace NOTE
                     DataSource data = new DataSource();
                     //Random r = new Random();
                     data.InsertDatabaseNOTE(UserName, this.SearchBox.Text, "11", DateTime.Now, DateTime.Now);
-                    //string[] str = list.ToArray();
-                    ////搜索匹配
-                    //this.SearchBox.AutoCompleteCustomSource.Clear();
-                    //this.SearchBox.AutoCompleteCustomSource.AddRange(str);
-                    //this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-                    //this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-                    //this.SearchBox.Text = "";
+                    
                     noteName = false;
                     this.SearchBox.Visible = false;
                 }
@@ -461,13 +456,103 @@ namespace NOTE
             //    MessageBox.Show("用户姓名：" + x.Name1 + "，用户密码：" + x.Password1);
             //}
         }
-
+        //用户登录
         private void 登入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
         }
+        //item右键触发菜单,左键显示
+        private void NoteList_MouseUp(object sender, MouseEventArgs e)
+        {
+            int index = NoteList.IndexFromPoint(e.X, e.Y);
+            NoteList.SelectedIndex = index;
+            
+            if (e.Button == MouseButtons.Right)
+            {
+                if (NoteList.SelectedIndex != -1)
+                {
+                    CMStrip.Show(this.NoteList, e.Location);
+                }
+                
+            }
+            else
+            {
+                if (NoteList.SelectedIndex != -1)
+                {
+                    MessageBox.Show(NoteList.SelectedItem.ToString());
+                }
+            }
+        }
+        //笔记重命名
+        private void 重命名ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.SearchBox.Visible = true;
+            this.alter = true;
+        }
+        //删除笔记
+        private void 删除笔记ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataSource data = new DataSource();
+            for (int i = 0; i < this.NoteList.Items.Count; i++)
+            {
+                if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
+                {
+                    data.DelDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString());
+                    this.SearchBox.Text = "";
+                    this.SearchBox.Visible = false;
+                    MessageBox.Show("已删除该笔记，请刷新笔记");
+                }
+            }
+        }
 
+        private void 登出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.UserLabel.Text = "当前用户：未登录";
+            LoginSuccess = false;
+        }
 
+        private void 忘记密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogIn log = new LogIn();
+            log.Show();
+        }
+
+        private void 修改密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //用户登录状态修改密码
+            if (LoginSuccess)
+            {
+                Modify modify = new Modify();
+                modify.Show();
+            }
+        }
+        //按时间倒序显示（最新的在上）
+        private void ReverseSort_Click(object sender, EventArgs e)
+        {
+            if (NoteList.Items.Count > 0)
+            {
+                NoteList.DataSource = null;
+                NoteList.Items.Clear();
+                strlist.Clear();
+            }
+            DataSource data = new DataSource();
+            List<ClassModel.Note> list = new List<ClassModel.Note>();
+            list = data.ReserveNOTE();
+            foreach (ClassModel.Note n in list)
+            {
+                strlist.Add(n.Name);
+            }
+            SearchInfo();
+        }
+
+        private void 切换用户ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //退出当前用户再进行登录
+            this.UserLabel.Text = "当前用户：未登录";
+            LoginSuccess = false;
+            LogIn log = new LogIn();
+            log.Show();
+        }
     }
 }

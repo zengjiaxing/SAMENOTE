@@ -184,12 +184,39 @@ namespace NoteDAL
             command.Parameters.AddWithValue("@LTime", LTime);
             conn.Open();
             command.ExecuteNonQuery();
-            //ReadDatabase();
-            ////返回值
-            //int result = command.ExecuteNonQuery();
-            ////查询
-            //ReadDatabase();
-
+        }
+        //删除数据库NOTE信息
+        public void DelDatabaseNOTE(string UserName,string NoteName)
+        {
+            //string sqlstr = "INSERT INTO note.user VALUES ('11','11')";
+            string connStr = "server=localhost;user=root;password=root; database=note;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            int id = GetId(UserName, NoteName);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "delete from note.notelist where ID = @ID and UserName = @UserName";
+            command.Parameters.AddWithValue("@ID", id);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        //按最新日期读取NOTE
+        public List<Note> ReserveNOTE()
+        {
+            List<Note> list = new List<Note>();
+            string readSql = "select * from note.notelist where 1 = 1 order by LTime desc ;";
+            string connStr = "server=localhost;user=root;password=root; database=note;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            //1.参sql语句 2.参是当前数据库服务器连接对象
+            conn.Open();
+            MySqlCommand command = new MySqlCommand(readSql, conn);
+            //.检索数据
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Note note = new Note(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetDateTime(5), null, null);
+                list.Add(note);
+            }
+            return list;
         }
     }
 }
