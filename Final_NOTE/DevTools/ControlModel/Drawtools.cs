@@ -246,11 +246,6 @@ public    class DrawTools
             pen.Dispose();
         }
 
-        public void Save()
-        {
-            finishingImg.Save("D:/a.bmp");
-            OrginalImg.Save("D:/b.bmp");
-        }
     }
 }
 
