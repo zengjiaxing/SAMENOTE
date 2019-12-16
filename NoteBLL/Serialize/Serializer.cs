@@ -15,7 +15,6 @@ namespace NOTE.Tools
             {
                 formatter.Serialize(stream, n);
             }
-
         }
 
         public Note DeNoteSerialize()
