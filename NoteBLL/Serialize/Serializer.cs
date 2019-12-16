@@ -3,26 +3,25 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using NOTE.ClassModel;
 using System.Xml.Serialization;
-namespace NoteBLL.Serialize
+namespace NOTE.Tools
 {
-  public  class Serializer
+    class Serializer
     {
         public void NoteSerialize(Note n)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            string NotePath = n.Path + "/note.txt";
-            using (FileStream stream = new FileStream(NotePath, FileMode.OpenOrCreate))
+            //XmlSerializer formatter = new XmlSerializer(typeof(Note));
+            using (FileStream stream = new FileStream(@"D:\note.txt", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(stream, n);
             }
         }
 
-        public Note DeNoteSerialize(string path)
+        public Note DeNoteSerialize()
         {
-            string FilePath = path + "/note.txt";
             Note outNote = null;
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream stream = new FileStream(FilePath, FileMode.OpenOrCreate))
+using (FileStream stream = new FileStream(@"D:\note.txt", FileMode.OpenOrCreate))
               {
                  outNote = formatter.Deserialize(stream) as Note;
               }
