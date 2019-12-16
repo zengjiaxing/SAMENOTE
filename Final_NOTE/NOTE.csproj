@@ -151,6 +151,10 @@
     <None Include="Resources\缩小减小字号_文字操作_jurassic.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NoteBLL\NoteBLL.csproj">
+      <Project>{c5f01623-833e-4e04-aca4-0091ed2ffa60}</Project>
+      <Name>NoteBLL</Name>
+    </ProjectReference>
     <ProjectReference Include="DevTools\DevTools.csproj">
       <Project>{71af7d08-1026-4b59-bfba-f826fece8226}</Project>
       <Name>DevTools</Name>

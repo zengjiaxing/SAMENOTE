@@ -244,11 +244,6 @@ public    class DrawTools
             pen.Dispose();
         }
 
-        public void Save()
-        {
-            Bitmap bmp = new Bitmap(finishingImg);
-            bmp.Save("D:/a.bmp");
-        }
     }
 }
 
