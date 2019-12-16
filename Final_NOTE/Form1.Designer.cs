@@ -54,6 +54,7 @@ namespace NOTE
             this.最近的ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.插入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文本框ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.图片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.图形ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Ellipse = new System.Windows.Forms.ToolStripMenuItem();
             this.Line = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +70,7 @@ namespace NOTE
             this.切换用户ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.忘记密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.连接数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Palette = new System.Windows.Forms.Button();
             this.NoteList = new System.Windows.Forms.ListBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -99,8 +101,9 @@ namespace NOTE
             this.FontSizePlus = new System.Windows.Forms.Button();
             this.FontSizeMinus = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reSize)).BeginInit();
@@ -115,7 +118,8 @@ namespace NOTE
             this.笔记本ToolStripMenuItem1,
             this.插入ToolStripMenuItem,
             this.视图ToolStripMenuItem,
-            this.用户ToolStripMenuItem});
+            this.用户ToolStripMenuItem,
+            this.连接数据库ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -269,6 +273,7 @@ namespace NOTE
             // 
             this.插入ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文本框ToolStripMenuItem,
+            this.图片ToolStripMenuItem,
             this.图形ToolStripMenuItem});
             this.插入ToolStripMenuItem.Name = "插入ToolStripMenuItem";
             this.插入ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
@@ -280,6 +285,13 @@ namespace NOTE
             this.文本框ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.文本框ToolStripMenuItem.Text = "文本框";
             this.文本框ToolStripMenuItem.Click += new System.EventHandler(this.文本框ToolStripMenuItem_Click);
+            // 
+            // 图片ToolStripMenuItem
+            // 
+            this.图片ToolStripMenuItem.Name = "图片ToolStripMenuItem";
+            this.图片ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.图片ToolStripMenuItem.Text = "图片";
+            this.图片ToolStripMenuItem.Click += new System.EventHandler(this.图片ToolStripMenuItem_Click);
             // 
             // 图形ToolStripMenuItem
             // 
@@ -393,6 +405,12 @@ namespace NOTE
             this.忘记密码ToolStripMenuItem.Name = "忘记密码ToolStripMenuItem";
             this.忘记密码ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.忘记密码ToolStripMenuItem.Text = "忘记密码";
+            // 
+            // 连接数据库ToolStripMenuItem
+            // 
+            this.连接数据库ToolStripMenuItem.Name = "连接数据库ToolStripMenuItem";
+            this.连接数据库ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.连接数据库ToolStripMenuItem.Text = "连接数据库";
             // 
             // Palette
             // 
@@ -699,13 +717,23 @@ namespace NOTE
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 32;
-            this.button1.Text = "保存";
+            this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(529, 77);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 33;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(529, 78);
+            this.button5.Location = new System.Drawing.Point(610, 77);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 34;
@@ -713,23 +741,24 @@ namespace NOTE
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button4
+            // button6
             // 
-            this.button4.Location = new System.Drawing.Point(610, 77);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 35;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.button6.Location = new System.Drawing.Point(705, 78);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 35;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // NoteInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 596);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.FontSizeMinus);
             this.Controls.Add(this.FontSizePlus);
@@ -827,7 +856,9 @@ namespace NOTE
         private System.Windows.Forms.Button ReverseSort;
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.ToolStripMenuItem 图片ToolStripMenuItem;
         private System.Windows.Forms.Button Fontbtn;
+        private System.Windows.Forms.ToolStripMenuItem 连接数据库ToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox Drawbox;
         private System.Windows.Forms.Button Dash;
@@ -844,9 +875,10 @@ namespace NOTE
         private System.Windows.Forms.Button Clearpicture;
         private System.Windows.Forms.Button FontSizePlus;
         private System.Windows.Forms.Button FontSizeMinus;
-        public System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
