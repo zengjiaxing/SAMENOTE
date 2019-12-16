@@ -6,43 +6,37 @@ using System.Drawing;
 using System.Windows.Forms;
 using NOTE.ClassModel;
 using NOTE.model;
+using NOTE.Tools;
 using Models.ClassModels;
 using System.IO;
-using NoteDAL;
-using NoteBLL.ReadAndWrite;
 //using MySql.Data.MySqlClient;
 //using NoteDAL;
 namespace NOTE
 {
     public partial class NoteInterface : Form
     {
-        User u = new User();//当前用户
-        Note n = new Note();//当前编辑页面
+        //List<Note> nl = new List<Note>();
+        //User u = new User();
+        Note n = new Note();
 
         private DrawTools dt;
         private string sType;//绘图样式
 
+        private string sFileName;//打开的文件名
         private bool bReSize = false;//是否改变画布大小
         private Size DefaultPicSize;//储存原始画布大小，用来新建文件时使用
 
-        List<int> IdList = new List<int>();
-
         List<string> list = new List<string>();
-        //存储笔记名
-        public List<string> strlist = new List<string>();
-        public static string UserName = "当前用户未登录";//当前登录用户
-        public static Boolean LoginSuccess = false;//用户是否登录成功
-        Boolean search = false;//textbox的搜索功能
-        Boolean alter = false;//textbox的修改功能
+        //string[] list= new string[100];//存储搜索源
+        //int index = 0;//list的下标
+        Boolean search = false;//textbox的功能
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
         List<TextBoxInfo> tbxinfos = new List<TextBoxInfo>();
+        List<PictureBox> pbs = new List<PictureBox>();
         FontBrush fb = new FontBrush(); //格式刷
         bool fbstatus = false; // 格式刷状态
         int TbxNum = -1;  //选中文本框的号码
-
-
         SizeChange sizeChange = new SizeChange();
-
         public NoteInterface()
         {
 
@@ -53,9 +47,34 @@ namespace NOTE
             penSize.Items.Add(10);
             penSize.Items.Add(13);
 
+            //u.NoteList1 = nl;
+            n.Paint = this.dt;
+            n.Texts = tbxinfos;
+            
+
             this.SearchBox.Visible = false;
-
-
+            //初始生成10个笔记
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    this.NoteList.Items.Add("笔记" + (i + 1));
+            //    //list[i] = "笔记" + (i+1);
+            //    //index = i;
+            //    list.Add("笔记" + (i + 1));
+            //}
+            string[] str = list.ToArray();
+            //搜索匹配
+            this.SearchBox.AutoCompleteCustomSource.Clear();
+            this.SearchBox.AutoCompleteCustomSource.AddRange(str);
+            this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            //for(int i = 0; NoteList.SelectedIndex != -1; i++)
+            //{
+            //    if (this.textBox1.Text == NoteList.SelectedItem.ToString())
+            //    {
+            //        MessageBox.Show(this.textBox1.Text);
+            //    }
+            //}
+            //textBox1.KeyUp += new KeyEventHandler(textBox1_KeyUp);
         }
 
        
@@ -82,9 +101,6 @@ namespace NOTE
                 FontBox.Items.Add(i.Name.ToString());
             }
             FontBox.SelectedIndex = 0;
-
-            n.Texts = tbxinfos;
-            n.Paint = dt.FinishingImg;
         }
 
         // 生成新文本框
@@ -135,32 +151,21 @@ namespace NOTE
         }
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            TextBox t = (TextBox)sender;
-            TbxNum = Convert.ToInt32(t.Name.Substring(2, 1));
             ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
         }
         private void textBox_MouseDown(object sender, MouseEventArgs e)
         {
-            TextBox t = (TextBox)sender;
-            TbxNum = Convert.ToInt32(t.Name.Substring(2, 1));
             sizeChange.MyMouseDown(sender, e);
-            ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
         }
 
         private void textBox_MouseLeave(object sender, EventArgs e)
         {
-            TextBox t = (TextBox)sender;
-            TbxNum = Convert.ToInt32(t.Name.Substring(2, 1));
             sizeChange.MyMouseLeave(sender, e, this.Cursor);
-            ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
         }
 
         private void textBox_MouseMove(object sender, MouseEventArgs e)
         {
-            TextBox t = (TextBox)sender;
-            TbxNum = Convert.ToInt32(t.Name.Substring(2, 1));
             sizeChange.MyMouseMove(sender, e, this.Cursor);
-            ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
         }
 
         private void FontBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -238,8 +243,8 @@ namespace NOTE
             if (TbxNum != -1)
             {
                 tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font.FontFamily, tbxs[TbxNum].Font.Size + 1, tbxs[TbxNum].Font.Style);
-                tbxinfos[TbxNum].FontSize = tbxs[TbxNum].Font.Size;
                 TbxNum = -1;
+                tbxinfos[TbxNum].FontSize = tbxs[TbxNum].Font.Size;
             }
         }
 
@@ -248,11 +253,10 @@ namespace NOTE
             if (TbxNum != -1)
             {
                 tbxs[TbxNum].Font = new Font(tbxs[TbxNum].Font.FontFamily, tbxs[TbxNum].Font.Size - 1, tbxs[TbxNum].Font.Style);
-                tbxinfos[TbxNum].FontSize = tbxs[TbxNum].Font.Size;
                 TbxNum = -1;
+                tbxinfos[TbxNum].FontSize = tbxs[TbxNum].Font.Size;
             }
         }
-
         private void Format_Painter_Click(object sender, EventArgs e)
         {
             if (TbxNum != -1)
@@ -278,81 +282,47 @@ namespace NOTE
         Boolean noteName = false;
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //已经打开搜索框
-            if (SearchBox.Visible)
-            {
-                this.SearchBox.Text = "";
-                this.SearchBox.Visible = false;
-            }
-            if (LoginSuccess)
-            {
-                noteName = true;
-                this.SearchBox.Visible = true;
+            noteName = true;
+            this.SearchBox.Visible = true;
 
-            }
-            else
-            {
-                MessageBox.Show("用户需要登录后新增笔记");
-            }
         }
- 
-            //从数据库读取笔记
-            private void ShowNoteBtn_Click(object sender, EventArgs e)
+        //测试数据
+        //private List<string> GetTestList()
+        //{
+        //    var list = new List<string>();
+        //    for (int i = 0; i < 10; i++)
+        //    {
+        //        list.Add("笔记" + (i + 1));
+        //    }
+        //    return list;
+        //}
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            if (LoginSuccess)//登录成功
-            {
-                //如果当前列表已有item,清空数据源和列表信息，清空存储列表
-                if (NoteList.Items.Count > 0)
-                {
-                    NoteList.DataSource = null;
-                    NoteList.Items.Clear();
-                    strlist.Clear();
-                }
-                this.UserLabel.Text = UserName;//显示登录用户名
-                DataSource data = new DataSource();
-                List<ClassModel.Note> list = new List<ClassModel.Note>();
-                list = data.ReadDatabaseNOTE();
-                foreach (ClassModel.Note n in list)
-                {
-                    strlist.Add(n.Name);
-                }
-                SearchInfo();
-            }
-            else
-            {
-                MessageBox.Show("当前用户未登录，请先登录");
-            }
-        }
-        private void SearchInfo()
-        {
-            //笔记名显示
-            NoteList.DataSource = strlist;
-            string[] str = strlist.ToArray();
-            //搜索匹配
-            this.SearchBox.AutoCompleteCustomSource.Clear();
-            this.SearchBox.AutoCompleteCustomSource.AddRange(str);
-            this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            /*还不知道什么用途*/
+            //var list = GetTestList();
+            //for(int i = 0;i<10 ; i++)
+            //{
+            //    this.NoteList.Items.Add("笔记" + i);
+            //    list[i] = "笔记"+i;
+            //}
+            //this.textBox1.Visible = true;
+            //this.NoteList.Items.Add(this.textBox1.Text);
+            //index++;
+            //list[index] = this.textBox1.Text;
         }
 
-        private void NoteList_MouseDown(object sender, MouseEventArgs e)
+        private void NoteList_MouseClick(object sender, MouseEventArgs e)
         {
             int index = NoteList.IndexFromPoint(e.X, e.Y);
             NoteList.SelectedIndex = index;
-            //鼠标左键显示笔记，右键修改笔记信息
-            if (e.Button == MouseButtons.Right)
+            if (NoteList.SelectedIndex != -1)
             {
-                //this.SearchBox.Visible = true;
-                //this.alter = true;
-            }
-            else
-            {
-                if (NoteList.SelectedIndex != -1)
                 {
                     MessageBox.Show(NoteList.SelectedItem.ToString());
                 }
             }
         }
+
 
         #region 提示文字
         Boolean textboxHasText = false;
@@ -412,32 +382,22 @@ namespace NOTE
                 }
                 else if (noteName)
                 {
-                    strlist.Add(this.SearchBox.Text);
-                    SearchInfo();
-                    //this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
+                    this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
+                    list.Add(this.SearchBox.Text);//list添加
 
-                    DataSource data = new DataSource();
-                    //Random r = new Random();
-                    data.InsertDatabaseNOTE(UserName, this.SearchBox.Text, "11", DateTime.Now, DateTime.Now);
-                    
+
+                    //n.Name = this.SearchBox.Text;
+                    //this.u.NoteList1.Add(n);
+
+
+                    this.SearchBox.Text = "";
+                    string[] str = list.ToArray();
+                    //搜索匹配
+                    this.SearchBox.AutoCompleteCustomSource.Clear();
+                    this.SearchBox.AutoCompleteCustomSource.AddRange(str);
+                    this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+                    this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
                     noteName = false;
-                    this.SearchBox.Visible = false;
-                }
-                else if (alter)
-                {
-                    DataSource data = new DataSource();
-                    Random r = new Random();
-
-                    for (int i = 0; i < this.NoteList.Items.Count; i++)
-                    {
-                        if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
-                        {
-                            data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
-                            this.SearchBox.Text = "";
-                            this.SearchBox.Visible = false;
-                            MessageBox.Show("已更新笔记名称，请刷新笔记");
-                        }
-                    }
                 }
                 //else
                 //{
@@ -473,6 +433,42 @@ namespace NOTE
 
         }
 
+        private void 图片ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string filepath;
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                DialogResult dr = dlg.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    string fileName = dlg.FileName;
+                    //this.pictureBox1.Image = Image.FromFile(fileName);//将图片填充到pictureBox中
+
+                    filepath = dlg.FileName;//获取全部文件路径（包括拓展名）
+                    PictureBox p = new PictureBox();
+                    ((System.ComponentModel.ISupportInitialize)(p)).BeginInit();
+                    p.Image = Image.FromFile(filepath);
+                    p.Size = new Size(100, 100);
+                    p.Location = new Point(300, 330);
+                    p.SizeMode = PictureBoxSizeMode.StretchImage;
+                    p.BringToFront();
+                    pbs.Add(p);
+                    this.Controls.Add(p);
+                }
+
+            }
+        }
+
+        //private void 连接数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    DataSource data = new DataSource();
+        //    List<User> userlist = new List<User>();
+        //    userlist = data.init();
+        //    foreach(User x in userlist)
+        //    {
+        //        MessageBox.Show("用户姓名："+x.Name1+"，用户密码："+ x.Password1);
+        //    }
+        //}
 
         private void Drawbox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -585,129 +581,93 @@ namespace NOTE
 
         private void NoteList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (n.Path != null)
-            {
-                SavePage();
-            }
-            NoteReader nr = new NoteReader();
-            if (NoteList.SelectedIndex != -1)
-            {
-                int i;
-
-                CleanPage();
-                for (i = 0; i < u.NoteList.Count; i++)
-                {
-                    if (u.NoteList[i].ID == IdList[NoteList.SelectedIndex])
-                    {
-                        break;
-                    }
-                }
-                this.n = nr.ReadFromFile(u.NoteList[i].Path);
-                GetPage();
-            }
+            //int i = 0;
+            //for (i = 0; i < this.u.NoteList1.Count; i++)
+            //{
+            //    if (this.u.NoteList1[i].Name == NoteList.Items[NoteList.SelectedIndex].ToString())
+            //    {
+            //        break;
+            //    }
+            //}
+            //this.n = u.NoteList1[i-1];
         }
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            SavePage();
-        }
-
-
-        private void CleanPage()//清除页面
-        {
-             for(int i = 0; i < tbxs.Count; i++)
-            {
-                this.Controls.Remove(tbxs[i]);
-
-            }
-            tbxs = new List<TextBox>();
-            TbxNum = -1;
-            tbxinfos = new List<TextBoxInfo>();
-        }
-
-        private void GetPage()
-        {
-            NoteReader nr = new NoteReader();
-            this.n = nr.ReadFromFile(this.n.Path);
-            for(int i = 0; i < n.Texts.Count; i++)
-            {
-                TextBox tb = new TextBox();
-                TextBoxInfo tbf = new TextBoxInfo();
-                tb.Location = n.Texts[i].Location;
-                tb.Size = n.Texts[i].Size;
-                tb.Name = n.Texts[i].Name;
-                tb.Text = n.Texts[i].Text;
-                tb.ForeColor = n.Texts[i].FontColor;
-                tb.Font = new Font(n.Texts[i].Font, n.Texts[i].FontSize);
-                if (n.Texts[i].Bold)
-                {
-                    tb.Font = new Font(tb.Font, tb.Font.Style ^ FontStyle.Bold);
-                }
-                if (n.Texts[i].Italic)
-                {
-                    tb.Font = new Font(tb.Font, tb.Font.Style ^ FontStyle.Italic);
-                }
-                if (n.Texts[i].Underline)
-                {
-                    tb.Font = new Font(tb.Font, tb.Font.Style ^ FontStyle.Underline);
-                }
-                this.Controls.Add(tb);
-                tbxs.Add(tb);
-                tb.BringToFront();//生成新文本框
-                tb.Multiline = true;
-                tb.BorderStyle = BorderStyle.Fixed3D;
-                tb.Click += new System.EventHandler(TextBox_Click);
-                tb.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
-                tb.MouseLeave += new System.EventHandler(textBox_MouseLeave);
-                tb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
-                tb.TextChanged += new System.EventHandler(textBox_TextChanged);
-                ChangeTextInfo(tbf, tb);
-                tbxinfos.Add(tbf);
-            }
-        }
-        private void SavePage()
-        {
-            string path1 = "D:/Note";
-            Directory.CreateDirectory(path1);
-            path1 = path1 + "/" + u.Name;
-            Directory.CreateDirectory(path1);
-            this.n.LastModify = DateTime.Now;
-            this.n.Texts = tbxinfos;
-            this.n.Paint = dt.FinishingImg;
-            this.n.Path = "D:/Note/" + u.Name + "/" + n.ID.ToString();
-            Directory.CreateDirectory(n.Path);
-            NoteWriter nw = new NoteWriter();
-            nw.WriteToFile(n);
+            Serializer st = new Serializer();
+            st.NoteSerialize(this.n);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            u.Name = "ZengJiaXing";
-            n.ID = 1;
-            SavePage();
+            Serializer st = new Serializer();
+            Note n = st.DeNoteSerialize();
+
+
+            TextBox tb = new TextBox();
+            tb.Location = n.Texts[0].Location;
+            tb.Size = new System.Drawing.Size(300, 100);
+            tb.Name = "tb" + tbxs.Count.ToString();
+            this.Controls.Add(tb);
+            tbxs.Add(tb);
+            tb.BringToFront();//生成新文本框
+            tb.BorderStyle = BorderStyle.Fixed3D;
+            tb.Click += new System.EventHandler(TextBox_Click);
+            tb.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
+            tb.MouseLeave += new System.EventHandler(textBox_MouseLeave);
+            tb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
+            tb.TextChanged += new System.EventHandler(textBox_TextChanged);
+            tb.Multiline = true;
+            tb.Text = n.Texts[0].Text;
+        }
+
+        private TextBox loadTextBox(TextBoxInfo tf)
+        {
+            TextBox t = new TextBox();
+            t.Location = tf.Location;
+            t.Size = tf.Size;
+            if (tf.Bold)
+            {
+                t.Font = new Font(tf.Font, t.Font.Size, t.Font.Style ^ FontStyle.Bold);
+            }
+            if (tf.Italic)
+            {
+                t.Font = new Font(tf.Font, t.Font.Size, t.Font.Style ^ FontStyle.Italic);
+            }
+            if (tf.Underline)
+            {
+                t.Font = new Font(tf.Font, t.Font.Size, t.Font.Style ^ FontStyle.Underline);
+            }
+            t.ForeColor = tf.FontColor;
+            t.Name = tf.Name;
+            t.Text = tf.Text;
+            t.BringToFront();
+            t.Multiline = true;
+            t.BorderStyle = BorderStyle.Fixed3D;
+            t.Click += new System.EventHandler(TextBox_Click);
+            t.MouseDown += new System.Windows.Forms.MouseEventHandler(textBox_MouseDown);
+            t.MouseLeave += new System.EventHandler(textBox_MouseLeave);
+            t.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseMove);
+            t.TextChanged += new System.EventHandler(textBox_TextChanged);
+            return t;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            NoteReader nr = new NoteReader();
-            u.NoteList = new List<Note>();
-            IdList.Add(1);
-            IdList.Add(2);
-            list.Add("a");
-            list.Add("b");
-            NoteList.Items.Add("a");
-            NoteList.Items.Add("b");
-            u.Name = "ZengJiaXing";
-            Note n1 = nr.ReadFromFile("D:/Note/ZengJiaXing/1");
-            Note n2 = nr.ReadFromFile("D:/Note/ZengJiaXing/2");
-            u.NoteList.Add(n1);
-            u.NoteList.Add(n2);
+            this.dt.Save();
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            DataSource ds = new DataSource();
-            ds.OpenDatabase();
+            Stream s = File.Open("D:/a.bmp",FileMode.Open);
+            Image source = Image.FromStream(s);
+            this.Drawbox.Height = source.Height;
+            this.Drawbox.Width = source.Width;
+            this.reSize.Location = this.Drawbox.Location + this.Drawbox.Size;
+            this.dt.FinishingImg = source;
+            dt.targetGraphics = Graphics.FromImage(dt.FinishingImg);
+            s.Close();
+
         }
-    }
+    } 
 }
