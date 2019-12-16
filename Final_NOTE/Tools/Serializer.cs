@@ -15,6 +15,7 @@ namespace NoteBLL.Serialize
             {
                 formatter.Serialize(stream, n);
             }
+
         }
 
         public Note DeNoteSerialize(string path)
