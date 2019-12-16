@@ -41,9 +41,27 @@ namespace NOTE
             else
             {
                 DataSource data = new DataSource();
-                data.InsertDatabaseUSER(uname, psw, tel);
+                //data.InsertDatabaseUSER(uname, psw, tel);
                 List<User> userlist = new List<User>();
                 userlist = data.ReadDatabaseUSER();
+                Boolean HasRegister = false;
+                foreach (User u in userlist)
+                {
+                    if (u.Name1 == uname)
+                    {
+                        MessageBox.Show("用户已存在，请重新注册");
+                        this.UserNameTbx.Text = "";
+                        this.PasswordTbx.Text = "";
+                        this.TELBox.Text = "";
+                        HasRegister = true;//已经注册过
+                    }
+                }
+                
+                if (!HasRegister)
+                {
+                    data.InsertDatabaseUSER(uname, psw, tel);
+                }
+
                 foreach (User u in userlist)
                 {
                     if (u.Name1 == uname && u.Password1 == psw && u.Tel1 == tel)
