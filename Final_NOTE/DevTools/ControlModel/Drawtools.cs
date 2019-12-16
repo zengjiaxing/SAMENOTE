@@ -39,8 +39,6 @@ public    class DrawTools
             }
         }
 
-        public Image FinishingImg { get => finishingImg; set => finishingImg = value; }
-
         public bool startDraw = false;//是否开始绘图
         public PointF startPointF;//绘图起点
 
