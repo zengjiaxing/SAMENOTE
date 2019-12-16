@@ -308,7 +308,7 @@ namespace NOTE
                     NoteList.Items.Clear();
                     strlist.Clear();
                 }
-                this.UserLabel.Text = UserName;//显示登录用户名
+                //this.UserLabel.Text = UserName;//显示登录用户名
                 DataSource data = new DataSource();
                 List<ClassModel.Note> list = new List<ClassModel.Note>();
                 list = data.ReadDatabaseNOTE();
@@ -432,7 +432,7 @@ namespace NOTE
                     {
                         if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
                         {
-                            data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
+                            //data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
                             this.SearchBox.Text = "";
                             this.SearchBox.Visible = false;
                             MessageBox.Show("已更新笔记名称，请刷新笔记");

@@ -74,7 +74,6 @@ namespace NOTE
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.Eraser = new System.Windows.Forms.Button();
             this.penSize = new System.Windows.Forms.ComboBox();
-            this.AddNoteBtn = new System.Windows.Forms.Button();
             this.RevokeBtn = new System.Windows.Forms.Button();
             this.RestoreBtn = new System.Windows.Forms.Button();
             this.Format_Painter = new System.Windows.Forms.Button();
@@ -102,10 +101,6 @@ namespace NOTE
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.UserLabel = new System.Windows.Forms.Label();
-            this.CMStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.重命名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除笔记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reSize)).BeginInit();
@@ -372,35 +367,32 @@ namespace NOTE
             this.登入ToolStripMenuItem.Name = "登入ToolStripMenuItem";
             this.登入ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.登入ToolStripMenuItem.Text = "登入";
-            this.登入ToolStripMenuItem.Click += new System.EventHandler(this.登入ToolStripMenuItem_Click);
             // 
             // 登出ToolStripMenuItem
             // 
             this.登出ToolStripMenuItem.Name = "登出ToolStripMenuItem";
             this.登出ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.登出ToolStripMenuItem.Text = "登出";
-            this.登出ToolStripMenuItem.Click += new System.EventHandler(this.登出ToolStripMenuItem_Click);
+
             // 
             // 切换用户ToolStripMenuItem
             // 
             this.切换用户ToolStripMenuItem.Name = "切换用户ToolStripMenuItem";
             this.切换用户ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.切换用户ToolStripMenuItem.Text = "切换用户";
-            this.切换用户ToolStripMenuItem.Click += new System.EventHandler(this.切换用户ToolStripMenuItem_Click);
+
             // 
             // 修改密码ToolStripMenuItem
             // 
             this.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem";
             this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.修改密码ToolStripMenuItem.Text = "修改密码";
-            this.修改密码ToolStripMenuItem.Click += new System.EventHandler(this.修改密码ToolStripMenuItem_Click);
             // 
             // 忘记密码ToolStripMenuItem
             // 
             this.忘记密码ToolStripMenuItem.Name = "忘记密码ToolStripMenuItem";
             this.忘记密码ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.忘记密码ToolStripMenuItem.Text = "忘记密码";
-            this.忘记密码ToolStripMenuItem.Click += new System.EventHandler(this.忘记密码ToolStripMenuItem_Click);
             // 
             // Palette
             // 
@@ -425,9 +417,8 @@ namespace NOTE
             this.NoteList.Name = "NoteList";
             this.NoteList.Size = new System.Drawing.Size(125, 469);
             this.NoteList.TabIndex = 4;
-            this.NoteList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseClick);
             this.NoteList.SelectedIndexChanged += new System.EventHandler(this.NoteList_SelectedIndexChanged);
-            this.NoteList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseUp);
+
             // 
             // Eraser
             // 
@@ -451,13 +442,13 @@ namespace NOTE
             // 
             // ShowNoteBtn
             // 
-            this.ShowNoteBtn.Image = global::NOTE.Properties.Resources.书__1_;
-            this.ShowNoteBtn.Location = new System.Drawing.Point(5, 67);
-            this.ShowNoteBtn.Name = "ShowNoteBtn";
-            this.ShowNoteBtn.Size = new System.Drawing.Size(36, 36);
-            this.ShowNoteBtn.TabIndex = 18;
-            this.ShowNoteBtn.UseVisualStyleBackColor = true;
-            this.ShowNoteBtn.Click += new System.EventHandler(this.ShowNoteBtn_Click);
+            //this.ShowNoteBtn.Image = global::NOTE.Properties.Resources.书__1_;
+            //this.ShowNoteBtn.Location = new System.Drawing.Point(5, 67);
+            //this.ShowNoteBtn.Name = "ShowNoteBtn";
+            //this.ShowNoteBtn.Size = new System.Drawing.Size(36, 36);
+            //this.ShowNoteBtn.TabIndex = 18;
+            //this.ShowNoteBtn.UseVisualStyleBackColor = true;
+            //this.ShowNoteBtn.Click += new System.EventHandler(this.ShowNoteBtn_Click);
             // 
             // RevokeBtn
             // 
@@ -576,7 +567,6 @@ namespace NOTE
             this.ReverseSort.Size = new System.Drawing.Size(36, 36);
             this.ReverseSort.TabIndex = 21;
             this.ReverseSort.UseVisualStyleBackColor = true;
-            this.ReverseSort.Click += new System.EventHandler(this.ReverseSort_Click);
             // 
             // SearchBox
             // 
@@ -766,7 +756,7 @@ namespace NOTE
             this.Controls.Add(this.ItalicBtn);
             this.Controls.Add(this.BoldBtn);
             this.Controls.Add(this.FontBox);
-            this.Controls.Add(this.ShowNoteBtn);
+            //this.Controls.Add(this.ShowNoteBtn);
             this.Controls.Add(this.NoteList);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
