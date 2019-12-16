@@ -30,6 +30,7 @@ namespace NOTE
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,6 +99,7 @@ namespace NOTE
             this.delete = new System.Windows.Forms.Button();
             this.Fontbtn = new System.Windows.Forms.Button();
             this.UserLabel = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -660,6 +662,12 @@ namespace NOTE
             this.UserLabel.TabIndex = 26;
             this.UserLabel.Text = "当前用户：未登录";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 32);
+            // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -774,6 +782,7 @@ namespace NOTE
         private System.Windows.Forms.Button Fontbtn;
         private System.Windows.Forms.ToolStripMenuItem 连接数据库ToolStripMenuItem;
         private System.Windows.Forms.Label UserLabel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 

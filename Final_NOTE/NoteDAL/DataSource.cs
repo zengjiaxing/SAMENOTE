@@ -126,18 +126,17 @@ namespace NoteDAL
             return noteList;
         }
         //插入数据库NOTE
-        public void InsertDatabaseNOTE(int id,string UserName, string NoteName, string Path,DateTime CTime,DateTime LTime)
+        public void InsertDatabaseNOTE(string UserName, string NoteName, string Path,DateTime CTime,DateTime LTime)
         {
             //string sqlstr = "INSERT INTO note.user VALUES ('11','11')";
             string connStr = "server=localhost;user=root;password=root; database=note;";
             MySqlConnection conn = new MySqlConnection(connStr);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "INSERT INTO notelist VALUES (@ID,@UserName,@NoteName,@Path,@CTime,@LTime)";
-            command.Parameters.AddWithValue("@ID", id);
+            command.CommandText = "insert  into note.notelist(UserName, NoteName, Path, CTime, LTime)VALUES (@UserName,@NoteName,@Path,@CTime,@LTime)";
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@NoteName", NoteName);
             command.Parameters.AddWithValue("@Path", Path);
-            command.Parameters.AddWithValue("@ctime", CTime);
+            command.Parameters.AddWithValue("@CTime", CTime);
             command.Parameters.AddWithValue("@LTime", LTime);
             conn.Open();
             command.ExecuteNonQuery();
