@@ -439,17 +439,20 @@ namespace NOTE
                 }
                 else if (alter)
                 {
-                    DataSource data = new DataSource();
-                    Random r = new Random();
-
                     for (int i = 0; i < this.NoteList.Items.Count; i++)
                     {
                         if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
                         {
-                            //data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
+                            NoteFunction nf = new NoteFunction();
+                            nf.ModifyName(SearchBox.Text,u.NoteList[NoteList.SelectedIndex].ID,DateTime.Now);
+                            u.NoteList = nf.GetMyNote(u.Name);
+                            NoteList.DataSource = null;
+                            NoteList.Items.Clear();
+                            AddNotesToList();
                             this.SearchBox.Text = "";
                             this.SearchBox.Visible = false;
                             MessageBox.Show("已更新笔记名称，请刷新笔记");
+
                         }
                     }
                 }
@@ -468,9 +471,6 @@ namespace NOTE
             this.SearchBox.Visible = true;
 
         }
-
-
-
 
 
         private void delete_Click(object sender, EventArgs e)
@@ -603,6 +603,7 @@ namespace NOTE
             {
                 SavePage();
             }
+            NonnClick = false;
             NoteReader nr = new NoteReader();
             if (NoteList.SelectedIndex != -1 && !NonnClick)
             {
@@ -618,7 +619,7 @@ namespace NOTE
                 this.n = nr.ReadFromFile(u.NoteList[i].Path);
                 GetPage();
             }
-            NonnClick = false;
+
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -637,6 +638,16 @@ namespace NOTE
             TbxNum = -1;
             tbxinfos = new List<TextBoxInfo>();
             dt.clear();
+            this.Drawbox.Height = dt.begin.Height;
+            this.Drawbox.Width = dt.begin.Width;
+            this.reSize.Location = this.Drawbox.Location + this.Drawbox.Size;
+
+            //dt.targetGraphics = this.Drawbox.CreateGraphics();
+            Bitmap bmp = new Bitmap(Drawbox.Width, Drawbox.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.FillRectangle(new SolidBrush(Drawbox.BackColor), new Rectangle(0, 0, Drawbox.Width, Drawbox.Height));
+            g.Dispose();
+            dt = new DrawTools(this.Drawbox.CreateGraphics(), colorDialog1.Color, bmp);//实例化工具类
         }
 
         private void GetPage()
@@ -695,14 +706,13 @@ namespace NOTE
         }
         private void SavePage()
         {
-            string path1 = "D:/Note";
-            Directory.CreateDirectory(path1);
-            path1 = path1 + "/" + u.Name;
-            Directory.CreateDirectory(path1);
+            NoteFunction nf = new NoteFunction();
             this.n.LastModify = DateTime.Now;
             this.n.Texts = tbxinfos;
-            this.n.Paint = dt.FinishingImg;
-            this.n.Path = "D:/Note/" + u.Name + "/" + n.ID.ToString();
+            this.n.Paint = this.dt.FinishingImg;
+            this.n.Texts = this.tbxinfos;
+            nf.ModifyLtime(n.LastModify,n.ID);
+            System.Console.WriteLine(this.n.Path);
             Directory.CreateDirectory(n.Path);
             NoteWriter nw = new NoteWriter();
             nw.WriteToFile(n);
@@ -779,6 +789,7 @@ namespace NOTE
         {
             CleanVars();
             CleanPage();
+
             NoteList.DataSource = null;
             NoteList.Items.Clear();
             LogIn l = new LogIn();
@@ -812,7 +823,99 @@ namespace NOTE
 
         private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                n.LastModify = DateTime.Now;
+                this.n.Path = dialog.SelectedPath + "/"+n.ID.ToString();
+            }
+
+            for(int i = 0; i < u.NoteList.Count; i++)
+            {
+                if(u.NoteList[i].ID == n.ID)
+                {
+                    u.NoteList[i].Path = n.Path;
+                }
+            }
+            SavePage();
+            NoteFunction nf = new NoteFunction();
+            nf.ModifyPath(n.Path,n.ID,n.LastModify);
         }
+
+        private void 打开ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                n.LastModify = DateTime.Now;
+                this.n.Path = dialog.SelectedPath;
+                NoteReader nr = new NoteReader();
+                n = nr.ReadFromFile(n.Path);
+                u.NoteList.Add(n);
+                NoteList.DataSource = null;
+                NoteList.Items.Clear();
+                AddNotesToList();
+            }
+        }
+
+        private void NoteList_MouseUp(object sender, MouseEventArgs e)
+        {
+            int index = NoteList.IndexFromPoint(e.X, e.Y);
+            NoteList.SelectedIndex = index;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                if (NoteList.SelectedIndex != -1)
+                {
+                    CMStrip.Show(this.NoteList, e.Location);
+                }
+
+            }
+            else
+            {
+                if (NoteList.SelectedIndex != -1)
+                {
+                }
+            }
+        }
+
+        private void 重命名ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.SearchBox.Visible = true;
+            this.alter = true;
+        }
+
+        private void 删除笔记ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NoteFunction nf = new NoteFunction();
+            nf.DeleteNote(u.NoteList[NoteList.SelectedIndex].ID);
+            Deleter d = new Deleter();
+            d.FileDelete(u.NoteList[NoteList.SelectedIndex].Path);
+            u.NoteList = nf.GetMyNote(u.Name);
+            NoteList.DataSource = null;
+            NoteList.Items.Clear();
+            AddNotesToList();
+        }
+
+        private void 创建时间ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NoteFunction nf = new NoteFunction();
+            this.u.NoteList = nf.NotesOrderbyCtime(u.Name);
+            NoteList.DataSource = null;
+            NoteList.Items.Clear();
+            AddNotesToList();
+        }
+
+        private void 修改时间ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NoteFunction nf = new NoteFunction();
+            this.u.NoteList = nf.NotesOrderbyLtime(u.Name);
+            NoteList.DataSource = null;
+            NoteList.Items.Clear();
+            AddNotesToList();
+        }
+
     }
 }

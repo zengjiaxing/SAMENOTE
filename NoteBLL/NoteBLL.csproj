@@ -45,6 +45,7 @@
     <Compile Include="DBOperate\NoteFunction.cs" />
     <Compile Include="DBOperate\UserFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadAndWrite\Deleter.cs" />
     <Compile Include="ReadAndWrite\NoteReader.cs" />
     <Compile Include="ReadAndWrite\NoteWriter.cs" />
     <Compile Include="Serialize\Serializer.cs" />

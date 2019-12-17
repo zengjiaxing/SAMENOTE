@@ -30,6 +30,7 @@ namespace NOTE
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,8 +42,7 @@ namespace NOTE
             this.快捷键ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.笔记本ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.排序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.时间ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.名称ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.创建时间ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改时间ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查找ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.最近的ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +55,6 @@ namespace NOTE
             this.Circle = new System.Windows.Forms.ToolStripMenuItem();
             this.Fillrect = new System.Windows.Forms.ToolStripMenuItem();
             this.Fillcircle = new System.Windows.Forms.ToolStripMenuItem();
-            this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.页面颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.用户ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,10 +92,14 @@ namespace NOTE
             this.FontSizePlus = new System.Windows.Forms.Button();
             this.FontSizeMinus = new System.Windows.Forms.Button();
             this.namelabel = new System.Windows.Forms.Label();
+            this.CMStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.重命名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除笔记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Drawbox)).BeginInit();
+            this.CMStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -107,7 +109,6 @@ namespace NOTE
             this.文件ToolStripMenuItem,
             this.笔记本ToolStripMenuItem1,
             this.插入ToolStripMenuItem,
-            this.视图ToolStripMenuItem,
             this.用户ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -156,6 +157,7 @@ namespace NOTE
             this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
             this.打开ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.打开ToolStripMenuItem.Text = "打开";
+            this.打开ToolStripMenuItem.Click += new System.EventHandler(this.打开ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
@@ -188,41 +190,36 @@ namespace NOTE
             // 排序ToolStripMenuItem
             // 
             this.排序ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.时间ToolStripMenuItem,
-            this.名称ToolStripMenuItem,
+            this.创建时间ToolStripMenuItem,
             this.修改时间ToolStripMenuItem});
             this.排序ToolStripMenuItem.Name = "排序ToolStripMenuItem";
-            this.排序ToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.排序ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.排序ToolStripMenuItem.Text = "排序";
             // 
-            // 时间ToolStripMenuItem
+            // 创建时间ToolStripMenuItem
             // 
-            this.时间ToolStripMenuItem.Name = "时间ToolStripMenuItem";
-            this.时间ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.时间ToolStripMenuItem.Text = "名称";
-            // 
-            // 名称ToolStripMenuItem
-            // 
-            this.名称ToolStripMenuItem.Name = "名称ToolStripMenuItem";
-            this.名称ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.名称ToolStripMenuItem.Text = "创建时间";
+            this.创建时间ToolStripMenuItem.Name = "创建时间ToolStripMenuItem";
+            this.创建时间ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.创建时间ToolStripMenuItem.Text = "创建时间";
+            this.创建时间ToolStripMenuItem.Click += new System.EventHandler(this.创建时间ToolStripMenuItem_Click);
             // 
             // 修改时间ToolStripMenuItem
             // 
             this.修改时间ToolStripMenuItem.Name = "修改时间ToolStripMenuItem";
-            this.修改时间ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.修改时间ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.修改时间ToolStripMenuItem.Text = "修改时间";
+            this.修改时间ToolStripMenuItem.Click += new System.EventHandler(this.修改时间ToolStripMenuItem_Click);
             // 
             // 查找ToolStripMenuItem
             // 
             this.查找ToolStripMenuItem.Name = "查找ToolStripMenuItem";
-            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.查找ToolStripMenuItem.Text = "查找";
             // 
             // 最近的ToolStripMenuItem
             // 
             this.最近的ToolStripMenuItem.Name = "最近的ToolStripMenuItem";
-            this.最近的ToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.最近的ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.最近的ToolStripMenuItem.Text = "最近的";
             // 
             // 插入ToolStripMenuItem
@@ -237,7 +234,7 @@ namespace NOTE
             // 文本框ToolStripMenuItem
             // 
             this.文本框ToolStripMenuItem.Name = "文本框ToolStripMenuItem";
-            this.文本框ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.文本框ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.文本框ToolStripMenuItem.Text = "文本框";
             this.文本框ToolStripMenuItem.Click += new System.EventHandler(this.文本框ToolStripMenuItem_Click);
             // 
@@ -251,7 +248,7 @@ namespace NOTE
             this.Fillrect,
             this.Fillcircle});
             this.图形ToolStripMenuItem.Name = "图形ToolStripMenuItem";
-            this.图形ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.图形ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.图形ToolStripMenuItem.Text = "图形";
             // 
             // Ellipse
@@ -296,20 +293,6 @@ namespace NOTE
             this.Fillcircle.Text = "实心圆";
             this.Fillcircle.Click += new System.EventHandler(this.ellipseToolStripMenuItem_Click);
             // 
-            // 视图ToolStripMenuItem
-            // 
-            this.视图ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.页面颜色ToolStripMenuItem});
-            this.视图ToolStripMenuItem.Name = "视图ToolStripMenuItem";
-            this.视图ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
-            this.视图ToolStripMenuItem.Text = "视图";
-            // 
-            // 页面颜色ToolStripMenuItem
-            // 
-            this.页面颜色ToolStripMenuItem.Name = "页面颜色ToolStripMenuItem";
-            this.页面颜色ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.页面颜色ToolStripMenuItem.Text = "页面颜色";
-            // 
             // 用户ToolStripMenuItem
             // 
             this.用户ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -326,42 +309,42 @@ namespace NOTE
             // 登入ToolStripMenuItem
             // 
             this.登入ToolStripMenuItem.Name = "登入ToolStripMenuItem";
-            this.登入ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.登入ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.登入ToolStripMenuItem.Text = "登入";
             this.登入ToolStripMenuItem.Click += new System.EventHandler(this.登入ToolStripMenuItem_Click);
             // 
             // 登出ToolStripMenuItem
             // 
             this.登出ToolStripMenuItem.Name = "登出ToolStripMenuItem";
-            this.登出ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.登出ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.登出ToolStripMenuItem.Text = "登出";
             this.登出ToolStripMenuItem.Click += new System.EventHandler(this.登出ToolStripMenuItem_Click);
             // 
             // 切换用户ToolStripMenuItem
             // 
             this.切换用户ToolStripMenuItem.Name = "切换用户ToolStripMenuItem";
-            this.切换用户ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.切换用户ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.切换用户ToolStripMenuItem.Text = "切换用户";
             this.切换用户ToolStripMenuItem.Click += new System.EventHandler(this.切换用户ToolStripMenuItem_Click);
             // 
             // 修改密码ToolStripMenuItem
             // 
             this.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem";
-            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.修改密码ToolStripMenuItem.Text = "修改密码";
             this.修改密码ToolStripMenuItem.Click += new System.EventHandler(this.修改密码ToolStripMenuItem_Click);
             // 
             // 忘记密码ToolStripMenuItem
             // 
             this.忘记密码ToolStripMenuItem.Name = "忘记密码ToolStripMenuItem";
-            this.忘记密码ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.忘记密码ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.忘记密码ToolStripMenuItem.Text = "忘记密码";
             this.忘记密码ToolStripMenuItem.Click += new System.EventHandler(this.忘记密码ToolStripMenuItem_Click);
             // 
             // 注册ToolStripMenuItem
             // 
             this.注册ToolStripMenuItem.Name = "注册ToolStripMenuItem";
-            this.注册ToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.注册ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.注册ToolStripMenuItem.Text = "注册";
             this.注册ToolStripMenuItem.Click += new System.EventHandler(this.注册ToolStripMenuItem_Click);
             // 
@@ -389,6 +372,7 @@ namespace NOTE
             this.NoteList.Size = new System.Drawing.Size(125, 469);
             this.NoteList.TabIndex = 4;
             this.NoteList.SelectedIndexChanged += new System.EventHandler(this.NoteList_SelectedIndexChanged);
+            this.NoteList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NoteList_MouseUp);
             // 
             // Eraser
             // 
@@ -661,6 +645,29 @@ namespace NOTE
             this.namelabel.Size = new System.Drawing.Size(0, 15);
             this.namelabel.TabIndex = 36;
             // 
+            // CMStrip
+            // 
+            this.CMStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.CMStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.重命名ToolStripMenuItem,
+            this.删除笔记ToolStripMenuItem});
+            this.CMStrip.Name = "CMStrip";
+            this.CMStrip.Size = new System.Drawing.Size(139, 52);
+            // 
+            // 重命名ToolStripMenuItem
+            // 
+            this.重命名ToolStripMenuItem.Name = "重命名ToolStripMenuItem";
+            this.重命名ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
+            this.重命名ToolStripMenuItem.Text = "重命名";
+            this.重命名ToolStripMenuItem.Click += new System.EventHandler(this.重命名ToolStripMenuItem_Click);
+            // 
+            // 删除笔记ToolStripMenuItem
+            // 
+            this.删除笔记ToolStripMenuItem.Name = "删除笔记ToolStripMenuItem";
+            this.删除笔记ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
+            this.删除笔记ToolStripMenuItem.Text = "删除笔记";
+            this.删除笔记ToolStripMenuItem.Click += new System.EventHandler(this.删除笔记ToolStripMenuItem_Click);
+            // 
             // NoteInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -704,6 +711,7 @@ namespace NOTE
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.reSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Drawbox)).EndInit();
+            this.CMStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -723,9 +731,7 @@ namespace NOTE
         private System.Windows.Forms.ToolStripMenuItem 笔记本ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 排序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查找ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 时间ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 名称ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 视图ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 创建时间ToolStripMenuItem;
         private System.Windows.Forms.Button Palette;
         private System.Windows.Forms.ListBox NoteList;
         private System.Windows.Forms.ColorDialog colorDialog1;
@@ -734,7 +740,6 @@ namespace NOTE
         private System.Windows.Forms.Button Eraser;
         private System.Windows.Forms.ComboBox penSize;
         private System.Windows.Forms.ToolStripMenuItem 修改时间ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 页面颜色ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 用户ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 登入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 登出ToolStripMenuItem;
@@ -776,6 +781,9 @@ namespace NOTE
         private System.Windows.Forms.Button FontSizeMinus;
         private System.Windows.Forms.ToolStripMenuItem 注册ToolStripMenuItem;
         private System.Windows.Forms.Label namelabel;
+        private System.Windows.Forms.ContextMenuStrip CMStrip;
+        private System.Windows.Forms.ToolStripMenuItem 重命名ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除笔记ToolStripMenuItem;
     }
 }
 

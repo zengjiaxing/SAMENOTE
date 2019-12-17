@@ -45,5 +45,42 @@ namespace NoteBLL.DBOperate
             ds.InsertDatabaseNOTE(uname,nname,path,ctime,ltime);
             return GetInsertedNote();
         }
+
+        public void ModifyPath(string Path,int id,DateTime ltime)
+        {
+            DataSource ds = new DataSource();
+            ds.AlterNotePath(Path,id,ltime);
+        }
+
+        public void ModifyName(string name,int id ,DateTime ltime)
+        {
+            DataSource ds = new DataSource();
+            ds.AlterNoteName(name, id, ltime);
+        }
+
+        public void DeleteNote(int id)
+        {
+            DataSource ds = new DataSource();
+            ds.DelDatabaseNOTE(id);
+        }
+        public List<Note> NotesOrderbyCtime(string uname)
+        {
+            DataSource ds = new DataSource();
+            List<Note> allNotes;
+            allNotes = ds.GetNotesbyCtime(uname);
+            return allNotes;
+        }
+        public List<Note> NotesOrderbyLtime(string uname)
+        {
+            DataSource ds = new DataSource();
+            List<Note> allNotes;
+            allNotes = ds.GetNotesbyLtime(uname);
+            return allNotes;
+        }
+        public void ModifyLtime(DateTime time , int id)
+        {
+            DataSource ds = new DataSource();
+            ds.AlterNoteTIme(time,id);
+        }
     }
 }
