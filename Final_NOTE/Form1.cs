@@ -35,6 +35,7 @@ namespace NOTE
         public static Boolean LoginSuccess = false;//用户是否登录成功
         Boolean search = false;//textbox的搜索功能
         Boolean alter = false;//textbox的修改功能
+        bool NonnClick = true; //检测是否切换过页面
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
         List<TextBoxInfo> tbxinfos = new List<TextBoxInfo>();
         FontBrush fb = new FontBrush(); //格式刷
@@ -289,11 +290,11 @@ namespace NOTE
             {
                 noteName = true;
                 this.SearchBox.Visible = true;
-
             }
             else
             {
                 MessageBox.Show("用户需要登录后新增笔记");
+                LogInSteps();
             }
         }
  
@@ -413,14 +414,26 @@ namespace NOTE
                 }
                 else if (noteName)
                 {
-                    strlist.Add(this.SearchBox.Text);
+                    if (!NonnClick)
+                    {
+                        SavePage();
+                    }
+                    NoteFunction nf = new NoteFunction();
+                    Note n1 = new Note();
+                    n1 = nf.GetInsertedNote();
                     SearchInfo();
-                    //this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
+                    string path = "D:/Note/"+ u.Name+"/" + (n1.ID+1).ToString();
 
-                    DataSource data = new DataSource();
-                    //Random r = new Random();
-                    data.InsertDatabaseNOTE(UserName, this.SearchBox.Text, "11", DateTime.Now, DateTime.Now);
-                    
+                    n1 = nf.AddNote(u.Name,SearchBox.Text,path,DateTime.Now,DateTime.Now);
+                    this.u.NoteList.Add(n1);
+                    NoteList.DataSource = null;
+                    NoteList.Items.Clear();
+                    this.AddNotesToList();
+                    this.list.Add(n1.Name);
+                    this.IdList.Add(n1.ID);
+                    this.n = n1;
+                    CleanPage();
+                    this.NoteList.SelectedIndex = this.NoteList.Items.Count - 1;
                     noteName = false;
                     this.SearchBox.Visible = false;
                 }
@@ -586,15 +599,14 @@ namespace NOTE
 
         private void NoteList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (n.Path != null)
+            if (!NonnClick)
             {
                 SavePage();
             }
             NoteReader nr = new NoteReader();
-            if (NoteList.SelectedIndex != -1)
+            if (NoteList.SelectedIndex != -1 && !NonnClick)
             {
                 int i;
-
                 CleanPage();
                 for (i = 0; i < u.NoteList.Count; i++)
                 {
@@ -606,6 +618,7 @@ namespace NOTE
                 this.n = nr.ReadFromFile(u.NoteList[i].Path);
                 GetPage();
             }
+            NonnClick = false;
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -619,11 +632,11 @@ namespace NOTE
              for(int i = 0; i < tbxs.Count; i++)
             {
                 this.Controls.Remove(tbxs[i]);
-
             }
             tbxs = new List<TextBox>();
             TbxNum = -1;
             tbxinfos = new List<TextBoxInfo>();
+            dt.clear();
         }
 
         private void GetPage()
@@ -679,7 +692,6 @@ namespace NOTE
             dt = new DrawTools(this.Drawbox.CreateGraphics(), colorDialog1.Color, bmp);//实例化工具类
             dt.draw = (Image)this.n.Paint.Clone();
             dt.Draw(dt.draw);
-
         }
         private void SavePage()
         {
@@ -696,61 +708,38 @@ namespace NOTE
             nw.WriteToFile(n);
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            u.Name = "ZengJiaXing";
-            n.ID = 1;
-            SavePage();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            NoteReader nr = new NoteReader();
-            u.NoteList = new List<Note>();
-            IdList.Add(1);
-            IdList.Add(2);
-            list.Add("a");
-            list.Add("b");
-            NoteList.Items.Add("a");
-            NoteList.Items.Add("b");
-            u.Name = "ZengJiaXing";
-            Note n1 = nr.ReadFromFile("D:/Note/ZengJiaXing/1");
-            Note n2 = nr.ReadFromFile("D:/Note/ZengJiaXing/2");
-            u.NoteList.Add(n1);
-            u.NoteList.Add(n2);
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            DataSource ds = new DataSource();
-            ds.OpenDatabase();
-        }
-
         private void 注册ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Register r = new Register();
             r.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void 登入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogInSteps();
+        }
+
+        private void LogInSteps()
         {
             LogIn l = new LogIn();
             l.passname += new PassName(Change_text);
             l.ShowDialog();
+            LoginSuccess = true;
             NoteFunction nf = new NoteFunction();
             u.NoteList = nf.GetMyNote(u.Name);
             AddNotesToList();
         }
+
         private void AddNotesToList()
         {
+            this.list = new List<string>();
+            this.IdList = new List<int>();
             for(int i = 0; i < u.NoteList.Count; i++)
             {
                 NoteList.Items.Add(u.NoteList[i].Name);
+                this.list.Add(u.NoteList[i].Name);
+                this.IdList.Add(u.NoteList[i].ID);
             }
         }
         public void Change_text(string str)
@@ -780,17 +769,50 @@ namespace NOTE
 
         private void 登出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.u.Name = null;
-            this.namelabel.Text = "";
+            CleanPage();
+            CleanVars();
+            NoteList.DataSource = null;
+            NoteList.Items.Clear();
         }
 
         private void 切换用户ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.u.Name = null;
-            this.namelabel.Text = "";
+            CleanVars();
+            CleanPage();
+            NoteList.DataSource = null;
+            NoteList.Items.Clear();
             LogIn l = new LogIn();
             l.passname += new PassName(Change_text);
             l.ShowDialog();
+        }
+
+        private void CleanVars()
+        {
+            this.namelabel.Text = "";
+            this.u = new User();
+            this.n = new Note();
+            this.IdList = new List<int>();
+            this.list = new List<string>();
+            LoginSuccess = false;
+            this.search = false;
+            this.alter = false;
+            this.tbxs = new List<TextBox>();
+            this.tbxinfos = new List<TextBoxInfo>();
+            this.fb = new FontBrush();
+            this.fbstatus = false;
+            TbxNum = -1;
+            NonnClick = true;
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SavePage();
+            MessageBox.Show("保存成功");
+        }
+
+        private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

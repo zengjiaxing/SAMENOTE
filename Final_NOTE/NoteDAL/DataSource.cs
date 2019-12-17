@@ -178,14 +178,16 @@ namespace NoteDAL
             //string sqlstr = "INSERT INTO note.user VALUES ('11','11')";
             SqlConnection conn = ConnectToDataBase();
             SqlCommand command = conn.CreateCommand();
-            command.CommandText = "insert  into note.notelist(UserName, NoteName, Path, CTime, LTime)VALUES (@UserName,@NoteName,@Path,@CTime,@LTime)";
+            command.CommandText = "insert  into Notes(UserName, NoteName, Path, CTime, LTime)VALUES (@UserName,@NoteName,@Path,@CTime,@LTime)";
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@NoteName", NoteName);
             command.Parameters.AddWithValue("@Path", Path);
             command.Parameters.AddWithValue("@CTime", CTime);
             command.Parameters.AddWithValue("@LTime", LTime);
+            conn.Close();
             conn.Open();
             command.ExecuteNonQuery();
+            conn.Close();
             //ReadDatabase();
             ////返回值
             //int result = command.ExecuteNonQuery();
