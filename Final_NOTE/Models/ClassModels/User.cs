@@ -16,6 +16,10 @@ namespace NOTE.ClassModel
             this.Tel = v3;
             this.NoteList = p;
         }
+        public User(string s)
+        {
+            this.name = s;
+        }
 
         public string Name { get => name; set => name = value; }
         public string Password { get => password; set => password = value; }

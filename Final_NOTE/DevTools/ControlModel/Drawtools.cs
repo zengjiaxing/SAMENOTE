@@ -199,7 +199,7 @@ public    class DrawTools
             }
         }
 
-        public void revocation()//撤销
+        public void revocation(int high, int width)//撤销
         {
             if (images != null && images.Count > 1)
             {
@@ -207,10 +207,15 @@ public    class DrawTools
                 images.Remove(images.Last());
                 orginalImg = (Image)images.Last().Clone();
                 finishingImg = (Image)images.Last().Clone();
-                // targetGraphics.Dispose();
-                // targetGraphics = Graphics.FromImage(orginalImg);
-                targetGraphics.Clear(Color.White);
-                targetGraphics.DrawImage(orginalImg, 0, 0);
+                Bitmap bmp = new Bitmap(width, high);
+                Graphics g = Graphics.FromImage(bmp);
+                g.FillRectangle(new SolidBrush(Color.White), 0, 0, width, high);
+                g.DrawImage(orginalImg, 0, 0);
+                targetGraphics.DrawImage(bmp, 0, 0);
+                orginalImg = (Image)bmp.Clone();
+                finishingImg = (Image)bmp.Clone();
+                g.Dispose();
+                bmp.Dispose();
             }
         }
 
@@ -232,6 +237,7 @@ public    class DrawTools
             {
                 orginalImg = (Image)imagesSave.Last().Clone();
                 finishingImg = (Image)imagesSave.Last().Clone();
+                images.Add(imagesSave.Last());
                 imagesSave.Remove(imagesSave.Last());
                 targetGraphics.Clear(Color.White);
                 targetGraphics.DrawImage(orginalImg, 0, 0);

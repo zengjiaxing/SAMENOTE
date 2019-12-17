@@ -205,4 +205,7 @@
   <data name="缩小减小字号_文字操作_jurassic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\缩小减小字号_文字操作_jurassic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="保存_线性" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\保存 线性.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

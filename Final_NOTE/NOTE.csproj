@@ -245,5 +245,8 @@
   <ItemGroup>
     <None Include="Resources\增大字号_文字操作_jurassic.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\保存 线性.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

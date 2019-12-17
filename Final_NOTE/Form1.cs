@@ -27,22 +27,21 @@ namespace NOTE
         private Size DefaultPicSize;//储存原始画布大小，用来新建文件时使用
 
         List<int> IdList = new List<int>();
-
         List<string> list = new List<string>();
         //存储笔记名
         public List<string> strlist = new List<string>();
         public static string UserName = "当前用户未登录";//当前登录用户
         public static Boolean LoginSuccess = false;//用户是否登录成功
-        Boolean search = false;//textbox的搜索功能
-        Boolean alter = false;//textbox的修改功能
+
+        int EnterMode = 0;  // 1:查找, 2:新增, 3:重命名
         bool NonnClick = true; //检测是否切换过页面
         List<TextBox> tbxs = new List<TextBox>(); //文本框数组
         List<TextBoxInfo> tbxinfos = new List<TextBoxInfo>();
         FontBrush fb = new FontBrush(); //格式刷
         bool fbstatus = false; // 格式刷状态
         int TbxNum = -1;  //选中文本框的号码
-
-
+        int pageIndex = -1;
+        bool inserting = false;
         SizeChange sizeChange = new SizeChange();
 
         public NoteInterface()
@@ -88,7 +87,7 @@ namespace NOTE
             n.Texts = tbxinfos;
             n.Paint = dt.FinishingImg;
         }
-
+        #region 文本框操作
         // 生成新文本框
         private void 文本框ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -276,20 +275,18 @@ namespace NOTE
                 ChangeTextInfo(tbxinfos[TbxNum], tbxs[TbxNum]);
             }
         }
+        #endregion
+
         //新增笔记本--名字
         Boolean noteName = false;
         private void 新增ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //已经打开搜索框
-            if (SearchBox.Visible)
-            {
-                this.SearchBox.Text = "";
-                this.SearchBox.Visible = false;
-            }
+
             if (LoginSuccess)
             {
                 noteName = true;
                 this.SearchBox.Visible = true;
+                EnterMode = 2;
             }
             else
             {
@@ -327,6 +324,9 @@ namespace NOTE
         }
         private void SearchInfo()
         {
+            for (int i = 0; i < u.NoteList.Count; i++) {
+                strlist.Add(u.NoteList[i].Name);
+            }
             //笔记名显示
             NoteList.DataSource = strlist;
             string[] str = strlist.ToArray();
@@ -385,91 +385,83 @@ namespace NOTE
         #endregion
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Enter)//按下回车
             {
-
-                if (search)//此时textbox进行搜索功能
+                switch (EnterMode)
                 {
-
-                    for (int i = 0; i < this.NoteList.Items.Count; i++)
-                    {
-                        if (this.SearchBox.Text == this.NoteList.Items[i].ToString())
+                    case 1:
+                        for (int i = 0; i < this.NoteList.Items.Count; i++)
                         {
-                            //将找到的item背景设置为粉色
-                            MessageBox.Show("按下了回车键,找到" + this.NoteList.Items[i].ToString());
-                            Color vColor = Color.Gainsboro;
+                            if (this.SearchBox.Text == this.NoteList.Items[i].ToString())
+                            {
+                                //将找到的item背景设置为粉色
+                                MessageBox.Show("按下了回车键,找到" + this.NoteList.Items[i].ToString());
+                                Color vColor = Color.Gainsboro;
 
-                            Graphics devcolor = NoteList.CreateGraphics();
-                            vColor = Color.LightPink;
-                            devcolor.FillRectangle(new SolidBrush(vColor), NoteList.GetItemRectangle(i));
-                            devcolor.DrawString(NoteList.Items[i].ToString(), NoteList.Font, new SolidBrush(NoteList.ForeColor), NoteList.GetItemRectangle(i));
-                            search = false;
+                                Graphics devcolor = NoteList.CreateGraphics();
+                                vColor = Color.LightPink;
+                                devcolor.FillRectangle(new SolidBrush(vColor), NoteList.GetItemRectangle(i));
+                                devcolor.DrawString(NoteList.Items[i].ToString(), NoteList.Font, new SolidBrush(NoteList.ForeColor), NoteList.GetItemRectangle(i));
+
+                            }
                         }
-                    }
-                    ////说明循环后search还是真
-                    ////循环后找不到笔记名
-                    //MessageBox.Show("按下了回车键,找不到" + this.SearchBox.Text);
-
-                }
-                else if (noteName)
-                {
-                    if (!NonnClick)
-                    {
-                        SavePage();
-                    }
-                    NoteFunction nf = new NoteFunction();
-                    Note n1 = new Note();
-                    n1 = nf.GetInsertedNote();
-                    SearchInfo();
-                    string path = "D:/Note/"+ u.Name+"/" + (n1.ID+1).ToString();
-
-                    n1 = nf.AddNote(u.Name,SearchBox.Text,path,DateTime.Now,DateTime.Now);
-                    this.u.NoteList.Add(n1);
-                    NoteList.DataSource = null;
-                    NoteList.Items.Clear();
-                    this.AddNotesToList();
-                    this.list.Add(n1.Name);
-                    this.IdList.Add(n1.ID);
-                    this.n = n1;
-                    CleanPage();
-                    this.NoteList.SelectedIndex = this.NoteList.Items.Count - 1;
-                    noteName = false;
-                    this.SearchBox.Visible = false;
-                }
-                else if (alter)
-                {
-                    for (int i = 0; i < this.NoteList.Items.Count; i++)
-                    {
-                        if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
+                        break;
+                    case 2:
+                        if(pageIndex != -1)
                         {
-                            NoteFunction nf = new NoteFunction();
-                            nf.ModifyName(SearchBox.Text,u.NoteList[NoteList.SelectedIndex].ID,DateTime.Now);
-                            u.NoteList = nf.GetMyNote(u.Name);
-                            NoteList.DataSource = null;
-                            NoteList.Items.Clear();
-                            AddNotesToList();
-                            this.SearchBox.Text = "";
-                            this.SearchBox.Visible = false;
-                            MessageBox.Show("已更新笔记名称，请刷新笔记");
+                            SavePage();
 
                         }
-                    }
+                        NoteFunction nf = new NoteFunction();
+                        Note n1 = new Note();
+                        string path = "";
+                        n1 = nf.AddNote(u.Name, SearchBox.Text, path, DateTime.Now, DateTime.Now);
+                        path = "D:/Note/" + u.Name + "/" + (n1.ID).ToString();
+                        nf.ModifyPath(path,n1.ID, DateTime.Now);
+                        n1.Path = path;
+                        this.u.NoteList = nf.NotesOrderbyCtime(u.Name);
+                        AddNotesToList();
+                        this.n = n1;
+                        inserting = true;
+                        this.NoteList.SelectedIndex = 0;
+                        SearchInfo();
+                        noteName = false;
+                        this.SearchBox.Visible = false;
+                        this.u.NoteList = nf.NotesOrderbyCtime(u.Name);
+                        AddNotesToList();
+                        break;
+                    case 3:
+                        for (int i = 0; i < this.NoteList.Items.Count; i++)
+                        {
+                            if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
+                            {
+                                NoteFunction nf2 = new NoteFunction();
+                                nf2.ModifyName(SearchBox.Text, u.NoteList[NoteList.SelectedIndex].ID, DateTime.Now);
+                                u.NoteList = nf2.GetMyNote(u.Name);
+                                AddNotesToList();
+                                this.SearchBox.Text = "";
+                                this.SearchBox.Visible = false;
+                                this.u.NoteList = nf2.NotesOrderbyCtime(u.Name);
+                                AddNotesToList();
+                            }
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                //else
-                //{
-                //    MessageBox.Show("按下了回车键,找不到" + this.SearchBox.Text);
-
-                //}
+                EnterMode = 0;
+                SearchBox.Visible = false;
+                SearchBox.Text = "";
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            search = true;
+
+            EnterMode = 1;
             //显示搜索框
             this.SearchBox.Visible = true;
-
+            SearchInfo();
         }
 
 
@@ -487,7 +479,7 @@ namespace NOTE
 
         }
 
-
+        #region 绘画操作
         private void Drawbox_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -554,11 +546,9 @@ namespace NOTE
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             bReSize = false;//大小改变结束
-            //调节大小可能造成画板大小超过屏幕区域，所以事先要设置autoScroll为true.
             //但是滚动条的出现反而增加了我们的难度，因为滚动条上下移动并不会自动帮我们调整图片的坐标。
-            //这是因为GDI绘图的坐标系不只一个，好像有三个，没有仔细了解，一个是屏幕坐标，一个是客户区坐标，还个是文档坐标。
-            //滚动条的上下移动改变的是文档的坐标，但是客户区坐标不变，而location属性就属于客户区坐标，所以我们直接计算会出现错误
-            //这时我们就需要知道文档坐标与客户区坐标的偏移量，这就是AutoScrollPostion可以提供的
+            //滚动条的上下移动改变的是文档的坐标，但是客户区坐标不变，而location属性就属于客户区坐标
+            //需要知道文档坐标与客户区坐标的偏移量，这是AutoScrollPostion可以提供的
 
             Drawbox.Size = new Size(reSize.Location.X - (this.panel1.AutoScrollPosition.X), reSize.Location.Y - (this.panel1.AutoScrollPosition.Y));
             dt.targetGraphics = Drawbox.CreateGraphics();//因为画板的大小被改变所以必须重新赋值
@@ -579,7 +569,7 @@ namespace NOTE
 
         private void RevokeBtn_Click(object sender, EventArgs e)
         {
-            dt.revocation();
+            dt.revocation(Drawbox.Height, Drawbox.Width);
         }
 
         private void RestoreBtn_Click(object sender, EventArgs e)
@@ -596,30 +586,29 @@ namespace NOTE
         {
             dt.clear();
         }
-
+        #endregion
         private void NoteList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!NonnClick)
-            {
-                SavePage();
-            }
-            NonnClick = false;
-            NoteReader nr = new NoteReader();
-            if (NoteList.SelectedIndex != -1 && !NonnClick)
-            {
-                int i;
-                CleanPage();
-                for (i = 0; i < u.NoteList.Count; i++)
+                NoteReader nr = new NoteReader();
+                if (pageIndex != -1)
                 {
-                    if (u.NoteList[i].ID == IdList[NoteList.SelectedIndex])
-                    {
-                        break;
-                    }
+                    SavePage();
                 }
-                this.n = nr.ReadFromFile(u.NoteList[i].Path);
-                GetPage();
-            }
 
+                CleanPage();
+
+                pageIndex = NoteList.SelectedIndex;
+
+                if (!inserting)
+                {
+                    n = nr.ReadFromFile(u.NoteList[NoteList.SelectedIndex].Path);
+                    GetPage();
+                }
+                else
+                {
+                    inserting = false;
+                }
+            
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -627,7 +616,7 @@ namespace NOTE
             SavePage();
         }
 
-
+        #region  页面存取操作
         private void CleanPage()//清除页面
         {
              for(int i = 0; i < tbxs.Count; i++)
@@ -638,11 +627,9 @@ namespace NOTE
             TbxNum = -1;
             tbxinfos = new List<TextBoxInfo>();
             dt.clear();
-            this.Drawbox.Height = dt.begin.Height;
-            this.Drawbox.Width = dt.begin.Width;
+            this.Drawbox.Height = 324;
+            this.Drawbox.Width = 396;
             this.reSize.Location = this.Drawbox.Location + this.Drawbox.Size;
-
-            //dt.targetGraphics = this.Drawbox.CreateGraphics();
             Bitmap bmp = new Bitmap(Drawbox.Width, Drawbox.Height);
             Graphics g = Graphics.FromImage(bmp);
             g.FillRectangle(new SolidBrush(Drawbox.BackColor), new Rectangle(0, 0, Drawbox.Width, Drawbox.Height));
@@ -653,6 +640,7 @@ namespace NOTE
         private void GetPage()
         {
             NoteReader nr = new NoteReader();
+            System.Console.WriteLine(n.Path);
             this.n = nr.ReadFromFile(this.n.Path);
             for(int i = 0; i < n.Texts.Count; i++)
             {
@@ -717,7 +705,7 @@ namespace NOTE
             NoteWriter nw = new NoteWriter();
             nw.WriteToFile(n);
         }
-
+        #endregion
         private void 注册ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Register r = new Register();
@@ -743,13 +731,22 @@ namespace NOTE
 
         private void AddNotesToList()
         {
+            inserting = true;
+            NoteList.DataSource = null;
+            NoteList.Items.Clear();
+            //while (NoteList.Items.Count != 0)
+            //{
+            //    NoteList.Items.Remove(NoteList.Items.Count-1);
+            //}
             this.list = new List<string>();
             this.IdList = new List<int>();
+            System.Console.WriteLine(NoteList.Items.Count);
             for(int i = 0; i < u.NoteList.Count; i++)
             {
                 NoteList.Items.Add(u.NoteList[i].Name);
                 this.list.Add(u.NoteList[i].Name);
                 this.IdList.Add(u.NoteList[i].ID);
+                System.Console.WriteLine(i);
             }
         }
         public void Change_text(string str)
@@ -792,9 +789,15 @@ namespace NOTE
 
             NoteList.DataSource = null;
             NoteList.Items.Clear();
+
             LogIn l = new LogIn();
             l.passname += new PassName(Change_text);
             l.ShowDialog();
+
+            LoginSuccess = true;
+            NoteFunction nf = new NoteFunction();
+            u.NoteList = nf.GetMyNote(u.Name);
+            AddNotesToList();
         }
 
         private void CleanVars()
@@ -805,14 +808,12 @@ namespace NOTE
             this.IdList = new List<int>();
             this.list = new List<string>();
             LoginSuccess = false;
-            this.search = false;
-            this.alter = false;
             this.tbxs = new List<TextBox>();
             this.tbxinfos = new List<TextBoxInfo>();
             this.fb = new FontBrush();
             this.fbstatus = false;
             TbxNum = -1;
-            NonnClick = true;
+            pageIndex = -1;
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -854,8 +855,6 @@ namespace NOTE
                 NoteReader nr = new NoteReader();
                 n = nr.ReadFromFile(n.Path);
                 u.NoteList.Add(n);
-                NoteList.DataSource = null;
-                NoteList.Items.Clear();
                 AddNotesToList();
             }
         }
@@ -863,28 +862,25 @@ namespace NOTE
         private void NoteList_MouseUp(object sender, MouseEventArgs e)
         {
             int index = NoteList.IndexFromPoint(e.X, e.Y);
-            NoteList.SelectedIndex = index;
-
             if (e.Button == MouseButtons.Right)
             {
+                if (index > 0 && index < NoteList.Items.Count)
+                {
+                    NoteList.SelectedIndex = index;
+                }
                 if (NoteList.SelectedIndex != -1)
                 {
                     CMStrip.Show(this.NoteList, e.Location);
                 }
 
             }
-            else
-            {
-                if (NoteList.SelectedIndex != -1)
-                {
-                }
-            }
+
         }
 
         private void 重命名ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.SearchBox.Visible = true;
-            this.alter = true;
+            EnterMode = 3;
         }
 
         private void 删除笔记ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -894,8 +890,6 @@ namespace NOTE
             Deleter d = new Deleter();
             d.FileDelete(u.NoteList[NoteList.SelectedIndex].Path);
             u.NoteList = nf.GetMyNote(u.Name);
-            NoteList.DataSource = null;
-            NoteList.Items.Clear();
             AddNotesToList();
         }
 
@@ -903,8 +897,6 @@ namespace NOTE
         {
             NoteFunction nf = new NoteFunction();
             this.u.NoteList = nf.NotesOrderbyCtime(u.Name);
-            NoteList.DataSource = null;
-            NoteList.Items.Clear();
             AddNotesToList();
         }
 
@@ -912,10 +904,14 @@ namespace NOTE
         {
             NoteFunction nf = new NoteFunction();
             this.u.NoteList = nf.NotesOrderbyLtime(u.Name);
-            NoteList.DataSource = null;
-            NoteList.Items.Clear();
             AddNotesToList();
         }
 
+        private void ReverseSort_Click(object sender, EventArgs e)
+        {
+            NoteFunction nf = new NoteFunction();
+            this.u.NoteList = nf.NotesOrderbyLtime(u.Name);
+            AddNotesToList();
+        }
     }
 }

@@ -93,6 +93,7 @@ namespace NoteDAL
             command.Parameters.AddWithValue("@name", name);
             command.Parameters.AddWithValue("@pswd", psw);
             command.Parameters.AddWithValue("@tel", tel);
+            conn.Close();
             conn.Open();
             try
             {
@@ -121,16 +122,18 @@ namespace NoteDAL
             command.Parameters.AddWithValue("@name", name);
             //.检索数据
             SqlDataReader reader = command.ExecuteReader();
-            if(reader != null)
+            List<User> list = new List<User>();
+
+            while (reader.Read())
             {
-                conn.Close();
-                return true;
+                //User user = new User(reader.GetString(0))
+                User user = new User(reader.GetString(0));
+                if(user.Name == name)
+                {
+                    return true;
+                }
             }
-            else
-            {
-                conn.Close();
-                return  false;
-            }
+            return false;
         }
 
 
