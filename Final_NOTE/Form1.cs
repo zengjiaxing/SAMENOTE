@@ -390,6 +390,12 @@ namespace NOTE
                 switch (EnterMode)
                 {
                     case 1:
+                        if (NoteList.Items.Count > 0)
+                        {
+                            NoteList.DataSource = null;
+                            NoteList.Items.Clear();
+                            strlist.Clear();
+                        }
                         for (int i = 0; i < this.NoteList.Items.Count; i++)
                         {
                             if (this.SearchBox.Text == this.NoteList.Items[i].ToString())
@@ -642,6 +648,7 @@ namespace NOTE
             NoteReader nr = new NoteReader();
             System.Console.WriteLine(n.Path);
             this.n = nr.ReadFromFile(this.n.Path);
+
             for(int i = 0; i < n.Texts.Count; i++)
             {
                 TextBox tb = new TextBox();
@@ -694,16 +701,23 @@ namespace NOTE
         }
         private void SavePage()
         {
-            NoteFunction nf = new NoteFunction();
-            this.n.LastModify = DateTime.Now;
-            this.n.Texts = tbxinfos;
-            this.n.Paint = this.dt.FinishingImg;
-            this.n.Texts = this.tbxinfos;
-            nf.ModifyLtime(n.LastModify,n.ID);
-            System.Console.WriteLine(this.n.Path);
-            Directory.CreateDirectory(n.Path);
-            NoteWriter nw = new NoteWriter();
-            nw.WriteToFile(n);
+            if (this.n.Path != null)
+            {
+                NoteFunction nf = new NoteFunction();
+                this.n.LastModify = DateTime.Now;
+                this.n.Texts = tbxinfos;
+                this.n.Paint = this.dt.FinishingImg;
+                this.n.Texts = this.tbxinfos;
+                nf.ModifyLtime(n.LastModify, n.ID);
+                System.Console.WriteLine(this.n.Path);
+                Directory.CreateDirectory(n.Path);
+                NoteWriter nw = new NoteWriter();
+                nw.WriteToFile(n);
+            }
+            else
+            {
+                MessageBox.Show("当前路径为空，请新建笔记");
+            }
         }
         #endregion
         private void 注册ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -818,8 +832,15 @@ namespace NOTE
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SavePage();
-            MessageBox.Show("保存成功");
+            if (this.n.Path != null)
+            {
+                SavePage();
+                MessageBox.Show("保存成功");
+            }
+            else
+            {
+                MessageBox.Show("请新建笔记");
+            }
         }
 
         private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -842,6 +863,8 @@ namespace NOTE
             SavePage();
             NoteFunction nf = new NoteFunction();
             nf.ModifyPath(n.Path,n.ID,n.LastModify);
+
+            MessageBox.Show("保存成功,路径为：" + n.Path);
         }
 
         private void 打开ToolStripMenuItem_Click(object sender, EventArgs e)
