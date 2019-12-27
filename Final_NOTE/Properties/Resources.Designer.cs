@@ -61,12 +61,72 @@ namespace NOTE.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Colour_Palette {
+            get {
+                object obj = ResourceManager.GetObject("Colour_Palette", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap eraser {
+            get {
+                object obj = ResourceManager.GetObject("eraser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap paintbrush {
+            get {
+                object obj = ResourceManager.GetObject("paintbrush", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Icon paletee {
             get {
                 object obj = ResourceManager.GetObject("paletee", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap pointer {
+            get {
+                object obj = ResourceManager.GetObject("pointer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap redo {
+            get {
+                object obj = ResourceManager.GetObject("redo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap undo {
+            get {
+                object obj = ResourceManager.GetObject("undo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -85,7 +145,7 @@ namespace NOTE.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap 书__1_ {
             get {
-                object obj = ResourceManager.GetObject("书__1_", resourceCulture);
+                object obj = ResourceManager.GetObject("书 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,6 +193,16 @@ namespace NOTE.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 实线_1_ {
+            get {
+                object obj = ResourceManager.GetObject("实线_1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 恢复 {
             get {
                 object obj = ResourceManager.GetObject("恢复", resourceCulture);
@@ -155,7 +225,7 @@ namespace NOTE.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap 搜索__1 {
             get {
-                object obj = ResourceManager.GetObject("搜索__1", resourceCulture);
+                object obj = ResourceManager.GetObject("搜索--1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -185,7 +255,7 @@ namespace NOTE.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap 时间_历史记录_计时_钟表_线性 {
             get {
-                object obj = ResourceManager.GetObject("时间_历史记录_计时_钟表_线性", resourceCulture);
+                object obj = ResourceManager.GetObject("时间 历史记录 计时 钟表 线性", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,6 +283,16 @@ namespace NOTE.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 清除 {
+            get {
+                object obj = ResourceManager.GetObject("清除", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 清除格式 {
             get {
                 object obj = ResourceManager.GetObject("清除格式", resourceCulture);
@@ -226,6 +306,16 @@ namespace NOTE.Properties {
         internal static System.Drawing.Bitmap 画笔 {
             get {
                 object obj = ResourceManager.GetObject("画笔", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 虚线_1_ {
+            get {
+                object obj = ResourceManager.GetObject("虚线_1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
