@@ -12,12 +12,24 @@ using System.Drawing.Imaging;
 using System.IO;
 using NOTE.ClassModel;
 using NOTE.ControlModel;
-using MySql.Data.MySqlClient;
-using NoteDAL;
+//using MySql.Data.MySqlClient;
+//using NoteDAL;
 namespace NOTE
 {
-    public partial class Note : Form
+    public partial class NoteInterface : Form
     {
+        //List<Note> nl = new List<Note>();
+        //User u = new User();
+        //Note n = new Note();
+
+
+        private DrawTools dt;
+        private string sType;//绘图样式
+        private string sFileName;//打开的文件名
+        private bool bReSize = false;//是否改变画布大小
+        private Size DefaultPicSize;//储存原始画布大小，用来新建文件时使用
+
+
         MyDrawBox myDrawBox;
         List<string> list = new List<string>();
         //存储笔记名
@@ -32,62 +44,45 @@ namespace NOTE
         bool fbstatus = false; // 格式刷状态
         int TbxNum = -1;  //选中文本框的号码
         SizeChange sizeChange = new SizeChange();
-        public Note()
+        public NoteInterface()
         {
 
             InitializeComponent();
-            myDrawBox = new MyDrawBox(pictureBox1);
+
             penSize.Items.Add(5);
             penSize.Items.Add(7);
-            penSize.Items.Add(9);
-            penSize.Items.Add(11);
+            penSize.Items.Add(10);
+            penSize.Items.Add(13);
+
+            //u.NoteList1 = nl;
+            //n.Paint = this.Drawbox;
+            //n.Texts = this.tbxs;
+
+
             this.SearchBox.Visible = false;
 
 
         }
 
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            myDrawBox.mourseDown(e, this.pictureBox1);
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            myDrawBox.mourseUp(e, this.pictureBox1);
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            myDrawBox.mourseMove(e, this.pictureBox1);
-        }
-        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-        {
-            myDrawBox.mourseDown(e, this.pictureBox1);
-        }
-
-        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            myDrawBox.mourseUp(e, this.pictureBox1);
-        }
-
-        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
-        {
-            myDrawBox.mourseMove(e, this.pictureBox1);
-        }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
-            myDrawBox.colorSelect(colorDialog1);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int size = Convert.ToInt32(this.penSize.SelectedItem.ToString());
-            myDrawBox.penSizeSelect(size);
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                dt.DrawColor = colorDialog1.Color;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            this.UpdateStyles();
+            Bitmap bmp = new Bitmap(Drawbox.Width, Drawbox.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.FillRectangle(new SolidBrush(Drawbox.BackColor), new Rectangle(0, 0, Drawbox.Width, Drawbox.Height));
+            g.Dispose();
+            dt = new DrawTools(this.Drawbox.CreateGraphics(), colorDialog1.Color, bmp);//实例化工具类
+            DefaultPicSize = Drawbox.Size;
             foreach (System.Drawing.FontFamily i in objFont.Families)//加载所有字体
             {
                 FontBox.Items.Add(i.Name.ToString());
@@ -360,32 +355,17 @@ namespace NOTE
                 }
                 else if (noteName)
                 {
-                    strlist.Add(this.SearchBox.Text);
-                    SearchInfo();
-                    //this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
-
-                    DataSource data = new DataSource();
-                    //Random r = new Random();
-                    data.InsertDatabaseNOTE(UserName, this.SearchBox.Text, "11", DateTime.Now, DateTime.Now);
-                    
+                    this.NoteList.Items.Add(this.SearchBox.Text);//listbox添加item
+                    list.Add(this.SearchBox.Text);//list添加
+                    this.SearchBox.Text = "";
+                    string[] str = list.ToArray();
+                    //搜索匹配
+                    this.SearchBox.AutoCompleteCustomSource.Clear();
+                    this.SearchBox.AutoCompleteCustomSource.AddRange(str);
+                    this.SearchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+                    this.SearchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
                     noteName = false;
                     this.SearchBox.Visible = false;
-                }
-                else if (alter)
-                {
-                    DataSource data = new DataSource();
-                    Random r = new Random();
-
-                    for (int i = 0; i < this.NoteList.Items.Count; i++)
-                    {
-                        if (NoteList.SelectedItems.Contains(NoteList.Items[i]))
-                        {
-                            data.AlterDatabaseNOTE(this.UserLabel.Text, this.NoteList.Items[i].ToString(), this.SearchBox.Text, DateTime.Now);
-                            this.SearchBox.Text = "";
-                            this.SearchBox.Visible = false;
-                            MessageBox.Show("已更新笔记名称，请刷新笔记");
-                        }
-                    }
                 }
                 //else
                 //{
@@ -429,7 +409,7 @@ namespace NOTE
                 if (dr == DialogResult.OK)
                 {
                     string fileName = dlg.FileName;
-                    this.pictureBox1.Image = Image.FromFile(fileName);//将图片填充到pictureBox中
+                    //this.pictureBox1.Image = Image.FromFile(fileName);//将图片填充到pictureBox中
 
                     filepath = dlg.FileName;//获取全部文件路径（包括拓展名）
                     PictureBox p = new PictureBox();
@@ -446,7 +426,117 @@ namespace NOTE
             }
         }
 
-        private void 连接数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        //private void 连接数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    DataSource data = new DataSource();
+        //    List<User> userlist = new List<User>();
+        //    userlist = data.init();
+        //    foreach(User x in userlist)
+        //    {
+        //        MessageBox.Show("用户姓名："+x.Name1+"，用户密码："+ x.Password1);
+        //    }
+        //}
+
+        private void Drawbox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dt != null)
+                {
+                    dt.startDraw = true;//相当于所选工具被激活，可以开始绘图
+                    dt.startPointF = new PointF(e.X, e.Y);
+                }
+            }
+        }
+
+        private void Drawbox_MouseMove(object sender, MouseEventArgs e)
+        {
+            // mousePostion.Text = e.Location.ToString();
+            if (dt.startDraw)
+            {
+                switch (sType)
+                {
+                    case "Dot": dt.DrawDot(e); break;
+                    case "Eraser": dt.Eraser(e); break;
+                    default: dt.Draw(e, sType); break;
+                }
+            }
+        }
+
+        private void Drawbox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (dt != null)
+            {
+                dt.EndDraw();
+            }
+        }
+
+
+
+        private void Dash_Click(object sender, EventArgs e)
+        {
+            dt.Dash(((Button)sender).Name);
+        }
+        private void ellipseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sType = ((System.Windows.Forms.ToolStripMenuItem)sender).Name;
+        }
+
+        private void penSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dt.pen.Width = Convert.ToInt32(penSize.Text);
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            bReSize = true;//当鼠标按下时，说明要开始调节大小
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (bReSize)
+            {
+                reSize.Location = new Point(reSize.Location.X + e.X, reSize.Location.Y + e.Y);
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            bReSize = false;//大小改变结束
+            //调节大小可能造成画板大小超过屏幕区域，所以事先要设置autoScroll为true.
+            //但是滚动条的出现反而增加了我们的难度，因为滚动条上下移动并不会自动帮我们调整图片的坐标。
+            //这是因为GDI绘图的坐标系不只一个，好像有三个，没有仔细了解，一个是屏幕坐标，一个是客户区坐标，还个是文档坐标。
+            //滚动条的上下移动改变的是文档的坐标，但是客户区坐标不变，而location属性就属于客户区坐标，所以我们直接计算会出现错误
+            //这时我们就需要知道文档坐标与客户区坐标的偏移量，这就是AutoScrollPostion可以提供的
+
+            Drawbox.Size = new Size(reSize.Location.X - (this.panel1.AutoScrollPosition.X), reSize.Location.Y - (this.panel1.AutoScrollPosition.Y));
+            dt.targetGraphics = Drawbox.CreateGraphics();//因为画板的大小被改变所以必须重新赋值
+
+            //另外画布也被改变所以也要重新赋值
+            Bitmap bmp = new Bitmap(Drawbox.Width, Drawbox.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.FillRectangle(new SolidBrush(Color.White), 0, 0, Drawbox.Width, Drawbox.Height);
+            g.DrawImage(dt.OrginalImg, 0, 0);
+            g.Dispose();
+            g = Drawbox.CreateGraphics();
+            g.DrawImage(bmp, 0, 0);
+            g.Dispose();
+            dt.OrginalImg = bmp;
+
+            bmp.Dispose();
+        }
+
+        private void RevokeBtn_Click(object sender, EventArgs e)
+        {
+            dt.revocation();
+        }
+
+        private void RestoreBtn_Click(object sender, EventArgs e)
+        {
+            dt.advance();
+        }
+
+        private void Rubber_Click(object sender, EventArgs e)
         {
             //DataSource data = new DataSource();
             //List<User> userlist = new List<User>();
